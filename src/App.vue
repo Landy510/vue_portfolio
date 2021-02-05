@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <button class="btn scrollTop bg-transparent text-dark">
+       <font-awesome-icon :icon="['fas','chevron-up']" size="3x"></font-awesome-icon>
+       <p>Top</p>
+    </button>
     <Navbar></Navbar>
     <!--<banner/>-->
     <Loading :active.sync="isLoading"></Loading>
@@ -73,5 +77,12 @@ export default {
 <style lang="scss">
 @import "./assets/all.css";
 
+.scrollTop{
+  display:none;
+  position:fixed; 
+  right:30px; 
+  bottom:200px; 
+  z-index:9999;
+}
 
 </style>
