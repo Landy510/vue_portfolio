@@ -1,0 +1,12 @@
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import './helper/variables';
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+.bg-cover{
+    background-size: cover;
+    background-position: center center;
+}
+.h-60{
+    height: 60%;
+}
