@@ -42,13 +42,13 @@
           <small class="text-muted">課程選擇</small>
           <p class="h2 mb-4 font-weight-normal">Lecture</p>
 
-          <div class="list-group flex-row w-50 mx-auto mb-3" id="list-tab" role="tablist">
+          <div class="list-group flex-row lecture_option mx-auto mb-3" id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active border-0 text-dark" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">All</a>
             <a class="list-group-item list-group-item-action border-0 text-dark" id="list-Workout-list" data-toggle="list" href="#list-Workout" role="tab" aria-controls="Workout">Workout</a>
             <a class="list-group-item list-group-item-action border-0 text-dark" id="list-women-list" data-toggle="list" href="#list-women" role="tab" aria-controls="profile">Aerobic</a>
           </div>
 
-          <div class="tab-content" id="nav-tabContent">
+          <div class="tab-content mb-3" id="nav-tabContent">
             <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
               <div class="row">
                   <div class="col-md-4 mb-2">
@@ -247,5 +247,13 @@ export default {
 .list-group-item.active{
   background:transparent;
   font-weight:600;
+}
+.lecture_option{
+  width:50%;
+}
+@media(max-width:680px){
+  .lecture_option{
+    width:100%;
+  }
 }
 </style>
