@@ -1,12 +1,14 @@
 <template>
   <div>
+    <Navbar></Navbar>
+    <banner></banner>
     <div class="container main-content mb-3">
       <Loading :active.sync="isLoading"></Loading>
       <div class="row mb-5">
         
         <div class="col-12 text-center" style="position:relative">
-          <button class="btn btn-outline-dark btn-transparent MoveToLeft d-none d-md-block" style="position:absolute; left:-10px; top:150px; z-index:2;">  <font-awesome-icon :icon="['fas','long-arrow-alt-left']" size="2x"></font-awesome-icon> </button>
-          <button class="btn btn-outline-dark btn-transparent MoveToRight" style="position:absolute; right:-20px; top:150px; z-index:2;"><font-awesome-icon :icon="['fas','long-arrow-alt-right']" size="2x"></font-awesome-icon></button>
+          <button class="btn btn-outline-dark btn-transparent MoveToLeft d-none d-md-block" style="position:absolute; left:-10px; top:150px; z-index:2;" @click="RollToLeft">  <font-awesome-icon :icon="['fas','long-arrow-alt-left']" size="2x"></font-awesome-icon> </button>
+          <button class="btn btn-outline-dark btn-transparent MoveToRight" style="position:absolute; right:-20px; top:150px; z-index:2;" @click="RollToRight"><font-awesome-icon :icon="['fas','long-arrow-alt-right']" size="2x"></font-awesome-icon></button>
           <small class="text-muted">教練推薦課程</small>
           <p class="h2 mb-4 font-weight-normal">Recommended</p>
           <div class="row flex-md-nowrap py-2 Recommended_class_frame">
@@ -272,6 +274,9 @@
 </template>
 
 <script>
+import Navbar from './Navbar'
+import banner from "./intro_banner";
+import $ from "jquery";
 export default {
   name: 'Home',
   data() {
@@ -282,6 +287,45 @@ export default {
       isLoading: false,
     };
   },
+  components:{
+    Navbar,
+    banner
+  },
+  methods:{
+    ReadWebSiteWidth: function(value, direction){
+        if(value>1024){
+            let scale = (direction==='L')? -370 : 370;
+            return scale;
+        } else if(value<=1024 && value>768){
+            let scale = (direction==='L')? -310 : 310;
+            return scale;
+        } else {
+            let scale = (direction==='L')? -230 : 230;
+            return scale;
+        }
+    },
+    RollToLeft:function(){
+      let vm =this;
+      let scrollScale = 0;
+      scrollScale = 0;
+      scrollScale += vm.ReadWebSiteWidth(document.body.clientWidth, 'L');
+      console.log(scrollScale)
+      scrollScale = scrollScale*3;
+      console.log(scrollScale)
+      $('.Recommended_class').css("transform","translateX(" + scrollScale + "px)");
+      $('.MoveToRight').css('opacity', '1');    
+      $('.MoveToLeft').css('opacity', 0);
+    },
+    RollToRight:function(){
+      let vm =this;
+      let scrollScale = 0;
+      scrollScale = 0;
+      //scrollScale += vm.ReadWebSiteWidth(document.body.clientWidth, 'R');
+      $('.Recommended_class').css("transform","translateX(" + scrollScale + "px)");   
+      $('.MoveToLeft').css('opacity', '1');    
+      $('.MoveToRight').css('opacity', 0); 
+    }
+  }
 };
 </script>
 

@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import Loading from 'vue-loading-overlay';
+import Login from '../views/Login'
+import DashBoard from '../views/DashBoard';
+import Products from '../views/Products';
 import '../../node_modules/vue-loading-overlay/dist/vue-loading'
 
 
@@ -15,6 +18,10 @@ Vue.component('Loading', Loading);
 
 const routes = [
   {
+    path:'*',
+    redirect:'login'
+  },
+  {
     path: '/',
     name: 'Home',
     component: Home
@@ -22,10 +29,26 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/admin',
+    name: 'DashBoard',
+    component: DashBoard,
+    meta: { requiresAuth: true },
+    children:[
+      {
+        path:'products',
+        name: 'Products',
+        component: Products,
+        meta: { requiresAuth: true },
+      }
+    ]
   }
 ]
 

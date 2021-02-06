@@ -4,30 +4,19 @@
        <font-awesome-icon :icon="['fas','chevron-up']" size="3x"></font-awesome-icon>
        <p>Top</p>
     </button>
-    <Navbar></Navbar>
-    <!--<banner/>-->
+    <!--<Navbar></Navbar>-->
     <Loading :active.sync="isLoading"></Loading>
     
-
-
-    <div class="container">
-      <router-view/>  
-    </div>
+    <router-view/>  
     
     <Footer/>
-    
-
-
-
-
-    
   </div>
 </template>
 
 <script>
 import Navbar from "./views/Navbar";
 import Footer from "./views/Footer";
-//import banner from "./views/intro_banner.vue";
+
 export default {
   name: 'App',
   data() {
