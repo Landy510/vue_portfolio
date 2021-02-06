@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import Loading from 'vue-loading-overlay';          // 引入overlay元件
+import 'vue-loading-overlay/dist/vue-loading.css';  // 引入overlay元件
 import 'bootstrap'  
 import './all.js'
 
@@ -17,6 +19,9 @@ import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { faListAlt } from '@fortawesome/free-solid-svg-icons'
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+
+
 import { faUsersCog} from '@fortawesome/free-solid-svg-icons'
 import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faFontAwesome } from '@fortawesome/free-brands-svg-icons'
@@ -30,7 +35,9 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 Vue.use(VueAxios, axios)
+Vue.component('Loading', Loading);  // 將overlay元件宣告成全域的元件
 
+library.add(faSpinner)
 library.add(faTicketAlt)
 library.add(faListAlt)
 library.add(faBoxOpen)
