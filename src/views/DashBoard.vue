@@ -1,6 +1,8 @@
 <template>
     <div>
+        
         <Navbar/>
+        <Alert/>
         <div class="container-fluid">
           <div class="row">
             <ul class="list-group">
@@ -40,6 +42,7 @@
 
 <script>
   import Navbar from './Navbar'
+  import Alert from './AlertMessage'
   export default {
     data() {
       return {
@@ -52,7 +55,8 @@
       this.$http.defaults.headers.common.Authorization = myCookie;
     },
     components:{
-        Navbar
+        Navbar,
+        Alert
     }
   }
 </script>
