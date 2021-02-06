@@ -7,6 +7,8 @@ import Loading from 'vue-loading-overlay';
 import Login from '../views/Login'
 import DashBoard from '../views/DashBoard';
 import Products from '../views/Products';
+import Lecture from '../views/Lecture';
+import SelfProduct from '../views/SelfProduct';
 import '../../node_modules/vue-loading-overlay/dist/vue-loading'
 
 
@@ -30,6 +32,18 @@ const routes = [
     path: '/about',
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/lecture',
+    name: 'Lecture',
+    component: Lecture,
+    children:[
+      {
+        path:':LectureId',
+        name: 'SelfProduct',
+        component: SelfProduct
+      }
+    ]
   },
   {
     path: '/login',

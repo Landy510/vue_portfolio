@@ -12,76 +12,20 @@
           <small class="text-muted">教練推薦課程</small>
           <p class="h2 mb-4 font-weight-normal">Recommended</p>
           <div class="row flex-md-nowrap py-2 Recommended_class_frame">
-            <div class="col-md-4 Recommended_class mb-2 mb-md-0">
+            <div class="col-md-4 Recommended_class mb-2 mb-md-0" v-for="(item, index) in products">
               <div class="card h-100 border-0">
-                <img class="card-img-top h-60" src="https://upload.cc/i1/2020/12/26/y5BPdl.jpg" alt="Card image cap">
+                <img class="card-img-top h-60" :src="item.imageUrl" alt="Card image cap">
                 <div class="card-body">
-                  <p class="card-text mb-0">自由馬拉松</p>
-                  <small class="card-text text-muted">NT$ 4000</small>
+                  <p class="card-text mb-0">{{item.title}}</p>
+                  <p class="card-text mb-0">{{item.description}}</p>
+                  <div class="d-flex justify-content-between align-items-end">
+                    <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price}}</del></small>
+                    <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price}}</span></strong>
+                  </div>
+                  
                 </div>
                 <div class="card-footer p-0 border-0 bg-transparent">
-                  <button class="btn btn-outline-dark btn-lg rounded-0">前往課程介紹</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 Recommended_class mb-2 mb-md-0">
-              <div class="card h-100 border-0">
-                <img class="card-img-top h-60" src="https://upload.cc/i1/2020/12/24/6CAbc3.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <p class="card-text mb-0">瑜珈課程</p>
-                  <small class="card-text text-muted">NT$ 500</small>
-                </div>
-                <div class="card-footer p-0 border-0 bg-transparent">
-                  <button class="btn btn-outline-dark btn-lg rounded-0">前往課程介紹</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 Recommended_class mb-2 mb-md-0">
-                  <div class="card h-100 border-0">
-                <img class="card-img-top h-60" src="https://upload.cc/i1/2021/02/04/CQFhfR.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <p class="card-text mb-0">飲食控制套餐</p>
-                  <small class="card-text text-muted">NT$ 1000</small>
-                </div>
-                <div class="card-footer p-0 border-0 bg-transparent">
-                  <button class="btn btn-outline-dark btn-lg rounded-0">前往課程介紹</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 Recommended_class mb-2 mb-md-0">
-              <div class="card h-100 border-0">
-                <img class="card-img-top h-60" src="https://upload.cc/i1/2021/02/05/s3GHBq.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <p class="card-text mb-0">挺舉 Clean and Jerk</p>
-                  <small class="card-text text-muted">NT$ 1000</small>
-                </div>
-                <div class="card-footer p-0 border-0 bg-transparent">
-                  <button class="btn btn-outline-dark btn-lg rounded-0">前往課程介紹</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 Recommended_class mb-2 mb-md-0">
-              <div class="card h-100 border-0">
-                <img class="card-img-top h-60" src="https://upload.cc/i1/2021/02/05/HRgYB3.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <p class="card-text mb-0">戰繩 Battle Rope</p>
-                  <small class="card-text text-muted">NT$ 3000</small>
-                </div>
-                <div class="card-footer p-0 border-0 bg-transparent">
-                  <button class="btn btn-outline-dark btn-lg rounded-0">前往課程介紹</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 Recommended_class mb-2 mb-md-0">
-              <div class="card h-100 border-0">
-                <img class="card-img-top h-60" src="https://upload.cc/i1/2020/12/26/z5e1qK.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <p class="card-text mb-0">深蹲 Squat</p>
-                  <small class="card-text text-muted">NT$ 4000</small>
-                </div>
-                <div class="card-footer p-0 border-0 bg-transparent">
-                  <button class="btn btn-outline-dark btn-lg rounded-0">前往課程介紹</button>
+                  <button class="btn btn-outline-dark btn-lg rounded-0" @click="getProduct(item.id)">前往課程介紹</button>
                 </div>
               </div>
             </div>
@@ -292,12 +236,26 @@ export default {
     banner
   },
   methods:{
+    getProducts(page=1){
+      const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`; 
+      this.$http.get(api).then((response)=>{
+            if(response.data.success){
+              vm.products = response.data.products;
+              console.log(vm.products);
+            }
+        })
+    },
+    getProduct(id){
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/${id}`;
+      this.$router.push(`/lecture/${id}`);
+    },
     ReadWebSiteWidth: function(value, direction){
         if(value>1024){
-            let scale = (direction==='L')? -370 : 370;
+            let scale = (direction==='L')? -380 : 370;
             return scale;
-        } else if(value<=1024 && value>768){
-            let scale = (direction==='L')? -310 : 310;
+        } else if(value<=1024 && value>=768){
+            let scale = (direction==='L')? -320 : 310;
             return scale;
         } else {
             let scale = (direction==='L')? -230 : 230;
@@ -325,6 +283,9 @@ export default {
       $('.MoveToLeft').css('opacity', '1');    
       $('.MoveToRight').css('opacity', 0); 
     }
+  },
+  created(){
+    this.getProducts();
   }
 };
 </script>
