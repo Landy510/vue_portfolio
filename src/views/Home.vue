@@ -15,7 +15,7 @@
             <div class="col-md-4 Recommended_class mb-2 mb-md-0" v-for="(item, index) in products">
               <div class="card h-100 border-0">
                 <img class="card-img-top h-60" :src="item.imageUrl" alt="Card image cap">
-                <div class="card-body">
+                <div class="card-body p-0">
                   <p class="card-text mb-0">{{item.title}}</p>
                   <p class="card-text mb-0">{{item.description}}</p>
                   <div class="d-flex justify-content-between align-items-end">
@@ -45,123 +45,59 @@
           <div class="tab-content mb-3" id="nav-tabContent">
             <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
               <div class="row">
-                  <div class="col-md-4 mb-2">
-                    <div class="card h-100 border-0 Lecture">
-                      <img class="card-img-top h-60" src="https://upload.cc/i1/2021/02/04/CQFhfR.jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text mb-0">飲食套餐 Diet</p>
-                        <small class="card-text text-muted">NT$ 300</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-2">
-                    <div class="card h-100 border-0 Lecture">
-                      <img class="card-img-top h-60" src="https://upload.cc/i1/2021/02/05/6lcXf2.jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text mb-0">拳擊 Boxing</p>
-                        <small class="card-text text-muted">NT$ 1000</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-2">
-                        <div class="card h-100 border-0 Lecture">
-                      <img class="card-img-top h-60" src="https://upload.cc/i1/2021/02/05/4rZItp.jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text mb-0">游泳 Swim</p>
-                        <small class="card-text text-muted">NT$ 1000</small>
-                      </div>
-                    </div>
-                  </div>
 
-                  <div class="col-md-4 mb-2">
-                    <div class="card h-100 border-0 Lecture">
-                      <img class="card-img-top h-60" src="https://upload.cc/i1/2021/02/05/HRgYB3.jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text mb-0">戰繩 Battle Rope</p>
-                        <small class="card-text text-muted">NT$ 3000</small>
+                <div class="col-sm-6 col-md-4 mb-2 " v-for="(item, index) in products" v-if="index>=4 && index<=9">
+                  <div class="card h-100 border-0">
+                    <img class="card-img-top h-60" :src="item.imageUrl" alt="Card image cap">
+                    <div class="card-body p-0">
+                      <p class="card-text mb-0">{{item.title}}</p>
+                      <p class="card-text mb-0">{{item.description}}</p>
+                      <div class="d-flex justify-content-between align-items-end">
+                        <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price}}</del></small>
+                        <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price}}</span></strong>
                       </div>
+                      <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
                     </div>
-                  </div>
-                  <div class="col-md-4 mb-2">
-                    <div class="card h-100 border-0 Lecture">
-                      <img class="card-img-top h-60" src="https://upload.cc/i1/2020/12/26/z5e1qK.jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text mb-0">深蹲 Squat</p>
-                        <small class="card-text text-muted">NT$ 4000</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-2">
-                    <div class="card h-100 border-0 Lecture">
-                      <img class="card-img-top h-60" src="https://upload.cc/i1/2020/12/16/8xAIVN.jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text mb-0">減脂套餐 Cutting Fat</p>
-                        <small class="card-text text-muted">NT$ 400</small>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
+              </div>
 
 
                 
             </div>
             <div class="tab-pane fade" id="list-Workout" role="tabpanel" aria-labelledby="list-Workout-list">
                 <div class="row">
-                  <div class="col-md-4">
-                    <div class="card h-100 border-0 Lecture">
-                      <img class="card-img-top h-60" src="https://upload.cc/i1/2020/12/26/z5e1qK.jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text mb-0">深蹲 Squat</p>
-                        <small class="card-text text-muted">NT$ 4000</small>
+                  <div class="col-sm-6 col-md-4 mb-2" v-for="(item, index) in workout_prodcuts" v-if="index<3">
+                    <div class="card h-100 border-0">
+                      <img class="card-img-top h-60" :src="item.imageUrl" alt="Card image cap">
+                      <div class="card-body p-0">
+                        <p class="card-text mb-0">{{item.title}}</p>
+                        <p class="card-text mb-0">{{item.description}}</p>
+                        <div class="d-flex justify-content-between align-items-end">
+                          <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price}}</del></small>
+                          <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price}}</span></strong>
+                        </div>
+                        <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card h-100 border-0 Lecture">
-                      <img class="card-img-top h-60" src="https://upload.cc/i1/2021/02/05/3EOzWP.jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text mb-0">相撲硬舉 Sumo Deadlift</p>
-                        <small class="card-text text-muted">NT$ 500</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                        <div class="card h-100 border-0 Lecture">
-                      <img class="card-img-top h-60" src="https://upload.cc/i1/2021/02/05/s3GHBq.jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text mb-0">挺舉 Clean and Jerk</p>
-                        <small class="card-text text-muted">NT$ 1000</small>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="list-women" role="tabpanel" aria-labelledby="list-women-list">
                 <div class="row">
-                  <div class="col-md-4">
-                    <div class="card h-100 border-0 Lecture">
-                      <img class="card-img-top h-60" src="https://upload.cc/i1/2021/02/05/HRgYB3.jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text mb-0">戰繩 Battle Rope</p>
-                        <small class="card-text text-muted">NT$ 3000</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card h-100 border-0 Lecture">
-                      <img class="card-img-top h-60" src="https://upload.cc/i1/2021/02/05/S7TgVl.jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text mb-0">慢跑 Jogging</p>
-                        <small class="card-text text-muted">NT$ 500</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                        <div class="card h-100 border-0 Lecture">
-                      <img class="card-img-top h-60" src="https://upload.cc/i1/2021/02/05/4rZItp.jpg" alt="Card image cap">
-                      <div class="card-body">
-                        <p class="card-text mb-0">游泳 Swim</p>
-                        <small class="card-text text-muted">NT$ 1000</small>
+                  <div class="col-sm-6 col-md-4 mb-2" v-for="(item, index) in aerobic_prodcuts" v-if="index>=3 && index<7">
+                    <div class="card h-100 border-0">
+                      <img class="card-img-top h-60" :src="item.imageUrl" alt="Card image cap">
+                      <div class="card-body p-0">
+                        <p class="card-text mb-0">{{item.title}}</p>
+                        <p class="card-text mb-0">{{item.description}}</p>
+                        <div class="d-flex justify-content-between align-items-end">
+                          <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price}}</del></small>
+                          <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price}}</span></strong>
+                        </div>
+                        <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
                       </div>
                     </div>
                   </div>
@@ -170,7 +106,7 @@
             </div>
           </div>
 
-          <router-link to="Products">
+          <router-link to="lecture">
             <a class="btn btn-outline-dark btn-lg d-block" href="#">前往課程頁一覽</a>
           </router-link>
         </div>
@@ -212,8 +148,51 @@
             </div>
           </div>
         </div>
+     
+     
       </div>
     </div>
+
+    <!--Modal-->
+        <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content border-0">
+                <div class="modal-header text-dark">
+                    <h3 class="modal-title" id="exampleModalLabel">
+                    <span class="font-weight-bold">{{product_detail.title}}</span>
+                    </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <img class="card-img-top" :src= "product_detail.imageUrl" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{product_detail.description}}</h5>
+                            <div class="d-flex justify-content-between align-items-end">
+                                <del class="h4">原價{{product_detail.origin_price}}元</del>
+                                <strong class="h2">現在只要{{product_detail.price}}元</strong>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <select class="form-control form-control-lg" aria-label="Default select example" v-model="product_detail.num">
+                                    <option :value="num" v-for="num in 10" :key="num">選購{{num}} {{product_detail.unit}}</option>
+                                    
+                                </select>
+                            </div> 
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="h4 text-muted">小計 {{product_detail.price*product_detail.num}} 元</span>
+                    <button type="button" class="btn btn-primary" @click="addToCart(product_detail.id, product_detail.num)">加到購物車</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal-->
   </div>
 </template>
 
@@ -226,9 +205,15 @@ export default {
   data() {
     return {
       products: [],
+      product_detail:[],
+      workout_prodcuts:[],
+      aerobic_prodcuts:[],
       searchText: '',
       categories: [],
       isLoading: false,
+      status:{
+          loadingItem: ''
+      },
     };
   },
   components:{
@@ -242,7 +227,16 @@ export default {
       this.$http.get(api).then((response)=>{
             if(response.data.success){
               vm.products = response.data.products;
-              console.log(vm.products);
+              vm.workout_prodcuts = vm.products.filter((item)=>{
+                if(item.category === '重訓'){
+                  return true;
+                }
+              })
+              vm.aerobic_prodcuts = vm.products.filter((item)=>{
+                if(item.category === '有氧'){
+                  return true;
+                }
+              })
             }
         })
     },
@@ -282,6 +276,33 @@ export default {
       $('.Recommended_class').css("transform","translateX(" + scrollScale + "px)");   
       $('.MoveToLeft').css('opacity', '1');    
       $('.MoveToRight').css('opacity', 0); 
+    },
+    getDetail(id){
+      const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`;
+      vm.status.loadingItem = id;
+      this.$http.get(api).then((response) => {
+          $('#productModal').modal('show');
+          vm.product_detail = response.data.product;
+          
+          vm.status.loadingItem = '';
+      })
+    },
+    addToCart(id, qty = 1){
+        const vm = this;
+        vm.isLoading = true;
+        const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
+        this.$http.post(api,{data:{product_id:id, qty:qty}}).then((response)=>{
+            console.log(response);
+            if(response.data.success){
+                vm.isLoading = false;
+                vm.$bus.$emit('messsage:push', response.data.message, 'danger');
+                console.log(vm.$bus);
+            } else {
+                vm.isLoading = false;
+                vm.$bus.$emit('messsage:push', response.data.message, 'danger');              
+            }
+        })
     }
   },
   created(){
