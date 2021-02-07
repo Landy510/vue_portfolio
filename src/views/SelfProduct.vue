@@ -41,7 +41,7 @@
                             <button class="btn btn-grey border border-dark rounded-0" @click="CalQty(-1)">-</button>
                         </div>
                     </div>
-                    <button class="btn btn-warning btn-lg w-100 rounded-0" @click="addToCart(qty)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
+                    <button class="btn btn-warning btn-lg w-100 rounded-0" @click="addToCart(lecture.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
                 </div>
             </div>
         </div>
@@ -169,14 +169,17 @@ import Navbar from "./Navbar";
             if(num<0)return;
             this.qty += qty;
         },
-        addToCart(){
+        addToCart(id){
             const vm = this;
             vm.isLoading = true;
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
-            this.$http.post(api,{data:{product_id:vm.orderId, qty: vm.qty}}).then((response)=>{
-                
+            this.$http.post(api,{data:{product_id:id, qty: vm.qty}}).then((response)=>{
                 if(response.data.success){
                    vm.isLoading = false;
+                   vm.$bus.$emit('messsage:push', response.data.message, 'success');
+                } else {
+                    vm.isLoading = false;
+                   vm.$bus.$emit('messsage:push', response.data.message, 'danger');
                 }
             })
         }

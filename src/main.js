@@ -23,6 +23,7 @@ import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 
+import { faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 import { faUsersCog} from '@fortawesome/free-solid-svg-icons'
 import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faFontAwesome } from '@fortawesome/free-brands-svg-icons'
@@ -38,6 +39,7 @@ Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 Vue.use(VueAxios, axios)
 Vue.component('Loading', Loading);  // 將overlay元件宣告成全域的元件
 
+library.add(faTrashAlt)
 library.add(faSpinner)
 library.add(faTicketAlt)
 library.add(faListAlt)

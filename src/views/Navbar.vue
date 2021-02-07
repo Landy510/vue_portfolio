@@ -12,9 +12,10 @@
                         <span class="ml-1 Brand_logo">Berserker Fitness</span>
                     </a>
             </router-link>
-            <a class="nav-link text-dark d-block d-lg-none" href="#">
+            <button type="button" class="btn btn-transparent text-dark d-block d-lg-none" data-toggle="modal" data-target="#exampleModalLong" @click="getList">
+            
                 <font-awesome-icon :icon="['fas', 'cart-arrow-down']" />
-            </a>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
@@ -51,16 +52,47 @@
                         </router-link>
                     </li>
                     <li class="nav-item d-none d-lg-block">
-                        
-                            <a class="nav-link text-dark " href="#" @click="callCart">
-                                <font-awesome-icon :icon="['fas', 'cart-arrow-down']"/>
-                            </a>
-                        
+                        <button type="button" class="btn btn-transparent" data-toggle="modal" data-target="#exampleModalLong" @click="getList">
+                            <font-awesome-icon :icon="['fas', 'cart-arrow-down']"/>
+                        </button>
                     </li>
                 </ul>
             </div>
         </nav>
-        <cartModal :cart_detail="cart"></cartModal>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog m-0" role="document" >
+                <div class="modal-content">
+                    <div class="modal-header sticky-top mr-0 bg-warning">
+                        <h4 class="modal-title font-weight-bold mx-auto" id="exampleModalLongTitle">購物車</h4>
+                        <button type="button" class="close p-0 m-0" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0">
+                            <div class="card px-4 border-0" v-for="(item,index) in cart" :key="index">
+                                <img class="card-img-top" :src="item.product.imageUrl" alt="Card image cap">
+                                <div class="card-body">
+                                    <h3 class="card-title">{{item.product.title}}</h3>
+                                    <h3 class="card-text">{{item.product.price}} 元</h3> 
+                                    <div class="d-flex justify-content-between align-items-end">
+                                        <span class="card-text h5">{{item.qty}} /{{item.product.unit}}</span>  
+                                        <button class="btn btn-outline-danger" @click.prevent="delProduct(item.id)"><font-awesome-icon :icon="['fas', 'trash-alt']"/></button>  
+                                    </div>  
+                                </div>
+                            </div>
+                            <div class="bg-light p-4 h3 d-sm-flex justify-content-between" style="position:sticky; bottom:0;">總金額 {{total_price}}
+                                <router-link to="/">
+                                    <button class="btn btn-warning px-5 w-100 ">結帳去</button>
+                                </router-link>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
     </div>
     
 </template>
@@ -72,7 +104,8 @@ export default {
   name: 'Navbar',
   data () {
       return{
-          cart:[]
+          cart:[],
+          total_price:0
       }
   },
   methods:{
@@ -88,25 +121,45 @@ export default {
       },
       getList(){
             const vm = this;
-            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`; 
-            vm.isLoading = true;
-            this.$http.get(api).then((response) => {
-                console.log('購物的Modal',response.data.products);
-                vm.cart = response.data.products;
+            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
+            this.$http.get(api).then((response) => {  
+                console.log('購物的Modal',response);
+                vm.cart = response.data.data.carts;
+                vm.total_price = response.data.data.final_total;
             })
       },
       callCart(){
         $('.cart_list').addClass('cartOpen');
         $('.cart_list_cover').addClass('cartOpen');
         this.getList();
+      },
+      delProduct(id){
+          console.log(id);
+          let vm = this;
+          const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`; 
+          this.$http.delete(api).then((response)=>{
+            console.log(response);
+            if(response.data.success){
+                vm.getList();
+                $('#exampleModalLong').modal('hide');
+                vm.$bus.$emit('messsage:push', response.data.message, 'danger');
+            } else {
+                vm.getList();
+                $('#exampleModalLong').modal('hide');
+                vm.$bus.$emit('messsage:push', response.data.message, 'danger');
+            }
+            
+          })
       }
   },
   created: function(){
     const api = `${process.env.VUE_APP_APIPATH}/api/user/check`; 
     this.$http.post(api).then((response)=>{
         if(response.data.success){
+            console.log('登入囉')
             $('.login_status').css('color', 'green');
         } else {
+            console.log('登出囉')
             $('.login_status').css('color', 'red');
         }
     })
