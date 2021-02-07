@@ -7,7 +7,7 @@ import Loading from 'vue-loading-overlay';          // 引入overlay元件
 import 'vue-loading-overlay/dist/vue-loading.css';  // 引入overlay元件
 import 'bootstrap'  
 import './all.js'
-import './bus'
+import './bus.js'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'

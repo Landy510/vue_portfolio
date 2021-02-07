@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Navbar></Navbar>
         <div class="vld-parent">
             <loading :active.sync="isLoading"></loading>
         </div>
@@ -158,6 +159,7 @@
 
 <script>
 import $ from 'jquery'
+import Navbar from './Navbar'
 import pagination from './Pagination'
 export default {
   data () {
@@ -174,7 +176,6 @@ export default {
   },
   methods:{
         getProducts(page=1){
-            console.log('page',page);
             const vm = this;
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/products?page=${page}`; 
             vm.isLoading = true;
@@ -263,7 +264,8 @@ export default {
         this.getProducts()
     },
     components:{
-        pagination
+        pagination,
+        Navbar
     }
 }
 </script>

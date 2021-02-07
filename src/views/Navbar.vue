@@ -51,26 +51,28 @@
                         </router-link>
                     </li>
                     <li class="nav-item d-none d-lg-block">
-                        <router-link to="/">
-                            <a class="nav-link text-dark " href="#">
-                                <font-awesome-icon :icon="['fas', 'cart-arrow-down']" />
+                        
+                            <a class="nav-link text-dark " href="#" @click="callCart">
+                                <font-awesome-icon :icon="['fas', 'cart-arrow-down']"/>
                             </a>
-                        </router-link>
+                        
                     </li>
                 </ul>
             </div>
         </nav>
+        <cartModal :cart_detail="cart"></cartModal>
     </div>
     
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from 'jquery';
+import cartModal from "./cart_modal";
 export default {
   name: 'Navbar',
   data () {
       return{
-
+          cart:[]
       }
   },
   methods:{
@@ -83,10 +85,24 @@ export default {
                 vm.$router.push('/login');
             }
         })
+      },
+      getList(){
+            const vm = this;
+            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`; 
+            vm.isLoading = true;
+            this.$http.get(api).then((response) => {
+                console.log('購物的Modal',response.data.products);
+                vm.cart = response.data.products;
+            })
+      },
+      callCart(){
+        $('.cart_list').addClass('cartOpen');
+        $('.cart_list_cover').addClass('cartOpen');
+        this.getList();
       }
   },
   created: function(){
-      const api = `${process.env.VUE_APP_APIPATH}/api/user/check`; 
+    const api = `${process.env.VUE_APP_APIPATH}/api/user/check`; 
     this.$http.post(api).then((response)=>{
         if(response.data.success){
             $('.login_status').css('color', 'green');
@@ -94,8 +110,10 @@ export default {
             $('.login_status').css('color', 'red');
         }
     })
+  },
+  components:{
+      cartModal
   }
-  
 }
 </script>
 

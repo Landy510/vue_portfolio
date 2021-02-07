@@ -16,14 +16,13 @@
 <script>
 import Navbar from "./views/Navbar";
 import Footer from "./views/Footer";
-
+import cartModal from "./views/cart_modal";
+import $ from "jquery";
 export default {
   name: 'App',
   data() {
     return {
-      cart: {
-        carts: [],
-      },
+      carts: [],
       isLoading: false,
     };
   },
@@ -34,10 +33,10 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
       this.$http.get(url).then((response) => {
         if (response.data.data.carts) {
-          vm.cart = response.data.data;
+          vm.carts = response.data.data.carts;
         }
         vm.isLoading = false;
-        console.log('取得購物車', response.data.data);
+        console.log('取得購物車', vm.carts);
       });
     },
     removeCart(id) {
@@ -50,13 +49,18 @@ export default {
         console.log('刪除購物車項目', response);
       });
     },
+    callCart(){
+      $('.cart_list').addClass('cartOpen');
+      $('.cart_list_cover').addClass('cartOpen');
+    }
   },
   created() {
     this.getCart();
   },
   components:{
     Navbar,
-    Footer
+    Footer,
+    cartModal
   }
 };
 </script>

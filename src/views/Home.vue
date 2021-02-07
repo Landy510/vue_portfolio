@@ -2,6 +2,7 @@
   <div>
     <Navbar></Navbar>
     <banner></banner>
+    <alert/>
     <div class="container main-content mb-3">
       <Loading :active.sync="isLoading"></Loading>
       <div class="row mb-5">
@@ -176,10 +177,19 @@
                             </div>
 
                             <div class="form-group mt-3">
+                                <!--
                                 <select class="form-control form-control-lg" aria-label="Default select example" v-model="product_detail.num">
+                                    <option selected >Open this select menu</option>
+                                    <option :value="num" v-for="num in 10" :key="num">選購{{num}} {{product_detail.unit}}</option>
+                                </select>
+                                -->
+                                <div class="form-group">
+                                  <label for="exampleFormControlSelect1">Example select</label>
+                                  <select class="form-control form-control-lg" aria-label="Default select example" v-model="product_detail.num">
                                     <option :value="num" v-for="num in 10" :key="num">選購{{num}} {{product_detail.unit}}</option>
                                     
-                                </select>
+                                  </select>
+                                </div>
                             </div> 
                             
                         </div>
@@ -192,13 +202,15 @@
                 </div>
             </div>
         </div>
-        <!--Modal-->
+    <!--Modal-->
+
   </div>
 </template>
 
 <script>
 import Navbar from './Navbar'
 import banner from "./intro_banner";
+import alert from "./AlertMessage";
 import $ from "jquery";
 export default {
   name: 'Home',
@@ -214,11 +226,8 @@ export default {
       status:{
           loadingItem: ''
       },
+      carts:[]
     };
-  },
-  components:{
-    Navbar,
-    banner
   },
   methods:{
     getProducts(page=1){
@@ -296,17 +305,41 @@ export default {
             console.log(response);
             if(response.data.success){
                 vm.isLoading = false;
-                vm.$bus.$emit('messsage:push', response.data.message, 'danger');
-                console.log(vm.$bus);
+                $('#productModal').modal('hide');
+                vm.$bus.$emit('messsage:push', response.data.message, 'success');
+                this.getCart();
             } else {
                 vm.isLoading = false;
-                vm.$bus.$emit('messsage:push', response.data.message, 'danger');              
+                $('#productModal').modal('hide'); 
+                vm.$bus.$emit('messsage:push', response.data.message, 'danger'); 
+                            
             }
         })
+        
+    },
+    getCart() {
+      const vm = this;
+      vm.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
+      this.$http.get(url).then((response) => {
+        if (response.data.data.carts) {
+          vm.carts = response.data.data.carts;
+        }
+        vm.isLoading = false;
+        console.log('在Home中取得購物車', vm.carts);
+      });
+    },
+    activeCart(){
+      $('.cart_list_cover').fadeToggle();
     }
   },
   created(){
     this.getProducts();
+  },
+  components:{
+    alert,
+    banner,
+    Navbar,
   }
 };
 </script>

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Navbar></Navbar>
         <div class="vld-parent">
             <loading :active.sync="isLoading"></loading>
         </div>
@@ -115,7 +116,8 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from 'jquery';
+import Navbar from "./Navbar";
   export default {
     data(){
          return{
@@ -183,6 +185,9 @@ import $ from 'jquery'
         this.orderId = this.$route.params.LectureId;
         this.getProduct(this.orderId);
         
+    },
+    components:{
+        Navbar
     }
   }
 </script>

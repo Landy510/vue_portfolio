@@ -36,7 +36,6 @@
             getPagination(page){
                 this.changePage = page; 
                 this.$emit('increment',Number(this.changePage));
-                
             }
         },
         created(){
