@@ -55,6 +55,7 @@
                         <button type="button" class="btn btn-transparent" data-toggle="modal" data-target="#exampleModalLong" @click="getList">
                             <font-awesome-icon :icon="['fas', 'cart-arrow-down']"/>
                         </button>
+                        
                     </li>
                 </ul>
             </div>
@@ -82,7 +83,7 @@
                                     </div>  
                                 </div>
                             </div>
-                            <div class="bg-light p-4 h3 d-sm-flex justify-content-between" style="position:sticky; bottom:0;">總金額 {{total_price}}
+                            <div class="bg-light p-4 h3 d-sm-flex justify-content-between mb-0" style="position:sticky; bottom:0;">總金額 {{total_price}}
                                 <router-link to="/customerOrder/customer1">
                                     <button class="btn btn-warning px-5 w-100" @click="closeModal">
                                     <font-awesome-icon :icon="['fas', 'spinner']" spin v-if="Status.isUploading"/>

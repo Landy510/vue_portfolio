@@ -8,6 +8,9 @@ import 'vue-loading-overlay/dist/vue-loading.css';  // 引入overlay元件
 import 'bootstrap'  
 import './all.js'
 import './bus.js'
+import { ValidationObserver, ValidationProvider, extend, localize, configure } from 'vee-validate';
+import TW from 'vee-validate/dist/locale/zh_TW.json'
+import * as rules from 'vee-validate/dist/rules';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
@@ -83,3 +86,20 @@ router.beforeEach((to, from, next) => {
     next();
   }
 })
+
+
+Object.keys(rules).forEach((rule) => {
+  extend(rule, rules[rule]);
+});
+
+localize('zh_TW', TW);
+
+Vue.component('ValidationObserver', ValidationObserver)
+Vue.component('ValidationProvider', ValidationProvider)
+
+configure({
+  classes: {
+    valid: 'is-valid',
+    invalid: 'is-invalid'
+  }
+});
