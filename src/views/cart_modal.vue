@@ -2,7 +2,6 @@
   <div>
     <div class="cart_list_cover" @click="closeCartCover">
         <div class="cart_list">
-            <!--<div class="text-warning" v-for="(item, index) in cart_detail" :key="index">{{item.title}} 數量:{{item.num}} {{item.unit}}</div>-->
             <div class="card" v-for="(item, index) in cart_detail" :key="index">
                 <img class="card-img-top" :src="item.imageUrl" alt="Card image cap">
                 <div class="card-body">
@@ -31,17 +30,13 @@ import $ from 'jquery';
             }
         },
         methods:{
-            getList(){
-                
-            },
+            
             closeCartCover(){
                 $('.cart_list').removeClass('cartOpen');
                 $('.cart_list_cover').removeClass('cartOpen');
             }
         },
-        created(){
-            this.getList();
-        }
+        
     };
 </script>
 

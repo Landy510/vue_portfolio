@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Navbar></Navbar>
         <div class="vld-parent">
             <loading :active.sync="isLoading"></loading>
         </div>

@@ -1,15 +1,17 @@
 <template>
   <div>
+    <div class="vld-parent">
+        <loading :active.sync="isLoading"></loading>
+    </div>
     <Navbar></Navbar>
     <banner></banner>
     <alert/>
     <div class="container main-content mb-3">
-      <Loading :active.sync="isLoading"></Loading>
       <div class="row mb-5">
         
         <div class="col-12 text-center" style="position:relative">
-          <button class="btn btn-outline-dark btn-transparent MoveToLeft d-none d-md-block" style="position:absolute; left:-10px; top:150px; z-index:2;" @click="RollToLeft">  <font-awesome-icon :icon="['fas','long-arrow-alt-left']" size="2x"></font-awesome-icon> </button>
-          <button class="btn btn-outline-dark btn-transparent MoveToRight" style="position:absolute; right:-20px; top:150px; z-index:2;" @click="RollToRight"><font-awesome-icon :icon="['fas','long-arrow-alt-right']" size="2x"></font-awesome-icon></button>
+          <button class="btn btn-outline-dark btn-transparent MoveToLeft d-none d-md-block"  @click="RollToLeft">  <font-awesome-icon :icon="['fas','long-arrow-alt-left']" size="2x"></font-awesome-icon> </button>
+          <button class="btn btn-outline-dark btn-transparent MoveToRight" @click="RollToRight"><font-awesome-icon :icon="['fas','long-arrow-alt-right']" size="2x"></font-awesome-icon></button>
           <small class="text-muted">教練推薦課程</small>
           <p class="h2 mb-4 font-weight-normal">Recommended</p>
           <div class="row flex-md-nowrap py-2 Recommended_class_frame">
@@ -233,6 +235,7 @@ export default {
     getProducts(page=1){
       const vm = this;
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`; 
+      vm.isLoading = true;
       this.$http.get(api).then((response)=>{
             if(response.data.success){
               vm.products = response.data.products;
@@ -247,6 +250,7 @@ export default {
                 }
               })
             }
+            vm.isLoading = false;
         })
     },
     getProduct(id){
@@ -369,9 +373,17 @@ export default {
 .MoveToRight{
   opacity:0;
   transition:all .5s;
+  position:absolute; 
+  right:-20px; 
+  top:150px; 
+  z-index:2;
 }
 .MoveToLeft{
   transition:all .5s;
+  position:absolute; 
+  left:-20px; 
+  top:150px; 
+  z-index:2;
 }
 .Recommended_class{
   .card-footer{

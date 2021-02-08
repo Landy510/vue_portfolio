@@ -24,7 +24,7 @@
                 </router-link>
               </li>
               <li class="list-group-item border-0 p-0">
-                <router-link class="nav-link text-dark" to="/admin/ticket">
+                <router-link class="nav-link text-dark" to="/admin/Coupon">
                   <font-awesome-icon :icon="['fas', 'ticket-alt']" />
                   優惠券
                 </router-link>

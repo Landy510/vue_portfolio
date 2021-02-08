@@ -7,8 +7,11 @@ import Loading from 'vue-loading-overlay';
 import Login from '../views/Login'
 import DashBoard from '../views/DashBoard';
 import Products from '../views/Products';
+import Coupon from '../views/Coupon';
 import Lecture from '../views/Lecture';
 import SelfProduct from '../views/SelfProduct';
+import customerOrder from '../views/CustomerOrder';
+import Customer1 from '../views/Customer1';
 import '../../node_modules/vue-loading-overlay/dist/vue-loading'
 
 
@@ -46,6 +49,19 @@ const routes = [
     ]
   },
   {
+    path: '/customerOrder',
+    name: 'CustomerOrder',
+    component: customerOrder,
+    children:[
+      {
+        path:'customer1',
+        name:'customer1',
+        component: Customer1
+      }
+      
+    ]
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login
@@ -60,6 +76,12 @@ const routes = [
         path:'products',
         name: 'Products',
         component: Products,
+        meta: { requiresAuth: true },
+      },
+      {
+        path:'Coupon',
+        name: 'Coupon',
+        component: Coupon,
         meta: { requiresAuth: true },
       }
     ]

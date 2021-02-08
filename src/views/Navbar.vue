@@ -83,8 +83,10 @@
                                 </div>
                             </div>
                             <div class="bg-light p-4 h3 d-sm-flex justify-content-between" style="position:sticky; bottom:0;">總金額 {{total_price}}
-                                <router-link to="/">
-                                    <button class="btn btn-warning px-5 w-100 ">結帳去</button>
+                                <router-link to="/customerOrder/customer1">
+                                    <button class="btn btn-warning px-5 w-100" @click="closeModal">
+                                    <font-awesome-icon :icon="['fas', 'spinner']" spin v-if="Status.isUploading"/>
+                                    結帳去</button>
                                 </router-link>
                             </div>
                     </div>
@@ -105,7 +107,10 @@ export default {
   data () {
       return{
           cart:[],
-          total_price:0
+          total_price:0,
+          Status:{
+              isUploading:false
+          }
       }
   },
   methods:{
@@ -122,9 +127,11 @@ export default {
       getList(){
             const vm = this;
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
+            vm.Status.isUploading = true;
             this.$http.get(api).then((response) => {  
                 console.log('購物的Modal',response);
                 vm.cart = response.data.data.carts;
+                vm.Status.isUploading = false;
                 vm.total_price = response.data.data.final_total;
             })
       },
@@ -150,6 +157,9 @@ export default {
             }
             
           })
+      },
+      closeModal(){
+          $('#exampleModalLong').modal('hide');
       }
   },
   created: function(){
