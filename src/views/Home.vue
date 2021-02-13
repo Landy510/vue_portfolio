@@ -339,7 +339,6 @@ export default {
       $('.cart_list_cover').fadeToggle();
     },
     CounterCoupute(cart_total_length){
-      console.log('你好嗎媽媽嗎', cart_total_length);
       this.product_length = cart_total_length;
     }
   },

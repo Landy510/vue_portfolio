@@ -3,6 +3,7 @@
     <div class="vld-parent">
         <loading :active.sync="isLoading"></loading>
     </div>
+    <Navbar :product_num="product_length" v-on:increment="CounterCoupute"></Navbar>
     <Alert/>
     <div class="container">
         <div class="justify-content-center align-items-center d-none d-md-flex mt-4">
@@ -86,6 +87,7 @@
 <script>
     import $ from 'jquery';
     import Alert from './AlertMessage';
+    import Navbar from './Navbar';
     export default {
         name: 'Customer1',
         data(){
@@ -94,7 +96,8 @@
                carts:[],
                total:0,
                final_total:0,
-               coupon_code:''
+               coupon_code:'',
+               product_length:0
             }
         },
         methods:{
@@ -107,6 +110,7 @@
                         vm.carts = response.data.data.carts;
                         vm.total = response.data.data.total;
                         vm.final_total = response.data.data.final_total;
+                        vm.product_length = response.data.data.carts.length;
                         console.log(vm.carts)
                     })
             },
@@ -138,13 +142,18 @@
                     this.getList();  
                     vm.isLoading = false;
                 })
+            },
+            CounterCoupute(cart_total_length){
+                this.getList();
+                this.product_length = cart_total_length;
             }
         },
         created(){
             this.getList();
         },
         components:{
-            Alert
+            Alert,
+            Navbar
         }
     };
 </script>

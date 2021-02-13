@@ -1,10 +1,14 @@
 <template>
     <div>
-        <Navbar></Navbar>
+        <!--<Navbar></Navbar>-->
         <main class="form-signin">
             <form class="px-2" @submit.prevent="signin">
                 <div class="text-center">
+                  <router-link to="/" class="mx-auto">
+                    <a>
                     <img class="mb-4 " src="../assets/img/protectionshield.svg" alt="" width="72" height="57">
+                  </a>
+                  </router-link>
                 </div>
                 <h1 class="h3 mb-3 fw-normal">請登入</h1>
                 <label for="inputEmail" class="visually-hidden">Email address</label>
