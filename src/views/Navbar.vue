@@ -51,11 +51,11 @@
                             <a class="nav-link text-dark" href="#" @click="signOut">登出</a>
                         </router-link>
                     </li>
-                    <li class="nav-item d-none d-lg-block">
+                    <li class="nav-item d-none d-lg-block" style="position:relative">
                         <button type="button" class="btn btn-transparent" data-toggle="modal" data-target="#exampleModalLong" @click="getList">
                             <font-awesome-icon :icon="['fas', 'cart-arrow-down']"/>
                         </button>
-                        
+                        <span class="badge badge-danger rounded-circle" style="position:absolute;top:0;left:25px">{{product_num}}</span>
                     </li>
                 </ul>
             </div>
@@ -105,13 +105,17 @@ import $ from 'jquery';
 import cartModal from "./cart_modal";
 export default {
   name: 'Navbar',
+  props:['product_num'],
   data () {
       return{
           cart:[],
           total_price:0,
+          total_length:0,
           Status:{
               isUploading:false
-          }
+          },
+          counter:0,
+          cartLength:0
       }
   },
   methods:{
@@ -130,10 +134,12 @@ export default {
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
             vm.Status.isUploading = true;
             this.$http.get(api).then((response) => {  
-                console.log('購物的Modal',response);
                 vm.cart = response.data.data.carts;
+                console.log('原始資料長度', response.data.data.carts.length);
+                vm.total_length = response.data.data.carts.length;
                 vm.Status.isUploading = false;
                 vm.total_price = response.data.data.final_total;
+                vm.getcartLength();
             })
       },
       callCart(){
@@ -142,11 +148,9 @@ export default {
         this.getList();
       },
       delProduct(id){
-          console.log(id);
           let vm = this;
           const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`; 
           this.$http.delete(api).then((response)=>{
-            console.log(response);
             if(response.data.success){
                 vm.getList();
                 $('#exampleModalLong').modal('hide');
@@ -156,11 +160,18 @@ export default {
                 $('#exampleModalLong').modal('hide');
                 vm.$bus.$emit('messsage:push', response.data.message, 'danger');
             }
-            
           })
       },
       closeModal(){
           $('#exampleModalLong').modal('hide');
+      },
+      getcartLength(){
+          console.log('Helloo123132')
+          let vm = this;
+          vm.cartLength = vm.total_length;
+          console.log("擷取購物車長度", vm.cartLength);
+          vm.$emit('increment', Number(vm.cartLength));
+          
       }
   },
   created: function(){
@@ -174,6 +185,7 @@ export default {
             $('.login_status').css('color', 'red');
         }
     })
+    this.getList();
   },
   components:{
       cartModal

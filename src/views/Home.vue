@@ -3,7 +3,7 @@
     <div class="vld-parent">
         <loading :active.sync="isLoading"></loading>
     </div>
-    <Navbar></Navbar>
+    <Navbar :product_num="product_length" v-on:increment="CounterCoupute"></Navbar>
     <banner></banner>
     <alert/>
     <div class="container main-content mb-3">
@@ -228,7 +228,8 @@ export default {
       status:{
           loadingItem: ''
       },
-      carts:[]
+      carts:[],
+      product_length:0
     };
   },
   methods:{
@@ -328,6 +329,7 @@ export default {
       this.$http.get(url).then((response) => {
         if (response.data.data.carts) {
           vm.carts = response.data.data.carts;
+          vm.product_length = response.data.data.carts.length;
         }
         vm.isLoading = false;
         console.log('在Home中取得購物車', vm.carts);
@@ -335,10 +337,15 @@ export default {
     },
     activeCart(){
       $('.cart_list_cover').fadeToggle();
+    },
+    CounterCoupute(cart_total_length){
+      console.log('你好嗎媽媽嗎', cart_total_length);
+      this.product_length = cart_total_length;
     }
   },
   created(){
     this.getProducts();
+    this.getCart();
   },
   components:{
     alert,

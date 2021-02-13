@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Navbar></Navbar>
+        <Navbar :product_num="product_length" v-on:increment="CounterCoupute"></Navbar>
         <div class="vld-parent">
             <loading :active.sync="isLoading"></loading>
         </div>
@@ -125,7 +125,8 @@ import Navbar from "./Navbar";
             sameCategory:[],
             lecture:{},
             qty:0,
-            isLoading:false
+            isLoading:false,
+            product_length:0
         }
     },
     methods:{
@@ -143,6 +144,16 @@ import Navbar from "./Navbar";
             })
             
         },
+        getList(){
+                const vm = this;
+                const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
+                
+                this.$http.get(api).then((response) => {  
+                    console.log('購物的Modal',response);
+                    vm.product_length = response.data.data.carts.length;
+                    console.log('長度', vm.product_length);
+                })
+        },
         getRelateProducts(){
             const vm =this;
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
@@ -156,8 +167,6 @@ import Navbar from "./Navbar";
                     })
                 }
             })
-            
-            
         },
         getRelateLecture(id){
             
@@ -177,11 +186,15 @@ import Navbar from "./Navbar";
                 if(response.data.success){
                    vm.isLoading = false;
                    vm.$bus.$emit('messsage:push', response.data.message, 'success');
+                   this.getList();
                 } else {
                     vm.isLoading = false;
                    vm.$bus.$emit('messsage:push', response.data.message, 'danger');
                 }
             })
+        },
+        CounterCoupute(cart_total_length){
+            this.product_length = cart_total_length;
         }
     },
     created(){
