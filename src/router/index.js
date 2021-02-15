@@ -7,6 +7,7 @@ import Loading from 'vue-loading-overlay';
 import Login from '../views/Login'
 import DashBoard from '../views/DashBoard';
 import Products from '../views/Products';
+import orderList from '../views/orderList';
 import Coupon from '../views/Coupon';
 import Lecture from '../views/Lecture';
 import SelfProduct from '../views/SelfProduct';
@@ -83,6 +84,12 @@ const routes = [
     component: DashBoard,
     meta: { requiresAuth: true },
     children:[
+      {
+        path:'orderList',
+        name: 'orderList',
+        component: orderList,
+        meta: { requiresAuth: true },
+      },
       {
         path:'products',
         name: 'Products',

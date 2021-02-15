@@ -50,7 +50,7 @@
                 const expired = response.data.expired;
                 console.log(token);
                 document.cookie = `Berserkertoken=${token}; expires=${new Date(expired)}`;
-                vm.$router.push('/admin');
+                vm.$router.push('/admin/orderList');
             }
         })
       }
