@@ -4,7 +4,7 @@
         <loading :active.sync="isLoading"></loading>
     </div>
     <Navbar :product_num="product_length" v-on:increment="CounterCoupute"></Navbar>
-    <banner></banner>
+    <banner :introImage="image_website"></banner>
     <alert/>
     <div class="container main-content mb-3">
       <div class="row mb-5">
@@ -109,7 +109,7 @@
             </div>
           </div>
 
-          <router-link to="lecture">
+          <router-link to="/lecture/Lecture_Product">
             <a class="btn btn-outline-dark btn-lg d-block" href="#">前往課程頁一覽</a>
           </router-link>
         </div>
@@ -229,7 +229,8 @@ export default {
           loadingItem: ''
       },
       carts:[],
-      product_length:0
+      product_length:0,
+      image_website:'https://upload.cc/i1/2021/02/04/XVGje1.jpg'
     };
   },
   methods:{

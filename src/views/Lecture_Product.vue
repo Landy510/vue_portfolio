@@ -1,0 +1,327 @@
+<template>
+    <div>
+        <Navbar :product_num="product_length" v-on:increment="CounterCoupute"></Navbar>
+        <div class="vld-parent">
+            <loading :active.sync="isLoading"></loading>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0">
+                <li class="breadcrumb-item">
+                    <router-link to="/">
+                        <a href="#" class="text-muted">首頁</a>
+                    </router-link>
+                </li>
+                <li class="breadcrumb-item active text-dark" aria-current="page">課程</li>
+                <li class="breadcrumb-item active text-dark" aria-current="page">All</li>
+            </ol>
+        </nav>
+        <banner :introImage="image_website"></banner>
+        <div class="h2 text-center Lecture_title py-4 border-bottom">{{Lecture_title}}</div>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <div class="list-group d-flex flex-md-row flex-column" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action active rounded-0 text-dark text-center" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home" @click.prevent="getCategory('所有課程')">All</a>
+                        <a class="list-group-item list-group-item-action text-dark text-center" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile" @click.prevent="getCategory('重訓課程')">重訓</a>
+                        <a class="list-group-item list-group-item-action text-dark text-center" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages" @click.prevent="getCategory('有氧課程')">有氧</a>
+                        <a class="list-group-item list-group-item-action rounded-0 text-dark text-center" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings" @click.prevent="getCategory('飲食控制')">飲食控制</a>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row py-2 Recommended_class_frame">
+                                            <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in products">
+                                            <div class="card h-100" >
+                                                <div class="h-60 card_image">
+                                                    <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
+                                                    <button class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                                </div>
+                                                
+                                                <div class="card-body p-0">
+                                                    <p class="card-text mb-0">{{item.title}}</p>
+                                                    <p class="card-text mb-2">{{item.description}}</p>
+                                                    <div class="d-flex justify-content-between align-items-end">
+                                                        <del class="text-muted">原價{{item.origin_price}}元</del>
+                                                        <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        
+
+                                    </div>
+
+                                </div>                 
+                    </div>
+                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row py-2 Recommended_class_frame">
+                                    <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in products" v-if="item.category==='重訓'">
+                                    <div class="card h-100" >
+                                        <div class="h-60 card_image">
+                                            <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
+                                            <button class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                        </div>
+                                        
+                                        <div class="card-body p-0">
+                                            <p class="card-text mb-0">{{item.title}}</p>
+                                            <p class="card-text mb-2">{{item.description}}</p>
+                                            <div class="d-flex justify-content-between align-items-end">
+                                                <del class="text-muted">原價{{item.origin_price}}元</del>
+                                                <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+
+                        </div> 
+                    </div>
+                    <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row py-2 Recommended_class_frame">
+                                    <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in products" v-if="item.category==='有氧'">
+                                    <div class="card h-100" >
+                                        <div class="h-60 card_image">
+                                            <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
+                                            <button class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                        </div>
+                                        
+                                        <div class="card-body p-0">
+                                            <p class="card-text mb-0">{{item.title}}</p>
+                                            <p class="card-text mb-2">{{item.description}}</p>
+                                            <div class="d-flex justify-content-between align-items-end">
+                                                <del class="text-muted">原價{{item.origin_price}}元</del>
+                                                <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+
+                        </div> 
+                    
+                    </div>
+                    <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row py-2 Recommended_class_frame">
+                                    <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in products" v-if="item.category==='飲食課程'">
+                                    <div class="card h-100" >
+                                        <div class="h-60 card_image">
+                                            <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
+                                            <button class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                        </div>
+                                        
+                                        <div class="card-body p-0">
+                                            <p class="card-text mb-0">{{item.title}}</p>
+                                            <p class="card-text mb-2">{{item.description}}</p>
+                                            <div class="d-flex justify-content-between align-items-end">
+                                                <del class="text-muted">原價{{item.origin_price}}元</del>
+                                                <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+
+                        </div> 
+                    
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+
+        <!--
+        <div class="container mb-4">
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="row py-2 Recommended_class_frame">
+                        <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in products">
+                        <div class="card h-100" >
+                            <div class="h-60 card_image">
+                                <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
+                                <button class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                            </div>
+                            
+                            <div class="card-body p-0">
+                                <p class="card-text mb-0">{{item.title}}</p>
+                                <p class="card-text mb-2">{{item.description}}</p>
+                                <div class="d-flex justify-content-between align-items-end">
+                                    <del class="text-muted">原價{{item.origin_price}}元</del>
+                                    <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                        </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+
+            </div>
+        </div>
+        -->
+       
+    </div>
+</template>
+
+<script>
+import $ from 'jquery';
+import Navbar from "./Navbar";
+import banner from "./intro_banner";
+  export default {
+    data(){
+         return{
+            qty:0,
+            isLoading:false,
+            product_length:0,
+            image_website:'https://upload.cc/i1/2021/02/15/2cfRA4.jpg',
+            products:[],
+            Lecture_title:'所有課程'
+        }
+    },
+    methods:{
+        getProduct(page = 1){
+            const vm = this;
+            vm.isLoading = true;
+            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
+            this.$http.get(api).then((response)=>{
+                console.log('商品頁面中取得的',response.data.products);
+                if(response.data.success){
+                    vm.products = response.data.products;
+                    vm.isLoading = false;
+                } else {
+                    console.log(response.message);
+                    vm.isLoading = false;
+                }
+            })
+            
+        },
+        getList(){
+                const vm = this;
+                const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
+                vm.isLoading = true;
+                this.$http.get(api).then((response) => {  
+                    console.log('購物的Modal',response);
+                    vm.product_length = response.data.data.carts.length;
+                    console.log('長度', vm.product_length);
+                    vm.isLoading = false;
+                })
+        },
+        CalQty(qty = 0){
+            let num = this.qty;
+            num += qty;
+            if(num<0)return;
+            this.qty += qty;
+        },
+        addToCart(id){
+            const vm = this;
+            vm.isLoading = true;
+            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
+            this.$http.post(api,{data:{product_id:id, qty: vm.qty}}).then((response)=>{
+                if(response.data.success){
+                   vm.isLoading = false;
+                   vm.$bus.$emit('messsage:push', response.data.message, 'success');
+                   this.getList();
+                } else {
+                    vm.isLoading = false;
+                   vm.$bus.$emit('messsage:push', response.data.message, 'danger');
+                }
+            })
+        },
+        CounterCoupute(cart_total_length){
+            this.product_length = cart_total_length;
+        },
+        getSelfProduct(id){
+            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/${id}`;
+            this.$router.push(`/lecture/${id}`);
+        },
+        getCategory(str = 'All'){
+            console.log('1231321231');
+            let vm = this;
+            
+            
+            vm.Lecture_title = str;
+        }
+    },
+    created(){
+        this.getProduct();
+        
+    },
+    components:{
+        Navbar,
+        banner
+    }
+  }
+</script>
+
+<style scoped>
+.advance_image{
+    border-radius:50px;
+}
+.card{
+    border:0px;
+    cursor:pointer;
+    
+}
+.card_image{
+    overflow:hidden;
+    position:relative;
+}
+.card img{
+    transform:scale(1);
+    transition:all .5s;
+}
+.card:hover img{
+    transition:all .5s;
+    transform:scale(1.2);
+}
+.card_btn{
+    position:absolute;
+    bottom:-40px;
+    left:0; 
+    z-index:3;
+    transition:all .5s;
+}
+.card:hover .card_btn{
+    transition:all .5s;
+    bottom:0px;
+}
+.list-group-item{
+    border:0px;
+    border-right:1px solid grey;
+}
+@media(max-width:680px){
+    .advance_image{
+        border-radius:0px;
+    }
+    .list-group-item{
+        border:0px;
+        border-bottom:1px solid grey;
+    }
+}
+</style>

@@ -12,7 +12,7 @@
                     </router-link>
                 </li>
                 <li class="breadcrumb-item">
-                    <router-link to="/lecture">
+                    <router-link to="/lecture/Lecture_Product">
                         <a href="#" class="text-muted">課程</a>
                     </router-link>
                 </li>

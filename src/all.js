@@ -1,5 +1,5 @@
 import { FormTextareaPlugin } from 'bootstrap-vue';
-import $ from 'jquery'
+import $ from 'jquery';
 function ReadWebSiteWidth(value, direction){
     if(value>1024){
         let scale = (direction==='L')? -370 : 370;
@@ -17,28 +17,7 @@ function ReadWebSiteWidth(value, direction){
 
 
 $(document).ready(function(){
-    /*
-        let scrollScale = 0;
-        $('.MoveToLeft').on('click', function(e){
-            scrollScale = 0;
-            scrollScale += ReadWebSiteWidth(document.body.clientWidth, 'L');
-            console.log(scrollScale)
-            scrollScale = scrollScale*3;
-            console.log(scrollScale)
-            $('.Recommended_class').css("transform","translateX(" + scrollScale + "px)");
-            $('.MoveToRight').css('opacity', '1');    
-            $(this).css('opacity', 0);
-        })
-
-        $('.MoveToRight').on('click', function(e){
-            scrollScale = 0;
-            $('.Recommended_class').css("transform","translateX(" + scrollScale + "px)");   
-            $('.MoveToLeft').css('opacity', '1');    
-            $(this).css('opacity', 0); 
-        })
-    */
     
-
     $('.scrollTop').click(function(e){
         $('html,body').animate({
             scrollTop:0
@@ -51,4 +30,7 @@ $(document).ready(function(){
             $('.scrollTop').fadeOut();
         }
     })
+    
+    
+    
 })

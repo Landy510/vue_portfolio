@@ -23,9 +23,9 @@
                             <a class="nav-link text-dark" href="#">首頁</a>
                         </router-link>
                     </li>
-                    <li class="nav-item">
-                        <router-link to="/">
-                            <a class="nav-link text-dark" href="#">課程</a>
+                    <li class="nav-item ">
+                        <router-link to="/lecture/Lecture_Product">
+                            <a class="nav-link lecture_btn" href="#">課程</a>
                         </router-link>
                     </li>
                     
@@ -58,10 +58,11 @@
                         <span class="badge badge-danger rounded-circle" style="position:absolute;top:0;left:25px" v-if="product_num!==0">{{product_num}}</span>
                     </li>
                 </ul>
+                
             </div>
         </nav>
-        
         <!-- Modal -->
+        
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog m-0" role="document" >
                 <div class="modal-content">
@@ -94,14 +95,17 @@
                 </div>
             </div>
             </div>
+            
 
-
+    
+    
     </div>
     
 </template>
 
 <script>
 import $ from 'jquery';
+
 import cartModal from "./cart_modal";
 export default {
   name: 'Navbar',
@@ -166,10 +170,8 @@ export default {
           $('#exampleModalLong').modal('hide');
       },
       getcartLength(){
-          console.log('Helloo123132')
           let vm = this;
           vm.cartLength = vm.total_length;
-          console.log("擷取購物車長度", vm.cartLength);
           vm.$emit('increment', Number(vm.cartLength));
           
       }
@@ -193,13 +195,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .text-danger{
         color:black;
     }
+    .lecture_btn{
+        color:black;
+    }
+   
     @media(max-width:680px){
         .Brand_logo{
             display:none;
         }
     }
 </style>
+

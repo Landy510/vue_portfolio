@@ -11,6 +11,7 @@ import orderList from '../views/orderList';
 import Coupon from '../views/Coupon';
 import Lecture from '../views/Lecture';
 import SelfProduct from '../views/SelfProduct';
+import Lecture_Product from '../views/Lecture_Product';
 import customerOrder from '../views/CustomerOrder';
 import Customer1 from '../views/Customer1';
 import Customer2 from '../views/Customer2';
@@ -45,10 +46,15 @@ const routes = [
     component: Lecture,
     children:[
       {
+        path:'Lecture_Product',
+        name: 'Lecture_Product',
+        component: Lecture_Product
+      },
+      {
         path:':LectureId',
         name: 'SelfProduct',
         component: SelfProduct
-      }
+      },
     ]
   },
   {
