@@ -12,6 +12,8 @@ import Lecture from '../views/Lecture';
 import SelfProduct from '../views/SelfProduct';
 import customerOrder from '../views/CustomerOrder';
 import Customer1 from '../views/Customer1';
+import Customer2 from '../views/Customer2';
+import CustomerCheckout from '../views/CustomerCheckout';
 import '../../node_modules/vue-loading-overlay/dist/vue-loading'
 
 
@@ -57,8 +59,17 @@ const routes = [
         path:'customer1',
         name:'customer1',
         component: Customer1
+      },
+      {
+        path:'customer2',
+        name:'customer2',
+        component: Customer2
+      },
+      {
+        path:'CustomerCheckout/:orderId',
+        name:'CustomerCheckout',
+        component: CustomerCheckout
       }
-      
     ]
   },
   {

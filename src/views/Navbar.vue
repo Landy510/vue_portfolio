@@ -55,7 +55,7 @@
                         <button type="button" class="btn btn-transparent" data-toggle="modal" data-target="#exampleModalLong" @click="getList">
                             <font-awesome-icon :icon="['fas', 'cart-arrow-down']"/>
                         </button>
-                        <span class="badge badge-danger rounded-circle" style="position:absolute;top:0;left:25px">{{product_num}}</span>
+                        <span class="badge badge-danger rounded-circle" style="position:absolute;top:0;left:25px" v-if="product_num!==0">{{product_num}}</span>
                     </li>
                 </ul>
             </div>

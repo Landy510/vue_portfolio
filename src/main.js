@@ -8,6 +8,7 @@ import 'vue-loading-overlay/dist/vue-loading.css';  // 引入overlay元件
 import 'bootstrap'  
 import './all.js'
 import './bus.js'
+
 import { ValidationObserver, ValidationProvider, extend, localize, configure } from 'vee-validate';
 import TW from 'vee-validate/dist/locale/zh_TW.json'
 import * as rules from 'vee-validate/dist/rules';
@@ -20,6 +21,7 @@ import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { faListAlt } from '@fortawesome/free-solid-svg-icons'
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
@@ -50,6 +52,7 @@ library.add(faBoxOpen)
 library.add(faMapMarkerAlt)
 library.add(faUsersCog)
 library.add(faChevronUp)
+library.add(faChevronDown)
 library.add(faLongArrowAltLeft)
 library.add(faLongArrowAltRight)
 library.add(faFacebookSquare)
