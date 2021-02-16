@@ -27,7 +27,7 @@ import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
-
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 import { faUsersCog} from '@fortawesome/free-solid-svg-icons'
 import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons'
@@ -61,6 +61,7 @@ library.add(faInstagram)
 library.add(faCartArrowDown)
 library.add(faFontAwesome)
 library.add(faUserSecret)
+library.add(faCaretRight)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 axios.defaults.withCredentials = true;

@@ -23,9 +23,9 @@
                             <a class="nav-link text-dark" href="#">首頁</a>
                         </router-link>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <router-link to="/lecture/Lecture_Product">
-                            <a class="nav-link lecture_btn" href="#">課程</a>
+                            <a class="nav-link text-dark" href="#">課程</a>
                         </router-link>
                     </li>
                     
@@ -33,11 +33,9 @@
 
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <router-link to="/">
-                            <a class="nav-link text-dark" href="#" title="據點查詢">
-                                <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
-                            </a> 
-                        </router-link>
+                        <a class="nav-link location_search" href="#" title="了解我們">
+                            <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
+                        </a> 
                     </li>
                     <li class="nav-item active">
                         <router-link to="/login">
@@ -61,6 +59,54 @@
                 
             </div>
         </nav>
+        <!---->
+        <div class="lecture_hide p-4 bg-light">  
+            <div class="d-flex">
+                    <div class="card rounded-0 border-0 mr-3 bg-light" style="width: 18rem;">
+                        <img class="card-img-top" src="https://upload.cc/i1/2021/02/16/XaFwDo.jpg" alt="Card image cap">
+                        <div class="card-body p-0 text-center mt-3">
+                            <font-awesome-icon :icon="['fas', 'caret-right']" />
+                            
+                            <router-link to="/">
+                                <a class="location_search_btn ml-2">了解Berserker Fitness</a>
+                            </router-link>
+                            
+                        </div>
+                    </div>
+                
+                
+                    <div class="card rounded-0 border-0 bg-light" style="width: 18rem;">
+                        <img class="card-img-top location_part" src="https://upload.cc/i1/2021/02/16/rcGXwH.jpg" alt="Card image cap">
+                        <div class="card-body p-0 text-center mt-3">
+                            <font-awesome-icon :icon="['fas', 'caret-right']" />
+                            <router-link to="/">
+                                <a class="location_search_btn ml-2">Berserker Fitness據點查詢</a>
+                            </router-link>
+                            
+                        </div>
+                    </div>
+            </div>
+            
+        </div>
+        
+
+        <!--
+        <div class="lecture_hide p-4">
+            <div class="card rounded-0 border-0" style="width: 18rem;">
+                <img class="card-img-top" src="https://upload.cc/i1/2021/02/16/XaFwDo.jpg" alt="Card image cap">
+                <div class="card-body p-0 text-center">
+                    <p class="card-text">了解Berserker Fitness</p>
+                </div>
+            </div>
+            <div class="card rounded-0 border-0" style="width: 18rem;">
+                <img class="card-img-top" src="https://upload.cc/i1/2021/02/16/rcGXwH.jpg" alt="Card image cap">
+                <div class="card-body p-0 text-center">
+                    <p class="card-text">Berserker Fitness據點查詢</p>
+                </div>
+            </div>
+        </div>
+        -->
+        <!---->
         <!-- Modal -->
         
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -189,6 +235,11 @@ export default {
     })
     this.getList();
   },
+  mounted(){
+      $('.location_search').on('click', function(){
+          $('.lecture_hide').slideToggle();
+      })
+  },
   components:{
       cartModal
   }
@@ -199,13 +250,33 @@ export default {
     .text-danger{
         color:black;
     }
-    .lecture_btn{
+    .lecture_hide{
+        display:none;
+    }
+    .location_search{
         color:black;
     }
-   
+    .location_search:hover{
+        color:red
+    }
+    .location_search_btn{
+        color:#000;
+    }
+    .location_search_btn:hover{
+        color:grey;
+        transition:all .2s;
+    }
+    .location_part{
+        height:162px;
+    }
     @media(max-width:680px){
         .Brand_logo{
             display:none;
+        }
+    }
+    @media(max-width:380px){
+        .location_part{
+            height:87px;
         }
     }
 </style>
