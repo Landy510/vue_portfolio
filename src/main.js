@@ -26,6 +26,7 @@ import { faListAlt } from '@fortawesome/free-solid-svg-icons'
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
 import { faHandPointDown } from '@fortawesome/free-regular-svg-icons'
 
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
@@ -44,6 +45,7 @@ import 'swiper/swiper-bundle.css'
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 Vue.use(VueAxios, axios)
 Vue.component('Loading', Loading);  // 將overlay元件宣告成全域的元件
+
 
 library.add(faTrashAlt)
 library.add(faSpinner)
@@ -64,6 +66,7 @@ library.add(faFontAwesome)
 library.add(faUserSecret)
 library.add(faCaretRight)
 library.add(faHandPointDown)
+library.add(faExclamationCircle)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 axios.defaults.withCredentials = true;

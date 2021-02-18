@@ -14,7 +14,7 @@
             </router-link>
 
             
-            <div style="position:relative">
+            <div class="d-block d-lg-none" style="position:relative">
                 <button type="button" class="btn btn-transparent text-dark d-block d-lg-none" data-toggle="modal" data-target="#exampleModalLong" @click="getList">
                     <font-awesome-icon :icon="['fas', 'cart-arrow-down']" />
                 </button>

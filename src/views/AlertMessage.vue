@@ -1,12 +1,10 @@
 <template>
   <div class="message-alert">
-    <div class="alert alert-dismissible"
-      :class="'alert-' + item.status"
-      v-for="(item, i) in messages" :key="i">
-      {{ item.message }}
-      <button type="button" class="close" @click="removeMessage(i)" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+    <div class="alert alert-dismissible d-flex p-0 message-alert-background" v-for="(item, i) in messages" :key="i">
+      <div class="border border-dark p-2" :class="'text-' + item.status">
+        <font-awesome-icon :icon="['fas','exclamation-circle']" size="lg"></font-awesome-icon>
+      </div>
+      <div class="border border-dark p-2 text-white">{{ item.message }}</div>
     </div>
   </div>
 </template>
@@ -59,5 +57,8 @@
     top: 56px;
     right: 20px;
     z-index: 1100;
+    }
+    .message-alert-background{
+        background-color:black;
     }
 </style>
