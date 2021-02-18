@@ -11,6 +11,9 @@ import orderList from '../views/orderList';
 import Coupon from '../views/Coupon';
 import Lecture from '../views/Lecture';
 import SelfProduct from '../views/SelfProduct';
+import Company from '../views/Company';
+import locationInfo from '../views/locationInfo';
+import CompanyDetail from '../views/CompanyDetail';
 import Lecture_Product from '../views/Lecture_Product';
 import customerOrder from '../views/CustomerOrder';
 import Customer1 from '../views/Customer1';
@@ -54,7 +57,24 @@ const routes = [
         path:':LectureId',
         name: 'SelfProduct',
         component: SelfProduct
+      }
+    ]
+  },
+  {
+    path: '/Company',
+    name: 'Company',
+    component: Company,
+    children:[
+      {
+        path:'locationInfo',
+        name: 'locationInfo',
+        component: locationInfo
       },
+      {
+        path:'CompanyDetail',
+        name: 'CompanyDetail',
+        component: CompanyDetail
+      }
     ]
   },
   {

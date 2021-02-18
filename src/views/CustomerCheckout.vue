@@ -88,6 +88,11 @@
                     <div class="text-right" v-if="order.is_paid === false">
                         <button class="btn btn-danger" @click="payOrder">確認付款去</button>
                     </div>
+                    <div class="text-right" v-if="order.is_paid === true">
+                        <router-link to="/">
+                            <button class="btn btn-warning">繼續選購</button>
+                        </router-link>
+                    </div>
                 </form>
                 </div>
         </div>

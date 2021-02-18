@@ -26,6 +26,7 @@ import { faListAlt } from '@fortawesome/free-solid-svg-icons'
 import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faHandPointDown } from '@fortawesome/free-regular-svg-icons'
 
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { faTrashAlt} from '@fortawesome/free-solid-svg-icons'
@@ -62,6 +63,7 @@ library.add(faCartArrowDown)
 library.add(faFontAwesome)
 library.add(faUserSecret)
 library.add(faCaretRight)
+library.add(faHandPointDown)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 axios.defaults.withCredentials = true;

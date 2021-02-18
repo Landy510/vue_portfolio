@@ -12,10 +12,17 @@
                         <span class="ml-1 Brand_logo">Berserker Fitness</span>
                     </a>
             </router-link>
-            <button type="button" class="btn btn-transparent text-dark d-block d-lg-none" data-toggle="modal" data-target="#exampleModalLong" @click="getList">
+
             
-                <font-awesome-icon :icon="['fas', 'cart-arrow-down']" />
-            </button>
+            <div style="position:relative">
+                <button type="button" class="btn btn-transparent text-dark d-block d-lg-none" data-toggle="modal" data-target="#exampleModalLong" @click="getList">
+                    <font-awesome-icon :icon="['fas', 'cart-arrow-down']" />
+                </button>
+                <span class="badge badge-danger rounded-circle" style="position:absolute;top:0;left:25px" v-if="product_num!==0">{{product_num}}</span>
+            </div>
+
+
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
@@ -67,7 +74,7 @@
                         <div class="card-body p-0 text-center mt-3">
                             <font-awesome-icon :icon="['fas', 'caret-right']" />
                             
-                            <router-link to="/">
+                            <router-link to="/Company/CompanyDetail">
                                 <a class="location_search_btn ml-2">了解Berserker Fitness</a>
                             </router-link>
                             
@@ -79,7 +86,7 @@
                         <img class="card-img-top location_part" src="https://upload.cc/i1/2021/02/16/rcGXwH.jpg" alt="Card image cap">
                         <div class="card-body p-0 text-center mt-3">
                             <font-awesome-icon :icon="['fas', 'caret-right']" />
-                            <router-link to="/">
+                            <router-link to="/Company/locationInfo">
                                 <a class="location_search_btn ml-2">Berserker Fitness據點查詢</a>
                             </router-link>
                             
