@@ -105,7 +105,9 @@
                                         </div>
                                         
                                         <div class="card-body p-0">
-                                            <p class="card-text mb-0">{{item.title}}</p>
+                                            <p class="card-text mb-0 d-flex justify-content-between pt-2">{{item.title}}
+                                                <font-awesome-icon :class="{'text-danger':item.like}" :icon="['far','heart']" size="lg" @click="getLike(item)"></font-awesome-icon>  
+                                            </p>
                                             <p class="card-text mb-2">{{item.description}}</p>
                                             <div class="d-flex justify-content-between align-items-end">
                                                 <del class="text-muted">原價{{item.origin_price}}元</del>
@@ -135,7 +137,9 @@
                                         </div>
                                         
                                         <div class="card-body p-0">
-                                            <p class="card-text mb-0">{{item.title}}</p>
+                                            <p class="card-text mb-0 d-flex justify-content-between pt-2">{{item.title}}
+                                                <font-awesome-icon :class="{'text-danger':item.like}" :icon="['far','heart']" size="lg" @click="getLike(item)"></font-awesome-icon>  
+                                            </p>
                                             <p class="card-text mb-2">{{item.description}}</p>
                                             <div class="d-flex justify-content-between align-items-end">
                                                 <del class="text-muted">原價{{item.origin_price}}元</del>
