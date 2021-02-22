@@ -52,10 +52,54 @@
                         </router-link>
                     </li>
                     <li class="nav-item active">
+                    
+                        <a class="nav-link likeButton" :class="{'text-danger':likeList.length!==0}" href="#" title="我的最愛" data-toggle="dropdown">
+                            <font-awesome-icon :icon="['far','heart']" size="lg"></font-awesome-icon>  
+                        </a> 
+                    
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuReference" style="min-width:400px;">
+                            <div class="px-4">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-0 px-0">收藏清單</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody v-if="likeList.length!==0">
+                                        <tr v-for="(item, index) in likeList" :key="index" >
+                                            
+                                            <td width="80">
+                                                <a href="#" @click="removeLike(item)">
+                                                    <i class="fas fa-trash-alt text-danger"></i>
+                                                </a>
+                                            </td>
+                                            <td width="120">{{item.title}}</td>
+                                            <td width="80" class="text-right">
+                                                <a class="text-dark" href="#" @click.prevent="addToCart(item)">
+                                                    <font-awesome-icon :icon="['fas', 'cart-arrow-down']"/>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                    
+                                    <tbody v-else class="text-danger">沒有我的最愛清單</tbody>
+                                    
+                                    
+                                    
+                                </table>
+                            </div>  
+                            </div>
+
+
+                    </li>
+                    <li class="nav-item active">
                         <router-link to="/">
                             <a class="nav-link text-dark" href="#" @click="signOut">登出</a>
                         </router-link>
                     </li>
+                    
                     <li class="nav-item d-none d-lg-block" style="position:relative">
                         <button type="button" class="btn btn-transparent" data-toggle="modal" data-target="#exampleModalLong" @click="getList">
                             <font-awesome-icon :icon="['fas', 'cart-arrow-down']"/>
@@ -97,22 +141,6 @@
         </div>
         
 
-        <!--
-        <div class="lecture_hide p-4">
-            <div class="card rounded-0 border-0" style="width: 18rem;">
-                <img class="card-img-top" src="https://upload.cc/i1/2021/02/16/XaFwDo.jpg" alt="Card image cap">
-                <div class="card-body p-0 text-center">
-                    <p class="card-text">了解Berserker Fitness</p>
-                </div>
-            </div>
-            <div class="card rounded-0 border-0" style="width: 18rem;">
-                <img class="card-img-top" src="https://upload.cc/i1/2021/02/16/rcGXwH.jpg" alt="Card image cap">
-                <div class="card-body p-0 text-center">
-                    <p class="card-text">Berserker Fitness據點查詢</p>
-                </div>
-            </div>
-        </div>
-        -->
         <!---->
         <!-- Modal -->
         
@@ -162,7 +190,15 @@ import $ from 'jquery';
 import cartModal from "./cart_modal";
 export default {
   name: 'Navbar',
-  props:['product_num'],
+  //props:['product_num'],
+  props:{
+      'product_num':Number,
+      'likeArray': {
+          type: Array,
+          default: []
+      }
+      
+  },
   data () {
       return{
           cart:[],
@@ -172,7 +208,8 @@ export default {
               isUploading:false
           },
           counter:0,
-          cartLength:0
+          cartLength:0,
+          likeList:this.likeArray
       }
   },
   methods:{
@@ -192,12 +229,32 @@ export default {
             vm.Status.isUploading = true;
             this.$http.get(api).then((response) => {  
                 vm.cart = response.data.data.carts;
-                console.log('原始資料長度', response.data.data.carts.length);
-                vm.total_length = response.data.data.carts.length;
-                vm.Status.isUploading = false;
-                vm.total_price = response.data.data.final_total;
-                vm.getcartLength();
+                if(response.data.success){
+                    vm.Status.isUploading = false;
+                    vm.total_price = response.data.data.final_total;
+                    vm.total_length = response.data.data.carts.length;
+                    vm.getcartLength();
+                }
+                
             })
+      },
+      getLike(){
+          let vm = this;
+          let output_data = localStorage.getItem('LikeData');
+          let output_array = JSON.parse(output_data);
+          if(output_array===null) return;
+          else vm.likeList = output_array;
+      },
+      addToCart(item){
+            const vm = this;
+            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
+            this.$http.post(api,{data:{product_id:item.id, qty: 1}}).then((response)=>{
+                if(response.data.success){
+                   vm.$bus.$emit('messsage:push', response.data.message, 'success');
+                   vm.getList();
+                }
+            })
+            vm.removeLike(item);
       },
       callCart(){
         $('.cart_list').addClass('cartOpen');
@@ -226,7 +283,26 @@ export default {
           let vm = this;
           vm.cartLength = vm.total_length;
           vm.$emit('increment', Number(vm.cartLength));
+      },
+      removeLike(item){
+          let vm = this;
           
+          
+          let output_data = localStorage.getItem('LikeData');
+          let output_array = JSON.parse(output_data);
+          if(output_array.length!==0){
+            output_array.filter((obj, index) => {
+                if(obj.title===item.title){
+                    output_array.splice(index, 1);
+                    
+                }
+            })
+          }
+        
+          let input_data = JSON.stringify(output_array);
+          localStorage.setItem('LikeData', input_data);
+
+          vm.getLike();     
       }
   },
   created: function(){
@@ -241,11 +317,18 @@ export default {
         }
     })
     this.getList();
+    this.getLike();
   },
   mounted(){
       $('.location_search').on('click', function(){
           $('.lecture_hide').slideToggle();
       })
+  },
+  watch:{
+      likeArray: function() {
+          console.log('你好嗎', this.likeArray);
+          this.likeList = this.likeArray; 
+      }
   },
   components:{
       cartModal
@@ -275,6 +358,9 @@ export default {
     }
     .location_part{
         height:162px;
+    }
+    .likeButton{
+        color: black;
     }
     @media(max-width:680px){
         .Brand_logo{

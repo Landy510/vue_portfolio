@@ -27,8 +27,8 @@ import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { faHandPointDown } from '@fortawesome/free-regular-svg-icons'
-
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 import { faUsersCog} from '@fortawesome/free-solid-svg-icons'
@@ -37,6 +37,7 @@ import { faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { BCarousel } from 'bootstrap-vue'
 import { BCarouselSlide } from 'bootstrap-vue'
+
 Vue.component('b-carousel', BCarousel)
 Vue.component('b-carousel-slide', BCarouselSlide)
 
@@ -46,7 +47,7 @@ Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 Vue.use(VueAxios, axios)
 Vue.component('Loading', Loading);  // 將overlay元件宣告成全域的元件
 
-
+library.add(faHeart)
 library.add(faTrashAlt)
 library.add(faSpinner)
 library.add(faTicketAlt)

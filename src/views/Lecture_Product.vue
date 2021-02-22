@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Navbar :product_num="product_length" v-on:increment="CounterCoupute"></Navbar>
+        <Navbar :likeArray="likeList" :product_num="product_length" v-on:increment="CounterCoupute"></Navbar>
         <div class="vld-parent">
             <loading :active.sync="isLoading"></loading>
         </div>
@@ -36,12 +36,15 @@
                                             <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in products">
                                             <div class="card h-100" >
                                                 <div class="h-60 card_image">
+                                                    
                                                     <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
                                                     <button class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
                                                 </div>
                                                 
                                                 <div class="card-body p-0">
-                                                    <p class="card-text mb-0">{{item.title}}</p>
+                                                    <p class="card-text mb-0 d-flex justify-content-between pt-2">{{item.title}}
+                                                        <font-awesome-icon :class="{'text-danger':item.like}" :icon="['far','heart']" size="lg" @click="getLike(item)"></font-awesome-icon>  
+                                                    </p>
                                                     <p class="card-text mb-2">{{item.description}}</p>
                                                     <div class="d-flex justify-content-between align-items-end">
                                                         <del class="text-muted">原價{{item.origin_price}}元</del>
@@ -70,7 +73,10 @@
                                         </div>
                                         
                                         <div class="card-body p-0">
-                                            <p class="card-text mb-0">{{item.title}}</p>
+                                            <p class="card-text mb-0 d-flex justify-content-between pt-2">{{item.title}}
+                                                <font-awesome-icon :class="{'text-danger':item.like}" :icon="['far','heart']" size="lg" @click="getLike(item)"></font-awesome-icon>  
+                                            </p>
+
                                             <p class="card-text mb-2">{{item.description}}</p>
                                             <div class="d-flex justify-content-between align-items-end">
                                                 <del class="text-muted">原價{{item.origin_price}}元</del>
@@ -151,41 +157,7 @@
                 </div>
             </div>
         </div>
-            
 
-        <!--
-        <div class="container mb-4">
-            
-            <div class="row">
-                <div class="col-12">
-                    <div class="row py-2 Recommended_class_frame">
-                        <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in products">
-                        <div class="card h-100" >
-                            <div class="h-60 card_image">
-                                <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
-                                <button class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
-                            </div>
-                            
-                            <div class="card-body p-0">
-                                <p class="card-text mb-0">{{item.title}}</p>
-                                <p class="card-text mb-2">{{item.description}}</p>
-                                <div class="d-flex justify-content-between align-items-end">
-                                    <del class="text-muted">原價{{item.origin_price}}元</del>
-                                    <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
-                                </div>
-                            </div>
-                            <button class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
-                        </div>
-                        </div>
-                    </div>
-                    
-
-                </div>
-
-            </div>
-        </div>
-        -->
-       
     </div>
 </template>
 
@@ -201,7 +173,9 @@ import banner from "./intro_banner";
             product_length:0,
             image_website:'https://upload.cc/i1/2021/02/15/2cfRA4.jpg',
             products:[],
-            Lecture_title:'所有課程'
+            Lecture_title:'所有課程',
+            like:false,
+            likeList:[]
         }
     },
     methods:{
@@ -210,10 +184,15 @@ import banner from "./intro_banner";
             vm.isLoading = true;
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
             this.$http.get(api).then((response)=>{
-                console.log('商品頁面中取得的',response.data.products);
+                
                 if(response.data.success){
                     vm.products = response.data.products;
                     vm.isLoading = false;
+                    vm.products.forEach(item=>{
+                        vm.$set(item, 'like', false);
+                    })
+                    console.log('商品頁面中取得的', vm.products);
+                    vm.getLikeList();
                 } else {
                     console.log(response.message);
                     vm.isLoading = false;
@@ -266,11 +245,65 @@ import banner from "./intro_banner";
             
             
             vm.Lecture_title = str;
+        },
+        getLike(item){
+            let vm = this;
+            item.like = !item.like;
+            
+            let output_data = localStorage.getItem('LikeData');
+            let output_array = JSON.parse(output_data);
+            if(output_array===null){
+                vm.likeList = [];
+
+                let input_array = [];
+                input_array.push(item);
+                vm.likeList = input_array;
+                let input_data = JSON.stringify(input_array);
+                localStorage.setItem('LikeData', input_data);
+                return;
+            } else {
+                let hasElement = false;
+                vm.likeList = [];
+
+                if(output_array.length!==0){
+                    
+                    output_array.filter((obj, index) => {
+                        if(obj.title===item.title){
+                            output_array.splice(index, 1);
+                            hasElement = true;
+                            return true;
+                        }
+                    })
+                    if(!hasElement) {
+                        output_array.push(item);
+                    }
+                    //vm.likeList = output_array;
+                } else {
+                    
+                    output_array.push(item);
+                   // vm.likeList = output_array;
+                }
+                 vm.likeList = output_array;
+
+                let input_array = output_array;
+                let input_data = JSON.stringify(input_array);
+                localStorage.setItem('LikeData', input_data);
+
+            }
+           console.log('localStorage成員', vm.likeList);
+            
+            
+        },
+        getLikeList(){
+          let vm = this;
+          let output_data = localStorage.getItem('LikeData');
+          let output_array = JSON.parse(output_data);
+          vm.likeList = output_array;
+          console.log('localStorage', vm.likeList);
         }
     },
     created(){
         this.getProduct();
-        
     },
     components:{
         Navbar,

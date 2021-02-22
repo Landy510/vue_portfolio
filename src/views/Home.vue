@@ -3,7 +3,7 @@
     <div class="vld-parent">
         <loading :active.sync="isLoading"></loading>
     </div>
-    <Navbar :product_num="product_length" v-on:increment="CounterCoupute"></Navbar>
+    <Navbar :product_num="product_length" v-on:increment="CounterCoupute" ></Navbar>
     <banner :introImage="image_website"></banner>
     <alert/>
     <div class="container main-content mb-3">
