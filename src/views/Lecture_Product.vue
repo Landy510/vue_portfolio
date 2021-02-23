@@ -15,7 +15,7 @@
                 <li class="breadcrumb-item active text-dark" aria-current="page">All</li>
             </ol>
         </nav>
-        <banner :introImage="image_website"></banner>
+        <banner :introImage="image_website" :introImage_1="image_website1" :introImage_2="image_website2"></banner>
         <div class="h2 text-center Lecture_title py-4 border-bottom">{{Lecture_title}}</div>
         <div class="container mt-5">
             <div class="row">
@@ -176,6 +176,8 @@ import banner from "./intro_banner";
             isLoading:false,
             product_length:0,
             image_website:'https://upload.cc/i1/2021/02/15/2cfRA4.jpg',
+            image_website1:'https://upload.cc/i1/2021/02/05/s3GHBq.jpg',
+            image_website2:'https://upload.cc/i1/2021/02/22/TI2sLB.jpg',
             products:[],
             Lecture_title:'所有課程',
             like:false,

@@ -194,8 +194,7 @@ export default {
   props:{
       'product_num':Number,
       'likeArray': {
-          type: Array,
-          default: []
+          type: Array
       }
       
   },

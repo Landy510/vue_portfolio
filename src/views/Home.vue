@@ -4,7 +4,7 @@
         <loading :active.sync="isLoading"></loading>
     </div>
     <Navbar :product_num="product_length" v-on:increment="CounterCoupute" ></Navbar>
-    <banner :introImage="image_website"></banner>
+    <banner :introImage="image_website" :introImage_1="image_website1" :introImage_2="image_website2"></banner>
     <alert/>
     <div class="container main-content mb-3">
       <div class="row mb-5">
@@ -230,7 +230,9 @@ export default {
       },
       carts:[],
       product_length:0,
-      image_website:'https://upload.cc/i1/2021/02/04/XVGje1.jpg'
+      image_website:'https://upload.cc/i1/2021/02/04/XVGje1.jpg',
+      image_website1:'https://upload.cc/i1/2021/02/18/cyrh8S.jpg',
+      image_website2:'https://upload.cc/i1/2020/12/26/5QczGW.jpg'
     };
   },
   methods:{

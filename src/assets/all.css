@@ -10967,4 +10967,14 @@ body {
 .w-60 {
   width: 60%;
 }
+
+.swiper-container {
+  height: 650px;
+}
+
+@media (max-width: 568px) {
+  .swiper-container {
+    height: 480px;
+  }
+}
 /*# sourceMappingURL=all.css.map */
