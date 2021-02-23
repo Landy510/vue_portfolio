@@ -42,6 +42,7 @@
   
   import Swiper from 'swiper'
 　import 'swiper/css/swiper.min.css'
+
   export default {
     props:['introImage', 'introImage_1', 'introImage_2'],
     data() {
@@ -71,11 +72,7 @@
     　　　　pagination: {
   　　　　　　 el: '.swiper-pagination',
               clickable: true
-    　　　　 },
-            navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            },
+    　　　　}
 　　　　})
     }
   }

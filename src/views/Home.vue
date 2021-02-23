@@ -6,33 +6,28 @@
     <Navbar :product_num="product_length" v-on:increment="CounterCoupute" ></Navbar>
     <banner :introImage="image_website" :introImage_1="image_website1" :introImage_2="image_website2"></banner>
     <alert/>
-    <div class="container main-content mb-3">
+    <div class="container main-content my-3">
       <div class="row mb-5">
-        
-        <div class="col-12 text-center" style="position:relative">
-          <button class="btn btn-outline-dark btn-transparent MoveToLeft d-none d-md-block"  @click="RollToLeft">  <font-awesome-icon :icon="['fas','long-arrow-alt-left']" size="2x"></font-awesome-icon> </button>
-          <button class="btn btn-outline-dark btn-transparent MoveToRight" @click="RollToRight"><font-awesome-icon :icon="['fas','long-arrow-alt-right']" size="2x"></font-awesome-icon></button>
+        <div class="col-12 text-center">
           <small class="text-muted">教練推薦課程</small>
           <p class="h2 mb-4 font-weight-normal">Recommended</p>
-          <div class="row flex-md-nowrap py-2 Recommended_class_frame">
-            <div class="col-md-4 Recommended_class mb-2 mb-md-0" v-for="(item, index) in products">
-              <div class="card h-100 border-0">
-                <img class="card-img-top h-60" :src="item.imageUrl" alt="Card image cap">
-                <div class="card-body p-0">
-                  <p class="card-text mb-0">{{item.title}}</p>
-                  <p class="card-text mb-0">{{item.description}}</p>
-                  <div class="d-flex justify-content-between align-items-end">
-                    <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price}}</del></small>
-                    <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price}}</span></strong>
-                  </div>
-                  
-                </div>
-                <div class="card-footer p-0 border-0 bg-transparent">
-                  <button class="btn btn-outline-dark btn-lg rounded-0" @click="getProduct(item.id)">前往課程介紹</button>
+          
+          <!--輪播的內容部分-->
+          <carousel :autoplay="true" :loop="true" :paginationEnabled="false" :perPageCustom="[[680, 2], [1024, 4]]">
+            <slide v-for="(item, index) in aerobic_prodcuts" :key="index">
+              <div class="card h-100 border-0 mr-2">
+                <img class="card-img-top h-50" :src="item.imageUrl" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.title}}</h5>
+                  <p class="card-text">{{item.description}}</p>
+                  <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getProduct(item.id)">前去課程介紹</button>
                 </div>
               </div>
-            </div>
-          </div>
+            </slide>
+            
+          </carousel>
+
+          <!--輪播內容-->
         </div>
       </div>
       <div class="row flex-column mb-3">
@@ -179,12 +174,6 @@
                             </div>
 
                             <div class="form-group mt-3">
-                                <!--
-                                <select class="form-control form-control-lg" aria-label="Default select example" v-model="product_detail.num">
-                                    <option selected >Open this select menu</option>
-                                    <option :value="num" v-for="num in 10" :key="num">選購{{num}} {{product_detail.unit}}</option>
-                                </select>
-                                -->
                                 <div class="form-group">
                                   <label for="exampleFormControlSelect1">Example select</label>
                                   <select class="form-control form-control-lg" aria-label="Default select example" v-model="product_detail.num">
@@ -214,6 +203,8 @@ import Navbar from './Navbar'
 import banner from "./intro_banner";
 import alert from "./AlertMessage";
 import $ from "jquery";
+import { Carousel, Slide } from 'vue-carousel';
+
 export default {
   name: 'Home',
   data() {
@@ -232,7 +223,7 @@ export default {
       product_length:0,
       image_website:'https://upload.cc/i1/2021/02/04/XVGje1.jpg',
       image_website1:'https://upload.cc/i1/2021/02/18/cyrh8S.jpg',
-      image_website2:'https://upload.cc/i1/2020/12/26/5QczGW.jpg'
+      image_website2:'https://upload.cc/i1/2020/12/26/5QczGW.jpg',
     };
   },
   methods:{
@@ -254,6 +245,7 @@ export default {
                 }
               })
             }
+            console.log('有氧', vm.aerobic_prodcuts);
             vm.isLoading = false;
         })
     },
@@ -272,27 +264,6 @@ export default {
             let scale = (direction==='L')? -230 : 230;
             return scale;
         }
-    },
-    RollToLeft:function(){
-      let vm =this;
-      let scrollScale = 0;
-      scrollScale = 0;
-      scrollScale += vm.ReadWebSiteWidth(document.body.clientWidth, 'L');
-      console.log(scrollScale)
-      scrollScale = scrollScale*3;
-      console.log(scrollScale)
-      $('.Recommended_class').css("transform","translateX(" + scrollScale + "px)");
-      $('.MoveToRight').css('opacity', '1');    
-      $('.MoveToLeft').css('opacity', 0);
-    },
-    RollToRight:function(){
-      let vm =this;
-      let scrollScale = 0;
-      scrollScale = 0;
-      //scrollScale += vm.ReadWebSiteWidth(document.body.clientWidth, 'R');
-      $('.Recommended_class').css("transform","translateX(" + scrollScale + "px)");   
-      $('.MoveToLeft').css('opacity', '1');    
-      $('.MoveToRight').css('opacity', 0); 
     },
     getDetail(id){
       const vm = this;
@@ -335,7 +306,6 @@ export default {
           vm.product_length = response.data.data.carts.length;
         }
         vm.isLoading = false;
-        console.log('在Home中取得購物車', vm.carts);
       });
     },
     activeCart(){
@@ -353,6 +323,8 @@ export default {
     alert,
     banner,
     Navbar,
+    Carousel,
+    Slide
   }
 };
 </script>
@@ -378,22 +350,6 @@ export default {
    transform:translateX(0px);
    transition:all .5s;
 }
-
-.MoveToRight{
-  opacity:0;
-  transition:all .5s;
-  position:absolute; 
-  right:-20px; 
-  top:150px; 
-  z-index:2;
-}
-.MoveToLeft{
-  transition:all .5s;
-  position:absolute; 
-  left:-20px; 
-  top:150px; 
-  z-index:2;
-}
 .Recommended_class{
   .card-footer{
     .btn{
@@ -405,6 +361,9 @@ export default {
       color:white;
     } 
   }
+}
+.swiper-container2{
+  height:100%;
 }
 @media(max-width:768px){
   .Recommended_class{
