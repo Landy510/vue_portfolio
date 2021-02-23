@@ -246,10 +246,7 @@ import banner from "./intro_banner";
             this.$router.push(`/lecture/${id}`);
         },
         getCategory(str = 'All'){
-            console.log('1231321231');
             let vm = this;
-            
-            
             vm.Lecture_title = str;
         },
         getLike(item){
@@ -260,19 +257,18 @@ import banner from "./intro_banner";
             let output_array = JSON.parse(output_data);
             if(output_array===null){
                 vm.likeList = [];
-
                 let input_array = [];
                 input_array.push(item);
                 vm.likeList = input_array;
                 let input_data = JSON.stringify(input_array);
                 localStorage.setItem('LikeData', input_data);
+                vm.$bus.$emit('messsage:push', '已加入我的最愛清單', 'success');
                 return;
             } else {
                 let hasElement = false;
                 vm.likeList = [];
 
                 if(output_array.length!==0){
-                    
                     output_array.filter((obj, index) => {
                         if(obj.title===item.title){
                             output_array.splice(index, 1);
@@ -282,14 +278,14 @@ import banner from "./intro_banner";
                     })
                     if(!hasElement) {
                         output_array.push(item);
+                        vm.$bus.$emit('messsage:push', '已加入我的最愛清單', 'success');
                     }
-                    //vm.likeList = output_array;
-                } else {
                     
+                } else {
                     output_array.push(item);
-                   // vm.likeList = output_array;
+                    vm.$bus.$emit('messsage:push', '已加入我的最愛清單', 'success');
                 }
-                 vm.likeList = output_array;
+                vm.likeList = output_array;
 
                 let input_array = output_array;
                 let input_data = JSON.stringify(input_array);
