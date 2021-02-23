@@ -231,9 +231,10 @@ export default {
             vm.Status.isUploading = true;
             this.$http.get(api).then((response) => {  
                 vm.cart = response.data.data.carts;
+                console.log('Navbar', response);
                 if(response.data.success){
                     vm.Status.isUploading = false;
-                    vm.total_price = response.data.data.final_total;
+                    vm.total_price = response.data.data.total;
                     vm.total_length = response.data.data.carts.length;
                     vm.getcartLength();
                 }

@@ -53,11 +53,11 @@
                         </td>
                         <td class="h5">{{item.product.title}}</td>
                         <td class="h5">
-                        {{item.product.num}} /{{item.product.unit}}
+                        {{item.qty}} /{{item.product.unit}}
                         </td>
                         
                         <td class="h5">
-                            {{item.product.num*item.product.price| currency}} 
+                            {{item.qty*item.product.price| currency}} 
                         </td>
                     
                     </tr>
@@ -74,7 +74,7 @@
                         <td colspan="5" class="text-right h5 text-danger">總計: <span class="h2">{{total| currency}}</span></td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-right h5 text-success" v-if="final_total!==total">折扣價: <span class="h2">{{final_total| currency}}</span></td>
+                        <td colspan="5" class="text-right h5 text-success" v-if="final_total!==total && hasCoupon">折扣價: <span class="h2">{{final_total| currency}}</span></td>
                     </tr>
                 </tfoot>
             </table>
@@ -110,7 +110,8 @@
                total:0,
                final_total:0,
                coupon_code:'',
-               product_length:0
+               product_length:0,
+               hasCoupon:false
             }
         },
         methods:{
@@ -124,7 +125,6 @@
                         vm.total = response.data.data.total;
                         vm.final_total = response.data.data.final_total;
                         vm.product_length = response.data.data.carts.length;
-                        console.log(vm.carts)
                     })
             },
             delProduct(id){
@@ -152,6 +152,8 @@
                     code:vm.coupon_code
                 }
                 this.$http.post(api, {data:coupon}).then((response) => {  
+                    console.log('優惠券', response.data.success);
+                    vm.hasCoupon = response.data.success;
                     this.getList();  
                     vm.isLoading = false;
                 })
