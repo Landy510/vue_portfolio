@@ -57,7 +57,7 @@
                         </td>
                         
                         <td class="h5">
-                            {{item.product.num*item.product.price}} 
+                            {{item.product.num*item.product.price| currency}} 
                         </td>
                     
                     </tr>
@@ -65,23 +65,23 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="5" class="text-right h5">小計: <span>{{total}}</span></td>
+                        <td colspan="5" class="text-right h5">小計: <span>{{total| currency}}</span></td>
                     </tr>
                     <tr>
                         <td colspan="5" class="text-right h5 border-0">運費: <span>0</span></td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-right h5 text-danger">總計: <span class="h2">{{total}}</span></td>
+                        <td colspan="5" class="text-right h5 text-danger">總計: <span class="h2">{{total| currency}}</span></td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-right h5 text-success" v-if="final_total!==total">折扣價: <span class="h2">{{final_total}}</span></td>
+                        <td colspan="5" class="text-right h5 text-success" v-if="final_total!==total">折扣價: <span class="h2">{{final_total| currency}}</span></td>
                     </tr>
                 </tfoot>
             </table>
 
         
             <div class="input-group mb-3">
-                <input type="text" class="form-control border border-success" v-model="coupon_code" placeholder="請輸入優惠碼" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input type="text" class="form-control border border-success" v-model="coupon_code" placeholder="輸入1234折扣碼，即可享有折扣" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button class="btn btn-outline-success" @click="addCouponCode">套用優惠券</button>
                 </div>

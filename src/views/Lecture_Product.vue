@@ -47,8 +47,8 @@
                                                     </p>
                                                     <p class="card-text mb-2">{{item.description}}</p>
                                                     <div class="d-flex justify-content-between align-items-end">
-                                                        <del class="text-muted">原價{{item.origin_price}}元</del>
-                                                        <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
+                                                        <del class="text-muted">原價{{item.origin_price| currency}}元</del>
+                                                        <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price| currency}}</span>元</strong>
                                                     </div>
                                                 </div>
                                                 <button class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>

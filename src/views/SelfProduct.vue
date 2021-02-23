@@ -28,8 +28,8 @@
                     <h2>{{lecture.title}}</h2>
                     <small>{{lecture.description}}</small>
                     <div class="d-flex justify-content-between align-items-end mb-4">
-                        <small class="card-text text-muted">原本售價 NT<del>{{lecture.origin_price}}</del></small>
-                        <strong class="card-text text-muted ml-auto">現在售價 NT<span class="h4 text-danger">{{lecture.price}}</span></strong>
+                        <small class="card-text text-muted">原本售價 NT<del>{{lecture.origin_price| currency}}</del></small>
+                        <strong class="card-text text-muted ml-auto">現在售價 NT<span class="h4 text-danger">{{lecture.price| currency}}</span></strong>
                     </div>
                     <h5>數量</h5>
                     <div class="input-group mb-3">

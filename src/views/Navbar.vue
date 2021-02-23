@@ -158,14 +158,14 @@
                                 <img class="card-img-top" :src="item.product.imageUrl" alt="Card image cap">
                                 <div class="card-body">
                                     <h3 class="card-title">{{item.product.title}}</h3>
-                                    <h3 class="card-text">{{item.product.price}} 元</h3> 
+                                    <h3 class="card-text">{{item.product.price| currency}} 元</h3> 
                                     <div class="d-flex justify-content-between align-items-end">
                                         <span class="card-text h5">{{item.qty}} /{{item.product.unit}}</span>  
                                         <button class="btn btn-outline-danger" @click.prevent="delProduct(item.id)"><font-awesome-icon :icon="['fas', 'trash-alt']"/></button>  
                                     </div>  
                                 </div>
                             </div>
-                            <div class="bg-light p-4 h3 d-sm-flex justify-content-between mb-0" style="position:sticky; bottom:0;">總金額 {{total_price}}
+                            <div class="bg-light p-4 h3 d-sm-flex justify-content-between mb-0" style="position:sticky; bottom:0;">總金額 {{total_price| currency}}
                                 <router-link to="/customerOrder/customer1">
                                     <button class="btn btn-warning px-5 w-100" @click="closeModal">
                                     <font-awesome-icon :icon="['fas', 'spinner']" spin v-if="Status.isUploading"/>

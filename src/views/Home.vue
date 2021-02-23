@@ -51,8 +51,8 @@
                       <p class="card-text mb-0">{{item.title}}</p>
                       <p class="card-text mb-0">{{item.description}}</p>
                       <div class="d-flex justify-content-between align-items-end">
-                        <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price}}</del></small>
-                        <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price}}</span></strong>
+                        <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price| currency}}</del></small>
+                        <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price | currency}}</span></strong>
                       </div>
                       <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
                     </div>
@@ -175,7 +175,7 @@
 
                             <div class="form-group mt-3">
                                 <div class="form-group">
-                                  <label for="exampleFormControlSelect1">Example select</label>
+                                  <label for="exampleFormControlSelect1">選購堂數</label>
                                   <select class="form-control form-control-lg" aria-label="Default select example" v-model="product_detail.num">
                                     <option :value="num" v-for="num in 10" :key="num">選購{{num}} {{product_detail.unit}}</option>
                                     

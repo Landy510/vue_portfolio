@@ -19,7 +19,9 @@
               </select>
             </div>
             <div>
-              <h5 class="font-weight-bold">{{selectlocation["場地名稱"]}}</h5>
+              <h5 class="font-weight-bold">
+                {{selectlocation["場地名稱"]}}
+              </h5>
               <small class="text-muted">{{selectlocation["地址"]}}</small>
               <br>
               <h5 class="mt-3" v-if="selectlocation.decription!==''">{{selectlocation.decription}}</h5>
@@ -75,11 +77,11 @@
         
       },
       PenTo(location){
-        console.log(location["經度"], location["緯度"]);
         osmMap.panTo(new L.LatLng(location["經度"], location["緯度"]));
         L.marker([location["經度"], location["緯度"]]).addTo(osmMap).bindPopup(`<strong>據點名稱:${location['場地名稱']}</strong><br>
           <strong>地址:<a href="https://www.google.com.tw/maps/place/${location['地址']}" target="_blank">${location['地址']}</a></strong><br>
           <strong>電話:${location['連絡電話']}</strong>`).openPopup();
+        
       }
     },
     components:{

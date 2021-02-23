@@ -9,7 +9,7 @@ import 'vue-loading-overlay/dist/vue-loading.css';  // 引入overlay元件
 import 'bootstrap'  
 import './all.js'
 import './bus.js'
-
+import currencyFilter from './filters/currency'  // 引入currency.js
 
 import { ValidationObserver, ValidationProvider, extend, localize, configure } from 'vee-validate';
 import TW from 'vee-validate/dist/locale/zh_TW.json'
@@ -73,7 +73,7 @@ library.add(faExclamationCircle)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 axios.defaults.withCredentials = true;
-
+Vue.filter('currency', currencyFilter);  // 啟用fiter元件-千分號效果
 
 
 new Vue({
