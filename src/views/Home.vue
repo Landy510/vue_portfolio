@@ -13,7 +13,7 @@
           <p class="h2 mb-4 font-weight-normal">Recommended</p>
           
           <!--輪播的內容部分-->
-          <carousel :autoplay="true" :loop="true" :paginationEnabled="false" :perPageCustom="[[680, 2], [1024, 4]]">
+          <carousel :autoplay="true" :loop="true" :paginationEnabled="false" :perPageCustom="[[320, 1], [560, 2], [1024, 4]]">
             <slide v-for="(item, index) in aerobic_prodcuts" :key="index">
               <div class="card h-100 border-0 mr-2">
                 <img class="card-img-top h-50" :src="item.imageUrl" alt="Card image cap">
