@@ -180,9 +180,12 @@ import Navbar from "./Navbar";
         },
         addToCart(id){
             const vm = this;
+            if(vm.qty===0)return;
+
             vm.isLoading = true;
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
             this.$http.post(api,{data:{product_id:id, qty: vm.qty}}).then((response)=>{
+                
                 if(response.data.success){
                    vm.isLoading = false;
                    vm.$bus.$emit('messsage:push', response.data.message, 'success');
