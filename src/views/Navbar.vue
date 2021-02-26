@@ -144,10 +144,10 @@
         <!---->
         <!-- Modal -->
         
-        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog m-0" role="document" >
+        <div class="modal fade modal-right pr-0" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog mr-md-0 mt-0" role="document" >
                 <div class="modal-content">
-                    <div class="modal-header sticky-top mr-0 bg-warning">
+                    <div class="modal-header mr-0 bg-warning sticky-top">
                         <h4 class="modal-title font-weight-bold mx-auto" id="exampleModalLongTitle">購物車</h4>
                         <button type="button" class="close p-0 m-0" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -364,6 +364,12 @@ export default {
     }
     .likeButton{
         color: black;
+    }
+    .modal.fade.modal-right .modal-dialog {
+        transform: translate(125%, 0px);
+    }
+    .modal.show.modal-right .modal-dialog {
+        transform: none;
     }
     @media(max-width:680px){
         .Brand_logo{
