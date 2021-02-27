@@ -51,14 +51,14 @@
 </script>
 
 <style scope>
-    .message-alert {
+  .message-alert {
     position: fixed;
     max-width: 50%;
     top: 56px;
     right: 20px;
     z-index: 1100;
-    }
-    .message-alert-background{
-        background-color:black;
-    }
+  }
+  .message-alert-background{
+    background-color:black;
+  }
 </style>

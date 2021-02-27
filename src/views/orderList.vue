@@ -5,10 +5,12 @@
         </div>
         <table class="table mt-4">
             <thead>
-                <th width="120">姓名</th>
-                <th width="100">信箱</th>
-                <th>購買商品</th>
-                <th width="100">是否付款</th>
+                <tr>
+                    <th width="120">姓名</th>
+                    <th width="100">信箱</th>
+                    <th>購買商品</th>
+                    <th width="100">是否付款</th>
+                </tr>
             </thead>
             <tbody>
                 <tr v-for="(item, key) in customer_order" :key="key">
@@ -51,14 +53,12 @@ export default {
             const vm = this;
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/orders?page=${page}`; 
             vm.isLoading = true;
-            this.$http.get(api).then((response) => {
+            vm.$http.get(api).then((response) => {
                 vm.isLoading = false;
-                
                 console.log('商品',response.data);
                 let el = `"${response.data.orders[0].id}"`;
                 console.log('商品id',el);
                 console.log('取得的資料呢', response.data.orders[0].products);
-                
                 vm.customer_order = response.data.orders;
                 vm.pagination = response.data.pagination;
             })

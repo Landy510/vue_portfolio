@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <footer class="bg-light text-muted py-5">
+    <footer class="bg-light text-muted py-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -27,15 +26,14 @@
                         <p class="text-dark mr-4 footer-tel">0800-123-4567</p>
                         <div class="d-flex flex-lg-column flex-row">
                             <small class="text-dark">服務時間</small>
-                             <small>08:00-18:00</small>
+                                <small>08:00-18:00</small>
                         </div>
                         
                     </div>
                 </div>
             </div>  
         </div>
-        </footer>
-    </div>
+    </footer>
 </template>
 
 <script>
@@ -53,12 +51,11 @@ export default {
 
 <style scoped>
 .footer-tel{
-    font-size: 25px;
+  font-size: 25px;
 }
 @media(max-width:768px){
-    .footer-tel{
-        font-size: 20px;
-    }
+  .footer-tel{
+    font-size: 20px;
+  }
 }
-
 </style>

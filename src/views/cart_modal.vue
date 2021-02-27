@@ -3,7 +3,7 @@
     <div class="cart_list_cover" @click="closeCartCover">
         <div class="cart_list">
             <div class="card" v-for="(item, index) in cart_detail" :key="index">
-                <img class="card-img-top" :src="item.imageUrl" alt="Card image cap">
+                <img class="card-img-top" :src="item.imageUrl" :alt="item.title圖片">
                 <div class="card-body">
                     <h5 class="card-title">{{item.title}}</h5>
                     <p class="card-text">數量{{item.num}} {{item.unit}}</p>
@@ -66,11 +66,11 @@ import $ from 'jquery';
  
 }
 .cartOpen.cart_list{
-    transform: translateX(0vw);
-    display:block;
+  transform: translateX(0vw);
+  display:block;
 }
 .cartOpen.cart_list_cover{
-    transform: translateX(0vw);
-    display:block;
+  transform: translateX(0vw);
+  display:block;
 }
 </style>

@@ -86,11 +86,11 @@
                     </tbody>
                     </table>
                     <div class="text-right" v-if="order.is_paid === false">
-                        <button class="btn btn-danger" @click="payOrder">確認付款去</button>
+                        <button class="btn btn-danger" type="button" @click="payOrder">確認付款去</button>
                     </div>
                     <div class="text-right" v-if="order.is_paid === true">
                         <router-link to="/">
-                            <button class="btn btn-warning">繼續選購</button>
+                            <button type="button" class="btn btn-warning">繼續選購</button>
                         </router-link>
                     </div>
                 </form>
@@ -121,7 +121,7 @@
             getList(){
                 const vm = this;
                 const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order/${vm.orderId}`;
-                this.$http.get(api).then((response) => {
+                vm.$http.get(api).then((response) => {
                     vm.order = response.data.order;  
                 })
             },
@@ -154,13 +154,13 @@
 
 <style scoped>
 .cart_content_btn:hover{
-    cursor:pointer;
+  cursor:pointer;
 }
 .confirm_btn{
-    width:50%;
+  width:50%;
 }
 .cart_content{
-    display: none;
+  display: none;
 }
 .arrow{
   transform: rotate(0deg);
@@ -171,8 +171,8 @@
   transition: all .5s;
 }
 @media(max-width:680px){
-    .confirm_btn{
-        width:100%;
-    }
+  .confirm_btn{
+    width:100%;
+  }
 }
 </style>

@@ -5,20 +5,20 @@
 @import './helper/Dashboard';
 
 .bg-cover{
-    background-size: cover;
-    background-position: center center;
+  background-size: cover;
+  background-position: center center;
 }
 .h-60{
-    height: 60%;
+  height: 60%;
 }
 .w-60{
-    width: 60%;
+  width: 60%;
 }
 .swiper-container {
-    height: 650px;
+  height: 650px;
 }
 @media(max-width:568px){
-    .swiper-container{
-      height:480px;
-    }
+  .swiper-container{
+    height:480px;
   }
+}

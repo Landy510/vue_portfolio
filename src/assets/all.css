@@ -10863,9 +10863,7 @@ body {
   vertical-align: text-bottom;
 }
 
-/*
-   * Sidebar
-   */
+/* * Sidebar */
 .sidebar {
   position: fixed;
   top: 0;
@@ -10920,9 +10918,7 @@ body {
   text-transform: uppercase;
 }
 
-/*
-   * Navbar
-   */
+/* * Navbar */
 .navbar-brand {
   padding-top: .75rem;
   padding-bottom: .75rem;

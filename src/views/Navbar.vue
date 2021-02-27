@@ -6,11 +6,11 @@
                     <font-awesome-icon :icon="['fas','bars']" size="lg"></font-awesome-icon>
                 </span>
             </button>
-            <router-link to="/" class="mx-auto">
-                    <a class="navbar-brand py-0 text-dark font-weight-bold d-block bg-transparent shadow-none" href="#">
-                        <img src="../assets/img/protectionshield.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-                        <span class="ml-1 Brand_logo">Berserker Fitness</span>
-                    </a>
+            <router-link to="/" class="mx-auto navbar-brand py-0 text-dark font-weight-bold d-flex bg-transparent shadow-none">       
+                    <h1 class="h5 m-0">         
+                        <img src="../assets/img/protectionshield.svg" width="30" height="30" class="d-inline-block align-top" alt="Berserker Fitness Logo">
+                        <span class="ml-1 my-auto Brand_logo">Berserker Fitness</span>
+                    </h1>
             </router-link>
 
             
@@ -26,14 +26,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <router-link to="/">
-                            <a class="nav-link text-dark" href="#">首頁</a>
-                        </router-link>
+                        <router-link to="/" class="nav-link text-dark">首頁</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/lecture/Lecture_Product">
-                            <a class="nav-link text-dark" href="#">課程</a>
-                        </router-link>
+                        <router-link to="/lecture/Lecture_Product" class="nav-link text-dark">課程</router-link>              
                     </li>
                     
                 </ul>
@@ -45,10 +41,13 @@
                         </a> 
                     </li>
                     <li class="nav-item active">
-                        <router-link to="/login">
+                        <router-link to="/login" class="nav-link login_status" title="管理者登入">
+                            <font-awesome-icon :icon="['fas', 'users-cog']" />
+                            <!--
                             <a class="nav-link login_status" href="#" title="管理者登入">
                                 <font-awesome-icon :icon="['fas', 'users-cog']" />
                             </a>
+                            -->
                         </router-link>
                     </li>
                     <li class="nav-item active">
@@ -114,26 +113,19 @@
         <div class="lecture_hide p-4 bg-light">  
             <div class="d-flex">
                     <div class="card rounded-0 border-0 mr-3 bg-light" style="width: 18rem;">
-                        <img class="card-img-top" src="https://upload.cc/i1/2021/02/16/XaFwDo.jpg" alt="Card image cap">
+                        <img class="card-img-top" src="https://upload.cc/i1/2021/02/16/XaFwDo.jpg" alt="了解Berserker Fitness圖片">
                         <div class="card-body p-0 text-center mt-3">
-                            <font-awesome-icon :icon="['fas', 'caret-right']" />
-                            
-                            <router-link to="/Company/CompanyDetail">
-                                <a class="location_search_btn ml-2">了解Berserker Fitness</a>
-                            </router-link>
-                            
+                            <font-awesome-icon :icon="['fas', 'caret-right']" /> 
+                            <router-link to="/Company/CompanyDetail" class="location_search_btn ml-2">了解Berserker Fitness</router-link> 
                         </div>
                     </div>
                 
                 
                     <div class="card rounded-0 border-0 bg-light" style="width: 18rem;">
-                        <img class="card-img-top location_part" src="https://upload.cc/i1/2021/02/16/rcGXwH.jpg" alt="Card image cap">
+                        <img class="card-img-top location_part" src="https://upload.cc/i1/2021/02/16/rcGXwH.jpg" alt="了解Berserker Fitness據點查詢圖片">
                         <div class="card-body p-0 text-center mt-3">
                             <font-awesome-icon :icon="['fas', 'caret-right']" />
-                            <router-link to="/Company/locationInfo">
-                                <a class="location_search_btn ml-2">Berserker Fitness據點查詢</a>
-                            </router-link>
-                            
+                            <router-link to="/Company/locationInfo" class="location_search_btn ml-2">Berserker Fitness據點查詢</router-link>  
                         </div>
                     </div>
             </div>
@@ -155,19 +147,19 @@
                     </div>
                     <div class="modal-body p-0">
                             <div class="card px-4 border-0" v-for="(item,index) in cart" :key="index">
-                                <img class="card-img-top" :src="item.product.imageUrl" alt="Card image cap">
+                                <img class="card-img-top" :src="item.product.imageUrl" :alt="`${item.product.title}課程圖片`">
                                 <div class="card-body">
                                     <h3 class="card-title">{{item.product.title}}</h3>
                                     <h3 class="card-text">{{item.product.price| currency}} 元</h3> 
                                     <div class="d-flex justify-content-between align-items-end">
                                         <span class="card-text h5">{{item.qty}} /{{item.product.unit}}</span>  
-                                        <button class="btn btn-outline-danger" @click.prevent="delProduct(item.id)"><font-awesome-icon :icon="['fas', 'trash-alt']"/></button>  
+                                        <button type="button" class="btn btn-outline-danger" @click="delProduct(item.id)"><font-awesome-icon :icon="['fas', 'trash-alt']"/></button>  
                                     </div>  
                                 </div>
                             </div>
                             <div class="bg-light p-4 h3 d-sm-flex justify-content-between mb-0" style="position:sticky; bottom:0;">總金額 {{total_price| currency}}
                                 <router-link to="/customerOrder/customer1">
-                                    <button class="btn btn-warning px-5 w-100" @click="closeModal">
+                                    <button type="button" class="btn btn-warning px-5 w-100" @click="closeModal">
                                     <font-awesome-icon :icon="['fas', 'spinner']" spin v-if="Status.isUploading"/>
                                     結帳去</button>
                                 </router-link>
@@ -229,7 +221,7 @@ export default {
             const vm = this;
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
             vm.Status.isUploading = true;
-            this.$http.get(api).then((response) => {  
+            vm.$http.get(api).then((response) => {  
                 vm.cart = response.data.data.carts;
                 console.log('Navbar', response);
                 if(response.data.success){
@@ -297,7 +289,6 @@ export default {
             output_array.filter((obj, index) => {
                 if(obj.title===item.title){
                     output_array.splice(index, 1);
-                    
                 }
             })
           }
@@ -340,46 +331,46 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    .text-danger{
-        color:black;
-    }
-    .lecture_hide{
-        display:none;
-    }
-    .location_search{
-        color:black;
-    }
-    .location_search:hover{
-        color:red
-    }
-    .location_search_btn{
-        color:#000;
-    }
-    .location_search_btn:hover{
-        color:grey;
-        transition:all .2s;
-    }
-    .location_part{
-        height:162px;
-    }
-    .likeButton{
-        color: black;
-    }
-    .modal.fade.modal-right .modal-dialog {
-        transform: translate(125%, 0px);
-    }
-    .modal.show.modal-right .modal-dialog {
-        transform: none;
-    }
-    @media(max-width:680px){
-        .Brand_logo{
-            display:none;
-        }
-    }
-    @media(max-width:380px){
-        .location_part{
-            height:87px;
-        }
-    }
+.text-danger{
+  color:black;
+}
+.lecture_hide{
+  display:none;
+}
+.location_search{
+  color:black;
+}
+.location_search:hover{
+  color:red
+}
+.location_search_btn{
+  color:#000;
+}
+.location_search_btn:hover{
+  color:grey;
+  transition:all .2s;
+}
+.location_part{
+  height:162px;
+}
+.likeButton{
+  color: black;
+}
+.modal.fade.modal-right .modal-dialog {
+  transform: translate(125%, 0px);
+}
+.modal.show.modal-right .modal-dialog {
+  transform: none;
+}
+@media(max-width:680px){
+  .Brand_logo{
+    display:none;
+  }
+}
+@media(max-width:380px){
+  .location_part{
+    height:87px;
+  }
+}
 </style>
 

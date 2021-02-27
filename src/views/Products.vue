@@ -4,7 +4,7 @@
             <loading :active.sync="isLoading"></loading>
         </div>
         <div class="text-right mt-4">
-            <button class="btn btn-primary" @click.prevent="openModal(true)">建立新的產品</button>
+            <button type="button" class="btn btn-primary" @click="openModal(true)">建立新的產品</button>
         </div>
         <table class="table mt-4">
             <thead>
@@ -30,8 +30,8 @@
                         <span v-else>未啟用</span>
                     </td>
                     <td>
-                        <button class="btn btn-outline-primary btn-sm" @click.prevent="openModal(false, item)">編輯</button>
-                        <button class="btn btn-outline-danger btn-sm" @click.prevent="delModal(item)">刪除</button>
+                        <button class="btn btn-outline-primary btn-sm" type="button" @click="openModal(false, item)">編輯</button>
+                        <button class="btn btn-outline-danger btn-sm" type="button" @click="delModal(item)">刪除</button>
                     </td>
                 </tr>
             </tbody>
@@ -59,12 +59,12 @@
                         </div>
                         <div class="form-group">
                         <label for="customFile">或 上傳圖片
-                            <font-awesome-icon :icon="['fas', 'spinner']" spin v-if="Status.isUploading"/>
+                            <font-awesome-icon :icon="['fas', 'spinner']" spin v-if="status.isUploading"/>
                         </label>
                         <input type="file" id="customFile" class="form-control"
                             ref="files" @change="uploadFile">
                         </div>
-                        <img :src="tempProduct.imageUrl" class="img-fluid" alt="">
+                        <img :src="tempProduct.imageUrl" class="img-fluid" :alt="`${tempProduct.title}商品圖片`">
                     </div>
                     <div class="col-sm-8">
                         <div class="form-group">
@@ -168,7 +168,7 @@ export default {
         tempProduct:{},
         isNew: false,
         isLoading: false,
-        Status:{
+        status:{
             isUploading:false
         }
       }
@@ -178,7 +178,7 @@ export default {
             const vm = this;
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/products?page=${page}`; 
             vm.isLoading = true;
-            this.$http.get(api).then((response) => {
+            vm.$http.get(api).then((response) => {
                 vm.isLoading = false;
                 vm.products = response.data.products;
                 vm.pagination = response.data.pagination;
@@ -240,7 +240,7 @@ export default {
            
             const vm = this;
             const formData = new FormData(); 
-            vm.Status.isUploading = true;
+            vm.status.isUploading = true;
             formData.append('file-to-upload', uploadFile);
             const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`;
             vm.$http.post(url, formData, {
@@ -249,7 +249,7 @@ export default {
                 }
             }).then((response)=>{
                 console.log('結果',response.data);
-                vm.Status.isUploading = false;
+                vm.status.isUploading = false;
                 if(response.data.success){
                     vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
                     vm.$bus.$emit('messsage:push', '上傳成功', 'success');

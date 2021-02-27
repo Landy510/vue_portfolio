@@ -43,13 +43,13 @@
                 <tbody>
                     <tr v-for="(item, key) in carts" :key="key">
                         <td>
-                            <button class="btn btn-outline-danger" @click.prevent="delProduct(item.id)">
+                            <button type="button" class="btn btn-outline-danger" @click="delProduct(item.id)">
                             
                                 <font-awesome-icon :icon="['fas', 'trash-alt']"/>
                             </button>
                         </td>
                         <td class="d-none d-md-block">
-                            <img :src="item.product.imageUrl" width="70px" height="70px">
+                            <img :src="item.product.imageUrl" width="70px" height="70px" :alt="item.product.title商品">
                         </td>
                         <td class="h5">{{item.product.title}}</td>
                         <td class="h5">
@@ -83,11 +83,11 @@
             <div class="input-group mb-3">
                 <input type="text" class="form-control border border-success" v-model="coupon_code" placeholder="輸入1234折扣碼，即可享有折扣" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-success" @click="addCouponCode">套用優惠券</button>
+                    <button class="btn btn-outline-success" type="button" @click="addCouponCode">套用優惠券</button>
                 </div>
             </div>
             <router-link to="customer2">
-                <button class="btn btn-warning btn-lg ml-auto d-block mb-3 confirm_btn">確認訂單，前往下一步</button>
+                <button type="button" class="btn btn-warning btn-lg ml-auto d-block mb-3 confirm_btn">確認訂單，前往下一步</button>
             </router-link>
         </div>
         <div v-else>
@@ -118,8 +118,7 @@
             getList(){
                     const vm = this;
                     const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
-                    
-                    this.$http.get(api).then((response) => {  
+                    vm.$http.get(api).then((response) => {  
                         console.log('Customer1',response);
                         vm.carts = response.data.data.carts;
                         vm.total = response.data.data.total;
@@ -175,11 +174,11 @@
 
 <style scoped>
 .confirm_btn{
-    width:50%;
+  width:50%;
 }
 @media(max-width:680px){
-    .confirm_btn{
-        width:100%;
-    }
+  .confirm_btn{
+    width:100%;
+  }
 }
 </style>

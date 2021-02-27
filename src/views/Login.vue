@@ -5,12 +5,10 @@
             <form class="px-2" @submit.prevent="signin">
                 <div class="text-center">
                   <router-link to="/" class="mx-auto">
-                    <a>
-                    <img class="mb-4 " src="../assets/img/protectionshield.svg" alt="" width="72" height="57">
-                  </a>
+                    <img class="mb-4 " src="../assets/img/protectionshield.svg" alt="Berserker Fitness logo" width="72" height="57">
                   </router-link>
                 </div>
-                <h1 class="h3 mb-3 fw-normal">請登入</h1>
+                <h2 class="h3 mb-3 fw-normal">請登入</h2>
                 <label for="inputEmail" class="visually-hidden">Email address</label>
                 <input type="email" id="inputEmail" class="form-control" v-model="user.username" placeholder="Email address" required autofocus>
                 <label for="inputPassword" class="visually-hidden">Password</label>
@@ -104,5 +102,4 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
 </style>

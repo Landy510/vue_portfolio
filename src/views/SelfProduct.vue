@@ -7,14 +7,10 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent border border-bottom">
                 <li class="breadcrumb-item">
-                    <router-link to="/">
-                        <a href="#" class="text-muted">首頁</a>
-                    </router-link>
+                    <router-link to="/" class="text-muted">首頁</router-link>     
                 </li>
                 <li class="breadcrumb-item">
-                    <router-link to="/lecture/Lecture_Product">
-                        <a href="#" class="text-muted">課程</a>
-                    </router-link>
+                    <router-link to="/lecture/Lecture_Product" class="text-muted">課程</router-link>
                 </li>
                 <li class="breadcrumb-item active text-dark" aria-current="page">{{lecture.title}}</li>
             </ol>
@@ -22,7 +18,7 @@
         <div class="container mb-4">
             <div class="row">
                 <div class="col-md-6">
-                    <img :src="lecture.imageUrl" class="img-fluid" alt="Responsive image">
+                    <img :src="lecture.imageUrl" class="img-fluid" :alt="`${lecture.title}課程圖片`">
                 </div>
                 <div class="col-md-4">
                     <h2>{{lecture.title}}</h2>
@@ -34,14 +30,14 @@
                     <h5>數量</h5>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-grey border border-dark rounded-0" @click="CalQty(1)">+</button>
+                            <button type="button" class="btn btn-grey border border-dark rounded-0" @click="CalQty(1)">+</button>
                         </div>
                         <input type="text" class="form-control text-center qty" placeholder="0" aria-label="1" aria-describedby="basic-addon1" v-model="qty">
                         <div class="input-group-append">
-                            <button class="btn btn-grey border border-dark rounded-0" @click="CalQty(-1)">-</button>
+                            <button type="button" class="btn btn-grey border border-dark rounded-0" @click="CalQty(-1)">-</button>
                         </div>
                     </div>
-                    <button class="btn btn-warning btn-lg w-100 rounded-0" @click="addToCart(lecture.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
+                    <button type="button" class="btn btn-warning btn-lg w-100 rounded-0" @click="addToCart(lecture.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
                 </div>
             </div>
         </div>
@@ -59,7 +55,7 @@
                     </ul>
                 </div>
                 <div class="col-md-6 h-100">
-                    <img src="https://upload.cc/i1/2021/02/07/jnkI6B.jpg" class="img-fluid advance_image" alt="Responsive image">
+                    <img src="https://upload.cc/i1/2021/02/07/jnkI6B.jpg" class="img-fluid advance_image" alt="Berserker Fitness運動好處">
                 </div>
                 </div>
             </div> 
@@ -69,7 +65,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 h-100">
-                        <img src="https://upload.cc/i1/2021/02/07/Oj078N.jpg" class="img-fluid advance_image" alt="Responsive image">
+                        <img src="https://upload.cc/i1/2021/02/07/Oj078N.jpg" class="img-fluid advance_image" alt="Berserker Fitness師資優異">
                     </div>
                     <div class="col-md-6">
                         <h3>最專業的師資</h3>
@@ -94,13 +90,13 @@
                         <slide v-for="(item, index) in sameCategoryFilter" :key="index">
                         <div class="card h-100 border-0 mr-2">
                             <div class="card_image h-50">
-                                <img class="card-img-top" :src="item.imageUrl" alt="Card image cap">
+                                <img class="card-img-top" :src="item.imageUrl" :alt="`${item.title}課程圖片`">
                             </div>
                             
                             <div class="card-body">
                             <h5 class="card-title">{{item.title}}</h5>
                             <p class="card-text">{{item.description}}</p>
-                            <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getProduct(item.id)">前去課程介紹</button>
+                            <button type="button" class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getProduct(item.id)">前去課程介紹</button>
                             </div>
                         </div>
                         </slide>
@@ -132,7 +128,7 @@ import { Carousel, Slide } from 'vue-carousel';
             const vm = this;
             vm.isLoading = true;
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`;
-            this.$http.get(api).then((response)=>{
+            vm.$http.get(api).then((response)=>{
                 console.log(response);
                 if(response.data.success){
                     vm.lecture = response.data.product;
@@ -145,8 +141,7 @@ import { Carousel, Slide } from 'vue-carousel';
         getList(){
                 const vm = this;
                 const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
-                
-                this.$http.get(api).then((response) => {  
+                vm.$http.get(api).then((response) => {  
                     console.log('購物的Modal',response);
                     vm.product_length = response.data.data.carts.length;
                     console.log('長度', vm.product_length);
@@ -155,8 +150,7 @@ import { Carousel, Slide } from 'vue-carousel';
         getRelateProducts(){
             const vm =this;
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
-            this.$http.get(api).then((response)=>{
-                
+            vm.$http.get(api).then((response)=>{
                 if(response.data.success){
                     vm.products = response.data.products;
                 }
@@ -203,9 +197,7 @@ import { Carousel, Slide } from 'vue-carousel';
     computed: {
         sameCategoryFilter: function() {
             const vm = this;
-            return vm.products.filter( function(item) {
-                return (item.category === vm.lecture.category && item.title!==vm.lecture.title)
-            })
+            return vm.products.filter((item) => item.category === vm.lecture.category && item.title!==vm.lecture.title)
         }
     }
   }
@@ -213,22 +205,22 @@ import { Carousel, Slide } from 'vue-carousel';
 
 <style scoped>
 .advance_image{
-    border-radius:50px;
+  border-radius:50px;
 }
 .card{
-    border:0px;
-    cursor:pointer;
+  border:0px;
+  cursor:pointer;
 }
 .card_image{
-    overflow:hidden;
+  overflow:hidden;
 }
 .card:hover img{
-    transition:all .5s;
-    transform:scale(1.2);
+  transition:all .5s;
+  transform:scale(1.2);
 }
 @media(max-width:680px){
-    .advance_image{
-        border-radius:0px;
-    }
+  .advance_image{
+    border-radius:0px;
+  }
 }
 </style>

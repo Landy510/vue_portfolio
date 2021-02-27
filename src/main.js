@@ -22,12 +22,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 library.add(fab, far, fas);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
-import { BCarousel } from 'bootstrap-vue'
-import { BCarouselSlide } from 'bootstrap-vue'
-
-Vue.component('b-carousel', BCarousel)
-Vue.component('b-carousel-slide', BCarouselSlide)
-
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)

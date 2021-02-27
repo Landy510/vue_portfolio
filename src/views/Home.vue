@@ -16,11 +16,11 @@
           <carousel :autoplay="true" :loop="true" :paginationEnabled="false" :perPageCustom="[[320, 1], [560, 2], [1024, 4]]">
             <slide v-for="(item, index) in aerobicArray" :key="index">
               <div class="card h-100 border-0 mr-2">
-                <img class="card-img-top h-50" :src="item.imageUrl" alt="Card image cap">
+                <img class="card-img-top h-50" :src="item.imageUrl" :alt="`${item.title}課程`">
                 <div class="card-body">
                   <h5 class="card-title">{{item.title}}</h5>
                   <p class="card-text">{{item.description}}</p>
-                  <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getProduct(item.id)">前去課程介紹</button>
+                  <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" type="button" @click="getProduct(item.id)">前去課程介紹</button>
                 </div>
               </div>
             </slide>
@@ -46,7 +46,7 @@
 
                 <div class="col-sm-6 col-md-4 mb-2 " v-for="(item, index) in products" :key="item.id">
                   <div class="card h-100 border-0">
-                    <img class="card-img-top h-60" :src="item.imageUrl" alt="Card image cap">
+                    <img class="card-img-top h-60" :src="item.imageUrl" :alt="`${item.title}課程`">
                     <div class="card-body p-0">
                       <p class="card-text mb-0">{{item.title}}</p>
                       <p class="card-text mb-0">{{item.description}}</p>
@@ -54,7 +54,7 @@
                         <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price| currency}}</del></small>
                         <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price | currency}}</span></strong>
                       </div>
-                      <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
+                      <button type="button" class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
                     </div>
                     
                   </div>
@@ -68,7 +68,7 @@
                 <div class="row">
                   <div class="col-sm-6 col-md-4 mb-2" v-for="(item, index) in workoutArray" :key="index">
                     <div class="card h-100 border-0">
-                      <img class="card-img-top h-60" :src="item.imageUrl" alt="Card image cap">
+                      <img class="card-img-top h-60" :src="item.imageUrl" :alt="`${item.title}課程`">
                       <div class="card-body p-0">
                         <p class="card-text mb-0">{{item.title}}</p>
                         <p class="card-text mb-0">{{item.description}}</p>
@@ -76,7 +76,7 @@
                           <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price}}</del></small>
                           <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price}}</span></strong>
                         </div>
-                        <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
+                        <button type="button" class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
                       </div>
                       
                     </div>
@@ -87,7 +87,7 @@
                 <div class="row">
                   <div class="col-sm-6 col-md-4 mb-2" v-for="(item, index) in aerobicArray" :key="index">
                     <div class="card h-100 border-0">
-                      <img class="card-img-top h-60" :src="item.imageUrl" alt="Card image cap">
+                      <img class="card-img-top h-60" :src="item.imageUrl" :alt="`${item.title}課程`">
                       <div class="card-body p-0">
                         <p class="card-text mb-0">{{item.title}}</p>
                         <p class="card-text mb-0">{{item.description}}</p>
@@ -95,7 +95,7 @@
                           <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price}}</del></small>
                           <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price}}</span></strong>
                         </div>
-                        <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
+                        <button type="button" class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
                       </div>
                     </div>
                   </div>
@@ -104,9 +104,7 @@
             </div>
           </div>
 
-          <router-link to="/lecture/Lecture_Product">
-            <a class="btn btn-outline-dark btn-lg d-block" href="#">前往課程頁一覽</a>
-          </router-link>
+          <router-link class="btn btn-outline-dark btn-lg d-block" to="/lecture/Lecture_Product">前往課程頁一覽</router-link>
         </div>
       </div>
       <div class="row text-center">
@@ -117,7 +115,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="card h-100 border-0 text-justify">
-                <img class="card-img-top mx-auto" src="https://randomuser.me/api/portraits/women/10.jpg" alt="Card image cap" style="width:100px; height:100px; border-radius:50%;">
+                <img class="card-img-top mx-auto" src="https://randomuser.me/api/portraits/women/10.jpg" alt="`客戶評價頭像`" style="width:100px; height:100px; border-radius:50%;">
                 <div class="card-body">
                   <p class="card-text mb-0 text-center font-weight-bold">來自深淵的女子</p>
                   <small class="card-text text-muted">Berser Fitness真的解救了我多年來苦惱的肉肉，看著肉肉越來越少，褲子越來越鬆，我的身心靈彷彿就得到了淨化，
@@ -127,7 +125,7 @@
             </div>
             <div class="col-md-4">
               <div class="card h-100 border-0 text-justify">
-                <img class="card-img-top mx-auto" src="https://randomuser.me/api/portraits/men/3.jpg" alt="Card image cap" style="width:100px; height:100px; border-radius:50%;">
+                <img class="card-img-top mx-auto" src="https://randomuser.me/api/portraits/men/3.jpg" alt="客戶評價頭像" style="width:100px; height:100px; border-radius:50%;">
                 <div class="card-body">
                   <p class="card-text mb-0 text-center font-weight-bold">基隆的嗨先生</p>
                   <small class="card-text text-muted">Berser Fitness無話可說無可救藥的<strong class="h2">就是讚!!!</strong></small>
@@ -136,7 +134,7 @@
             </div>
             <div class="col-md-4">
               <div class="card h-100 border-0 text-justify">
-                <img class="card-img-top mx-auto" src="https://randomuser.me/api/portraits/men/90.jpg" alt="Card image cap" style="width:100px; height:100px; border-radius:50%;">
+                <img class="card-img-top mx-auto" src="https://randomuser.me/api/portraits/men/90.jpg" alt="客戶評價頭像" style="width:100px; height:100px; border-radius:50%;">
                 <div class="card-body">
                   <p class="card-text mb-0 text-center font-weight-bold">來自日本的小林先生</p>
                   <small class="card-text text-muted"><strong class="h2">紅豆泥!!!</strong>你/妳還沒有加入Berserker Fitness的健身房，妳是不是阿搭麻
@@ -165,7 +163,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="card">
-                        <img class="card-img-top" :src= "product_detail.imageUrl" alt="Card image cap">
+                        <img class="card-img-top" :src= "product_detail.imageUrl" :alt="`${product_detail.title}課程圖片`">
                         <div class="card-body">
                             <h5 class="card-title">{{product_detail.description}}</h5>
                             <div class="d-flex justify-content-between align-items-end">
@@ -229,7 +227,7 @@ export default {
       const vm = this;
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`; 
       vm.isLoading = true;
-      this.$http.get(api).then((response)=>{
+      vm.$http.get(api).then((response)=>{
             if(response.data.success){
               vm.products = response.data.products;
             }
@@ -240,26 +238,14 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/${id}`;
       this.$router.push(`/lecture/${id}`);
     },
-    ReadWebSiteWidth: function(value, direction){
-        if(value>1024){
-            let scale = (direction==='L')? -380 : 370;
-            return scale;
-        } else if(value<=1024 && value>=768){
-            let scale = (direction==='L')? -320 : 310;
-            return scale;
-        } else {
-            let scale = (direction==='L')? -230 : 230;
-            return scale;
-        }
-    },
     getDetail(id){
       const vm = this;
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`;
       vm.status.loadingItem = id;
-      this.$http.get(api).then((response) => {
+      vm.$http.get(api).then((response) => {
           $('#productModal').modal('show');
           vm.product_detail = response.data.product;
-          
+          console.log('詳細內容', vm.product_detail)
           vm.status.loadingItem = '';
       })
     },
@@ -287,7 +273,7 @@ export default {
       const vm = this;
       vm.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
-      this.$http.get(url).then((response) => {
+      vm.$http.get(url).then((response) => {
         if (response.data.data.carts) {
           vm.carts = response.data.data.carts;
           vm.product_length = response.data.data.carts.length;
@@ -315,14 +301,10 @@ export default {
   },
   computed:  {
     workoutArray: function(){
-      return this.products.filter(function(item) {
-        return item.category === '重訓'
-      })
+      return this.products.filter((item) => item.category === '重訓')
     },
     aerobicArray: function(){
-      return this.products.filter(function(item) {
-        return item.category === '有氧'
-      })
+      return this.products.filter((item) => item.category === '有氧')
     }
   }
 };
@@ -346,8 +328,8 @@ export default {
   overflow:hidden;
 }
 .Recommended_class{
-   transform:translateX(0px);
-   transition:all .5s;
+  transform:translateX(0px);
+  transition:all .5s;
 }
 .Recommended_class{
   .card-footer{

@@ -46,21 +46,21 @@
                 <tbody>
                     <tr v-for="(item, key) in carts" :key="key">
                         <td>
-                            <button class="btn btn-outline-danger" @click.prevent="delProduct(item.id)">
+                            <button class="btn btn-outline-danger" type="button" @click="delProduct(item.id)">
                             
                                 <font-awesome-icon :icon="['fas', 'trash-alt']"/>
                             </button>
                         </td>
                         <td class="d-none d-md-block">
-                            <img :src="item.product.imageUrl" width="70px" height="70px">
+                            <img :src="item.product.imageUrl" width="70px" height="70px" :alt="item.product.title商品">
                         </td>
                         <td class="h5">{{item.product.title}}</td>
                         <td class="h5">
-                        {{item.product.num}} /{{item.product.unit}}
+                        {{item.qty}} /{{item.product.unit}}
                         </td>
                         
                         <td class="h5">
-                            {{item.product.num*item.product.price| currency}} 
+                            {{item.qty*item.product.price| currency}} 
                         </td>
                     
                     </tr>
@@ -183,8 +183,7 @@
             getList(){
                     const vm = this;
                     const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
-                    
-                    this.$http.get(api).then((response) => {  
+                    vm.$http.get(api).then((response) => {  
                         console.log('Customer1',response);
                         vm.carts = response.data.data.carts;
                         vm.total = response.data.data.total;
@@ -270,13 +269,13 @@
 
 <style scoped>
 .cart_content_btn:hover{
-    cursor:pointer;
+  cursor:pointer;
 }
 .confirm_btn{
-    width:50%;
+  width:50%;
 }
 .cart_content{
-    display: none;
+  display: none;
 }
 .arrow{
   transform: rotate(0deg);
@@ -287,8 +286,8 @@
   transition: all .5s;
 }
 @media(max-width:680px){
-    .confirm_btn{
-        width:100%;
-    }
+  .confirm_btn{
+    width:100%;
+  }
 }
 </style>

@@ -142,7 +142,7 @@ export default {
                 const vm = this;
                 const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`;
                 vm.isLoading = true;
-                this.$http.get(api).then((response) => {
+                vm.$http.get(api).then((response) => {
                     console.log('折價券api', response);
                     vm.isLoading = false;
                     vm.pagination = response.data.pagination;
@@ -216,7 +216,3 @@ export default {
     }
 };
 </script>
-
-<style scope>
-
-</style>

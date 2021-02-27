@@ -7,9 +7,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0">
                 <li class="breadcrumb-item">
-                    <router-link to="/">
-                        <a href="#" class="text-muted">首頁</a>
-                    </router-link>
+                    <router-link to="/" class="text-muted">首頁</router-link>
                 </li>
                 <li class="breadcrumb-item active text-dark" aria-current="page">課程</li>
                 <li class="breadcrumb-item active text-dark" aria-current="page">All</li>
@@ -37,8 +35,8 @@
                                             <div class="card h-100" >
                                                 <div class="h-60 card_image">
                                                     
-                                                    <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
-                                                    <button class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                                    <img class="card-img-top h-100" :src="item.imageUrl" :alt="`${item.title}課程圖片`">
+                                                    <button type="button" class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
                                                 </div>
                                                 
                                                 <div class="card-body p-0">
@@ -51,7 +49,7 @@
                                                         <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price| currency}}</span>元</strong>
                                                     </div>
                                                 </div>
-                                                <button class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                                <button type="button" class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
                                             </div>
                                             </div>
                                         </div>
@@ -68,8 +66,8 @@
                                     <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in workoutArray" :key="index">
                                     <div class="card h-100" >
                                         <div class="h-60 card_image">
-                                            <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
-                                            <button class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                            <img class="card-img-top h-100" :src="item.imageUrl" :alt="`${item.title}課程圖片`">
+                                            <button type="button" class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
                                         </div>
                                         
                                         <div class="card-body p-0">
@@ -83,7 +81,7 @@
                                                 <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
                                             </div>
                                         </div>
-                                        <button class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                        <button type="button" class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
                                     </div>
                                     </div>
                                 </div>
@@ -100,8 +98,8 @@
                                     <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in aerobicArray" :key="index">
                                     <div class="card h-100" >
                                         <div class="h-60 card_image">
-                                            <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
-                                            <button class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                            <img class="card-img-top h-100" :src="item.imageUrl" :alt="`${item.title}課程圖片`">
+                                            <button type="button" class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
                                         </div>
                                         
                                         <div class="card-body p-0">
@@ -114,7 +112,7 @@
                                                 <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
                                             </div>
                                         </div>
-                                        <button class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                        <button type="button" class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
                                     </div>
                                     </div>
                                 </div>
@@ -132,8 +130,8 @@
                                     <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in dietArray" :key="index">
                                     <div class="card h-100" >
                                         <div class="h-60 card_image">
-                                            <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
-                                            <button class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                            <img class="card-img-top h-100" :src="item.imageUrl" :alt="`${item.title}課程圖片`">
+                                            <button type="button" class="btn btn-outline-dark bg-dark text-light w-100 card_btn d-none d-md-block" @click="getSelfProduct(item.id)">前往課程一覽</button>
                                         </div>
                                         
                                         <div class="card-body p-0">
@@ -146,7 +144,7 @@
                                                 <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
                                             </div>
                                         </div>
-                                        <button class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
+                                        <button type="button" class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
                                     </div>
                                     </div>
                                 </div>
@@ -189,8 +187,7 @@ import banner from "./intro_banner";
             const vm = this;
             vm.isLoading = true;
             const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
-            this.$http.get(api).then((response)=>{
-                
+            vm.$http.get(api).then((response)=>{ 
                 if(response.data.success){
                     vm.products = response.data.products;
                     vm.isLoading = false;
@@ -210,7 +207,7 @@ import banner from "./intro_banner";
                 const vm = this;
                 const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
                 vm.isLoading = true;
-                this.$http.get(api).then((response) => {  
+                vm.$http.get(api).then((response) => {  
                     console.log('購物的Modal',response);
                     vm.product_length = response.data.data.carts.length;
                     console.log('長度', vm.product_length);
@@ -313,19 +310,13 @@ import banner from "./intro_banner";
     },
     computed: {
         workoutArray: function() {
-            return this.products.filter(function(item) {
-                return item.category === '重訓'
-            })
+            return this.products.filter((item) => item.category === '重訓')
         },
         aerobicArray :function () {
-            return this.products.filter(function(item) {
-                return item.category === '有氧'
-            })
+            return this.products.filter((item) => item.category === '有氧')
         },
         dietArray: function () {
-            return this.products.filter(function(item) {
-                return item.category === '飲食課程'
-            })
+            return this.products.filter((item) => item.category === '飲食課程')
         }
     }
   }
@@ -333,47 +324,46 @@ import banner from "./intro_banner";
 
 <style scoped>
 .advance_image{
-    border-radius:50px;
+  border-radius:50px;
 }
 .card{
-    border:0px;
-    cursor:pointer;
-    
+  border:0px;
+  cursor:pointer;  
 }
 .card_image{
-    overflow:hidden;
-    position:relative;
+  overflow:hidden;
+  position:relative;
 }
 .card img{
-    transform:scale(1);
-    transition:all .5s;
+  transform:scale(1);
+  transition:all .5s;
 }
 .card:hover img{
-    transition:all .5s;
-    transform:scale(1.2);
+  transition:all .5s;
+  transform:scale(1.2);
 }
 .card_btn{
-    position:absolute;
-    bottom:-40px;
-    left:0; 
-    z-index:3;
-    transition:all .5s;
+  position:absolute;
+  bottom:-40px;
+  left:0; 
+  z-index:3;
+  transition:all .5s;
 }
 .card:hover .card_btn{
-    transition:all .5s;
-    bottom:0px;
+  transition:all .5s;
+  bottom:0px;
 }
 .list-group-item{
-    border:0px;
-    border-right:1px solid grey;
+  border:0px;
+  border-right:1px solid grey;
 }
 @media(max-width:680px){
-    .advance_image{
-        border-radius:0px;
-    }
-    .list-group-item{
-        border:0px;
-        border-bottom:1px solid grey;
-    }
+  .advance_image{
+    border-radius:0px;
+  }
+  .list-group-item{
+    border:0px;
+    border-bottom:1px solid grey;
+  }
 }
 </style>

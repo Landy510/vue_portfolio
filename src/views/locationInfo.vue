@@ -4,9 +4,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent border border-bottom">
                 <li class="breadcrumb-item">
-                    <router-link to="/">
-                        <a href="#" class="text-muted">首頁</a>
-                    </router-link>
+                    <router-link to="/" class="text-muted">首頁</router-link>
                 </li>
                 <li class="breadcrumb-item active text-dark" aria-current="page">門市一覽</li>
             </ol>
@@ -25,7 +23,7 @@
               <small class="text-muted">{{selectlocation["地址"]}}</small>
               <br>
               <h5 class="mt-3" v-if="selectlocation.decription!==''">{{selectlocation.decription}}</h5>
-              <img :src="selectlocation.image" alt="..." class="img-thumbnail" v-if="selectlocation.image!==''">
+              <img :src="selectlocation.image" :alt="selectlocation['場地名稱']" class="img-thumbnail" v-if="selectlocation.image!==''">
             </div>
           </div>
           <div class="col-sm-8">
