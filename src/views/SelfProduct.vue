@@ -90,24 +90,21 @@
             <div class="row">
                 <div class="col-12">
                     <h3>關聯的課程</h3>
-                    
-                    <div class="row flex-md-nowrap py-2 Recommended_class_frame">
-                        <div class="col-md-3 Recommended_class mb-2 mb-md-0" v-for="(item, index) in sameCategory" v-if="index<4">
-                        <div class="card h-100" >
-                            <div class="h-60 card_image">
-                                <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
+                    <carousel :autoplay="true" :loop="true" :paginationEnabled="false" :perPageCustom="[[320, 1], [560, 2], [1024, 4]]">
+                        <slide v-for="(item, index) in sameCategoryFilter" :key="index">
+                        <div class="card h-100 border-0 mr-2">
+                            <div class="card_image h-50">
+                                <img class="card-img-top" :src="item.imageUrl" alt="Card image cap">
                             </div>
                             
                             <div class="card-body">
-                                <p class="card-text mb-0">{{item.title}}</p>
-                                <p class="card-text mb-0">{{item.description}}</p>
+                            <h5 class="card-title">{{item.title}}</h5>
+                            <p class="card-text">{{item.description}}</p>
+                            <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getProduct(item.id)">前去課程介紹</button>
                             </div>
-                            <button class="btn btn-outline-dark" @click="getRelateLecture(item.id)">前往課程一覽</button>
                         </div>
-                        </div>
-                    </div>
-                    
-
+                        </slide>
+                    </carousel>
                 </div>
 
             </div>
@@ -116,13 +113,14 @@
 </template>
 
 <script>
-import $ from 'jquery';
+// import $ from 'jquery';
 import Navbar from "./Navbar";
+import { Carousel, Slide } from 'vue-carousel';
   export default {
     data(){
          return{
             orderId:'',
-            sameCategory:[],
+            products:[],
             lecture:{},
             qty:0,
             isLoading:false,
@@ -160,17 +158,9 @@ import Navbar from "./Navbar";
             this.$http.get(api).then((response)=>{
                 
                 if(response.data.success){
-                    vm.sameCategory = response.data.products.filter(function(item){
-                        if(item.category === vm.lecture.category && item.title!==vm.lecture.title){
-                            return true;
-                        }
-                    })
+                    vm.products = response.data.products;
                 }
             })
-        },
-        getRelateLecture(id){
-            
-            this.getProduct(id);
         },
         CalQty(qty = 0){
             let num = this.qty;
@@ -206,7 +196,17 @@ import Navbar from "./Navbar";
         
     },
     components:{
-        Navbar
+        Navbar,
+        Carousel, 
+        Slide
+    },
+    computed: {
+        sameCategoryFilter: function() {
+            const vm = this;
+            return vm.products.filter( function(item) {
+                return (item.category === vm.lecture.category && item.title!==vm.lecture.title)
+            })
+        }
     }
   }
 </script>

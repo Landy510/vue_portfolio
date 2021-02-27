@@ -4,7 +4,7 @@
         <loading :active.sync="isLoading"></loading>
     </div>
     <div class="text-right mt-4">
-            <button class="btn btn-primary" @click="openModal(true,'建立新優惠券')">建立新的產品</button>
+            <button type="button" class="btn btn-primary" @click="openModal(true,'建立新優惠券')">建立新的產品</button>
         </div>
     <table class="table mt-4">
         <thead>
@@ -29,8 +29,8 @@
                     <span v-else>未啟用</span>
                 </td>
                 <td>
-                    <button class="btn btn-outline-primary btn-sm" @click="openModal(false,'修改優惠券', item)">編輯</button>
-                    <button class="btn btn-outline-danger btn-sm" @click.prevent="delModal(item)">刪除</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" @click="openModal(false,'修改優惠券', item)">編輯</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" @click="delModal(item)">刪除</button>
                 </td>
             </tr>
         </tbody>

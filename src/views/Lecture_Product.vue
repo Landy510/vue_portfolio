@@ -33,7 +33,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="row py-2 Recommended_class_frame">
-                                            <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in products">
+                                            <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in products" :key="index">
                                             <div class="card h-100" >
                                                 <div class="h-60 card_image">
                                                     
@@ -65,7 +65,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row py-2 Recommended_class_frame">
-                                    <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in products" v-if="item.category==='重訓'">
+                                    <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in workoutArray" :key="index">
                                     <div class="card h-100" >
                                         <div class="h-60 card_image">
                                             <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
@@ -97,7 +97,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row py-2 Recommended_class_frame">
-                                    <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in products" v-if="item.category==='有氧'">
+                                    <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in aerobicArray" :key="index">
                                     <div class="card h-100" >
                                         <div class="h-60 card_image">
                                             <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
@@ -129,7 +129,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row py-2 Recommended_class_frame">
-                                    <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in products" v-if="item.category==='飲食課程'">
+                                    <div class="col-md-4 Recommended_class mb-2" v-for="(item, index) in dietArray" :key="index">
                                     <div class="card h-100" >
                                         <div class="h-60 card_image">
                                             <img class="card-img-top h-100" :src="item.imageUrl" alt="Card image cap">
@@ -166,7 +166,7 @@
 </template>
 
 <script>
-import $ from 'jquery';
+// import $ from 'jquery';
 import Navbar from "./Navbar";
 import banner from "./intro_banner";
   export default {
@@ -310,6 +310,23 @@ import banner from "./intro_banner";
     components:{
         Navbar,
         banner
+    },
+    computed: {
+        workoutArray: function() {
+            return this.products.filter(function(item) {
+                return item.category === '重訓'
+            })
+        },
+        aerobicArray :function () {
+            return this.products.filter(function(item) {
+                return item.category === '有氧'
+            })
+        },
+        dietArray: function () {
+            return this.products.filter(function(item) {
+                return item.category === '飲食課程'
+            })
+        }
     }
   }
 </script>

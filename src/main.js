@@ -7,7 +7,6 @@ import VueAxios from 'vue-axios'
 import Loading from 'vue-loading-overlay';          // 引入overlay元件
 import 'vue-loading-overlay/dist/vue-loading.css';  // 引入overlay元件
 import 'bootstrap'  
-import './all.js'
 import './bus.js'
 import currencyFilter from './filters/currency'  // 引入currency.js
 
@@ -16,27 +15,13 @@ import TW from 'vee-validate/dist/locale/zh_TW.json'
 import * as rules from 'vee-validate/dist/rules';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
-import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons'
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import { faListAlt } from '@fortawesome/free-solid-svg-icons'
-import { faTicketAlt } from '@fortawesome/free-solid-svg-icons'
-import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
-import { faHandPointDown } from '@fortawesome/free-regular-svg-icons'
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
-import { faTrashAlt} from '@fortawesome/free-solid-svg-icons'
-import { faUsersCog} from '@fortawesome/free-solid-svg-icons'
-import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons'
-import { faFontAwesome } from '@fortawesome/free-brands-svg-icons'
-import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+library.add(fab, far, fas);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+
 import { BCarousel } from 'bootstrap-vue'
 import { BCarouselSlide } from 'bootstrap-vue'
 
@@ -48,33 +33,13 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 Vue.use(VueAxios, axios)
 Vue.component('Loading', Loading);  // 將overlay元件宣告成全域的元件
-
-library.add(faHeart)
-library.add(faTrashAlt)
-library.add(faSpinner)
-library.add(faTicketAlt)
-library.add(faListAlt)
-library.add(faBoxOpen)
-library.add(faMapMarkerAlt)
-library.add(faUsersCog)
-library.add(faChevronUp)
-library.add(faChevronDown)
-library.add(faLongArrowAltLeft)
-library.add(faLongArrowAltRight)
-library.add(faFacebookSquare)
-library.add(faBars)
-library.add(faInstagram)
-library.add(faCartArrowDown)
-library.add(faFontAwesome)
-library.add(faUserSecret)
-library.add(faCaretRight)
-library.add(faHandPointDown)
-library.add(faExclamationCircle)
-Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 axios.defaults.withCredentials = true;
 Vue.filter('currency', currencyFilter);  // 啟用fiter元件-千分號效果
 
+Object.keys(rules).forEach((rule) => {
+  extend(rule, rules[rule]);
+});
 
 new Vue({
   router,
@@ -98,11 +63,6 @@ router.beforeEach((to, from, next) => {
     next();
   }
 })
-
-
-Object.keys(rules).forEach((rule) => {
-  extend(rule, rules[rule]);
-});
 
 localize('zh_TW', TW);
 

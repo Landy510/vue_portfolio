@@ -15,7 +15,7 @@
                     <td>{{item.user.name}}</td>
                     <td>{{item.user.email}}</td>
                     <td>
-                        <span v-for="(obj,index) in item.products">{{obj.product.title}}, </span>
+                        <span v-for="(obj,index) in item.products" :key="index">{{obj.product.title}}, </span>
                     </td>
                     <td>
                         <span v-if="item.is_paid" class="text-success">已付款</span>
@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import Navbar from './Navbar'
 import pagination from './Pagination'
 export default {

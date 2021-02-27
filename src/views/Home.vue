@@ -14,7 +14,7 @@
           
           <!--輪播的內容部分-->
           <carousel :autoplay="true" :loop="true" :paginationEnabled="false" :perPageCustom="[[320, 1], [560, 2], [1024, 4]]">
-            <slide v-for="(item, index) in aerobic_prodcuts" :key="index">
+            <slide v-for="(item, index) in aerobicArray" :key="index">
               <div class="card h-100 border-0 mr-2">
                 <img class="card-img-top h-50" :src="item.imageUrl" alt="Card image cap">
                 <div class="card-body">
@@ -44,7 +44,7 @@
             <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
               <div class="row">
 
-                <div class="col-sm-6 col-md-4 mb-2 " v-for="(item, index) in products" v-if="index>=4 && index<=9">
+                <div class="col-sm-6 col-md-4 mb-2 " v-for="(item, index) in products" :key="item.id">
                   <div class="card h-100 border-0">
                     <img class="card-img-top h-60" :src="item.imageUrl" alt="Card image cap">
                     <div class="card-body p-0">
@@ -66,7 +66,7 @@
             </div>
             <div class="tab-pane fade" id="list-Workout" role="tabpanel" aria-labelledby="list-Workout-list">
                 <div class="row">
-                  <div class="col-sm-6 col-md-4 mb-2" v-for="(item, index) in workout_prodcuts" v-if="index<3">
+                  <div class="col-sm-6 col-md-4 mb-2" v-for="(item, index) in workoutArray" :key="index">
                     <div class="card h-100 border-0">
                       <img class="card-img-top h-60" :src="item.imageUrl" alt="Card image cap">
                       <div class="card-body p-0">
@@ -85,7 +85,7 @@
             </div>
             <div class="tab-pane fade" id="list-women" role="tabpanel" aria-labelledby="list-women-list">
                 <div class="row">
-                  <div class="col-sm-6 col-md-4 mb-2" v-for="(item, index) in aerobic_prodcuts" v-if="index>=3 && index<7">
+                  <div class="col-sm-6 col-md-4 mb-2" v-for="(item, index) in aerobicArray" :key="index">
                     <div class="card h-100 border-0">
                       <img class="card-img-top h-60" :src="item.imageUrl" alt="Card image cap">
                       <div class="card-body p-0">
@@ -211,8 +211,6 @@ export default {
     return {
       products: [],
       product_detail:[],
-      workout_prodcuts:[],
-      aerobic_prodcuts:[],
       searchText: '',
       categories: [],
       isLoading: false,
@@ -229,23 +227,12 @@ export default {
   methods:{
     getProducts(page=1){
       const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`; 
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`; 
       vm.isLoading = true;
       this.$http.get(api).then((response)=>{
             if(response.data.success){
               vm.products = response.data.products;
-              vm.workout_prodcuts = vm.products.filter((item)=>{
-                if(item.category === '重訓'){
-                  return true;
-                }
-              })
-              vm.aerobic_prodcuts = vm.products.filter((item)=>{
-                if(item.category === '有氧'){
-                  return true;
-                }
-              })
             }
-            console.log('有氧', vm.aerobic_prodcuts);
             vm.isLoading = false;
         })
     },
@@ -325,6 +312,18 @@ export default {
     Navbar,
     Carousel,
     Slide
+  },
+  computed:  {
+    workoutArray: function(){
+      return this.products.filter(function(item) {
+        return item.category === '重訓'
+      })
+    },
+    aerobicArray: function(){
+      return this.products.filter(function(item) {
+        return item.category === '有氧'
+      })
+    }
   }
 };
 </script>
