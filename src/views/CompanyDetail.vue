@@ -13,13 +13,13 @@
         </nav>
         <div class="d-block d-md-flex">
           <div class="jumbotron rounded-0 bg-cover intro_image d-flex justify-content-center align-items-center">
-            <div class="intro_content d-none d-md-block">
+            <div class="intro_content d-none d-lg-block">
                 <h2 class="h1 display-4">讓你更喜歡明天的自己</h2>
                 <h3>這就是Berserker Fitness存在的理由</h3>
 
                 <h3 class="mt-5">讓Berserker Fitness跟你一起變得更好</h3>
             </div>
-            <div class="d-block d-md-none intro_content_hide">
+            <div class="d-block d-lg-none intro_content_hide">
                 <h2 class="h1 display-4">讓你更喜歡明天的自己</h2>
             </div>
           </div>
@@ -183,7 +183,7 @@
     right:10%;
   }
 }
-@media(max-width:680px){
+@media(max-width:900px){
   .intro_image{
     width:100%;
   }
