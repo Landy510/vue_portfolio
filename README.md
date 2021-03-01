@@ -45,6 +45,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 	* Object.assign({}, item); 也可以嘗試修改成 {...item}; 唷。 -> ok! 2021/03/01
 	* 沒有用途的 .vue 檔案請移除，例如：HelloWorld.vue 等。 -> ok! 2021/03/01
 	* .vue 檔案會建議首字大寫。 -> ok! 2021/03/01
+	* 可建立 frontend 及 backend 資料夾區分前後台，區分的好處在於方便自己將來的維護。 -> ok! 2021/03/01
+	* 雙等號可改為三等號。 -> ok! 2021/03/01
+	* 程式碼尾段多餘的空格請務必清除，若是使用 VSCode 可以點一下檢視>轉譯 or 顯示空白字元。 -> ok! 2021/03/01
+	* 正常來講 assets 底下不會出現 all.css 與 all.css.map。 -> ok! (已經把all.min.css的檔案產出在helper資料夾中) 2021/03/01
+	* console.log() 的程式碼內容刪除掉。 -> ok! 2021/03/01
+	* 非必要註解可以斟酌刪除，否則 code 會顯得特別雜亂。 -> ok! 2021/03/01
+	* 可多加美化 index.html 中的 meta，另外請多加注意 lang 要調整至相關語系，例如調整成 「zh-Hant-TW」，若是英語系網站則可以保留預設 「en」。 -> ok! 2021/03/01
 
 * 畫面部分
 	* 整體

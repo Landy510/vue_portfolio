@@ -11,8 +11,6 @@
         <div class="col-12 text-center">
           <small class="text-muted">教練推薦課程</small>
           <p class="h2 mb-4 font-weight-normal">Recommended</p>
-          
-          <!--輪播的內容部分-->
           <carousel :autoplay="true" :loop="true" :paginationEnabled="false" :perPageCustom="[[320, 1], [560, 2], [1024, 4]]">
             <slide v-for="(item, index) in aerobicArray" :key="index">
               <div class="card h-100 border-0 mr-2">
@@ -24,17 +22,13 @@
                 </div>
               </div>
             </slide>
-            
           </carousel>
-
-          <!--輪播內容-->
         </div>
       </div>
       <div class="row flex-column mb-3">
         <div class="col-12 text-center">
           <small class="text-muted">課程選擇</small>
           <p class="h2 mb-4 font-weight-normal">Lecture</p>
-
           <div class="list-group flex-row lecture_option mx-auto mb-3" id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active border-0 text-dark" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">All</a>
             <a class="list-group-item list-group-item-action border-0 text-dark" id="list-Workout-list" data-toggle="list" href="#list-Workout" role="tab" aria-controls="Workout">Workout</a>
@@ -60,9 +54,6 @@
                   </div>
                 </div>
               </div>
-
-
-                
             </div>
             <div class="tab-pane fade" id="list-Workout" role="tabpanel" aria-labelledby="list-Workout-list">
                 <div class="row">
@@ -100,10 +91,8 @@
                     </div>
                   </div>
                 </div>
-            
             </div>
           </div>
-
           <router-link class="btn btn-outline-dark btn-lg d-block" to="/lecture/Lecture_Product">前往課程頁一覽</router-link>
         </div>
       </div>
@@ -111,7 +100,6 @@
         <div class="col-12">
           <small class="text-muted">大家都怎麼推薦</small>
           <p class="h2 mb-4 font-weight-normal">How is Everyone feeling</p>
-
           <div class="row">
             <div class="col-md-4">
               <div class="card h-100 border-0 text-justify">
@@ -144,55 +132,50 @@
             </div>
           </div>
         </div>
-     
-     
       </div>
     </div>
 
-    <!--Modal-->
-        <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content border-0">
-                <div class="modal-header text-dark">
-                    <h3 class="modal-title" id="exampleModalLabel">
-                    <span class="font-weight-bold">{{ product_detail.title }}</span>
-                    </h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="card">
-                        <img class="card-img-top" :src= "product_detail.imageUrl" :alt="`${product_detail.title}課程圖片`">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ product_detail.description }}</h5>
-                            <div class="d-flex justify-content-between align-items-end">
-                                <del class="h4">原價{{ product_detail.origin_price }}元</del>
-                                <strong class="h2">現在只要{{ product_detail.price }}元</strong>
-                            </div>
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0">
+          <div class="modal-header text-dark">
+              <h3 class="modal-title" id="exampleModalLabel">
+              <span class="font-weight-bold">{{ product_detail.title }}</span>
+              </h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <div class="card">
+                  <img class="card-img-top" :src= "product_detail.imageUrl" :alt="`${product_detail.title}課程圖片`">
+                  <div class="card-body">
+                      <h5 class="card-title">{{ product_detail.description }}</h5>
+                      <div class="d-flex justify-content-between align-items-end">
+                          <del class="h4">原價{{ product_detail.origin_price }}元</del>
+                          <strong class="h2">現在只要{{ product_detail.price }}元</strong>
+                      </div>
 
-                            <div class="form-group mt-3">
-                                <div class="form-group">
-                                  <label for="exampleFormControlSelect1">選購堂數</label>
-                                  <select class="form-control form-control-lg" aria-label="Default select example" v-model="product_detail.num">
-                                    <option :value="num" v-for="num in 10" :key="num">選購{{ num }} {{ product_detail.unit }}</option>
-                                    
-                                  </select>
-                                </div>
-                            </div> 
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <span class="h4 text-muted">小計 {{ product_detail.price*product_detail.num }} 元</span>
-                    <button type="button" class="btn btn-primary" @click="addToCart(product_detail.id, product_detail.num)">加到購物車</button>
-                </div>
-                </div>
-            </div>
+                      <div class="form-group mt-3">
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">選購堂數</label>
+                            <select class="form-control form-control-lg" aria-label="Default select example" v-model="product_detail.num">
+                              <option :value="num" v-for="num in 10" :key="num">選購{{ num }} {{ product_detail.unit }}</option>
+                              
+                            </select>
+                          </div>
+                      </div> 
+                      
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <span class="h4 text-muted">小計 {{ product_detail.price*product_detail.num }} 元</span>
+              <button type="button" class="btn btn-primary" @click="addToCart(product_detail.id, product_detail.num)">加到購物車</button>
+          </div>
         </div>
-    <!--Modal-->
-
+      </div>
+    </div>
   </div>
 </template>
 
@@ -245,7 +228,6 @@ export default {
       vm.$http.get(api).then((response) => {
           $('#productModal').modal('show');
           vm.product_detail = response.data.product;
-          console.log('詳細內容', vm.product_detail)
           vm.status.loadingItem = '';
       })
     },
@@ -254,7 +236,6 @@ export default {
         vm.isLoading = true;
         const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
         this.$http.post(api,{data:{product_id:id, qty:qty}}).then((response)=>{
-            console.log(response);
             if(response.data.success){
                 vm.isLoading = false;
                 $('#productModal').modal('hide');
@@ -263,11 +244,9 @@ export default {
             } else {
                 vm.isLoading = false;
                 $('#productModal').modal('hide'); 
-                vm.$bus.$emit('messsage:push', response.data.message, 'danger'); 
-                            
+                vm.$bus.$emit('messsage:push', response.data.message, 'danger');         
             }
         })
-        
     },
     getCart() {
       const vm = this;

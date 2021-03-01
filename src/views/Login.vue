@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!--<Navbar></Navbar>-->
         <main class="form-signin">
             <form class="px-2" @submit.prevent="signin">
                 <div class="text-center">
@@ -25,7 +24,6 @@
     </div>
 </template>
 
-
 <script>
   import Navbar from './Navbar'
   export default {
@@ -42,14 +40,12 @@
         const api = `${process.env.VUE_APP_APIPATH}/admin/signin`; 
         const vm = this;
         this.$http.post(api, vm.user).then((response)=>{
-            console.log(response);
-            if(response.data.success){
-                const token = response.data.token;
-                const expired = response.data.expired;
-                console.log(token);
-                document.cookie = `Berserkertoken=${token}; expires=${new Date(expired)}`;
-                vm.$router.push('/admin/orderList');
-            }
+          if(response.data.success){
+              const token = response.data.token;
+              const expired = response.data.expired;
+              document.cookie = `Berserkertoken=${token}; expires=${new Date(expired)}`;
+              vm.$router.push('/admin/orderList');
+          }
         })
       }
     },
@@ -72,7 +68,6 @@ body {
   padding-bottom: 40px;
   background-color: #f5f5f5;
 }
-
 .form-signin {
   width: 100%;
   max-width: 330px;

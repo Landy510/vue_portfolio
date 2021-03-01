@@ -17,9 +17,7 @@
         </div>
       </slide>
     </carousel>
-
   </div>
-  
 </template>
 
 <script>
@@ -31,9 +29,6 @@
       return {
         
       }
-    },
-    methods: {
-      
     },
     computed: {
       swiper() {
@@ -51,7 +46,6 @@
       Slide
     }
   }
-  
 </script>
 
 <style scoped>

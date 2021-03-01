@@ -4,21 +4,25 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import Loading from 'vue-loading-overlay';
 import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import DashBoard from '../views/DashBoard.vue';
-import Products from '../views/Products.vue';
-import orderList from '../views/OrderList.vue';
-import Coupon from '../views/Coupon.vue';
-import Lecture from '../views/Lecture.vue';
-import SelfProduct from '../views/SelfProduct.vue';
-import Company from '../views/Company.vue';
-import locationInfo from '../views/LocationInfo.vue';
-import CompanyDetail from '../views/CompanyDetail.vue';
-import Lecture_Product from '../views/Lecture_Product.vue';
-import customerOrder from '../views/CustomerOrder.vue';
-import Customer1 from '../views/Customer1.vue';
-import Customer2 from '../views/Customer2.vue';
-import CustomerCheckout from '../views/CustomerCheckout.vue';
+import Login from '../views/Login.vue';
+
+import DashBoard from '../views/Backend/DashBoard.vue';
+import Coupon from '../views/Backend/Coupon.vue';
+import orderList from '../views/Backend/OrderList.vue';
+import Products from '../views/Backend/Products.vue';
+
+import Lecture from '../views/Frontend/Lecture.vue';
+import Lecture_Product from '../views/Frontend/Lecture_Product.vue';
+import SelfProduct from '../views/Frontend/SelfProduct.vue';
+
+import Company from '../views/Frontend/Company.vue';
+import locationInfo from '../views/Frontend/LocationInfo.vue';
+import CompanyDetail from '../views/Frontend/CompanyDetail.vue';
+
+import customerOrder from '../views/Frontend/CustomerOrder.vue';
+import Customer1 from '../views/Frontend/Customer1.vue';
+import Customer2 from '../views/Frontend/Customer2.vue';
+import CustomerCheckout from '../views/Frontend/CustomerCheckout.vue';
 import '../../node_modules/vue-loading-overlay/dist/vue-loading'
 
 

@@ -12,17 +12,12 @@
                         <span class="ml-1 my-auto Brand_logo">Berserker Fitness</span>
                     </h1>
             </router-link>
-
-            
             <div class="d-block d-lg-none" style="position:relative">
                 <button type="button" class="btn btn-transparent text-dark d-block d-lg-none" data-toggle="modal" data-target="#exampleModalLong" @click="getList">
                     <font-awesome-icon :icon="['fas', 'cart-arrow-down']" />
                 </button>
                 <span class="badge badge-danger rounded-circle" style="position:absolute;top:0;left:25px" v-if="product_num!==0">{{ product_num }}</span>
             </div>
-
-
-
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
@@ -31,9 +26,7 @@
                     <li class="nav-item">
                         <router-link to="/lecture/Lecture_Product" class="nav-link text-dark">課程</router-link>              
                     </li>
-                    
                 </ul>
-
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                         <a class="nav-link location_search" href="#" title="了解我們">
@@ -43,19 +36,12 @@
                     <li class="nav-item active">
                         <router-link to="/login" class="nav-link login_status" title="管理者登入">
                             <font-awesome-icon :icon="['fas', 'users-cog']" />
-                            <!--
-                            <a class="nav-link login_status" href="#" title="管理者登入">
-                                <font-awesome-icon :icon="['fas', 'users-cog']" />
-                            </a>
-                            -->
                         </router-link>
                     </li>
                     <li class="nav-item active">
-                    
                         <a class="nav-link likeButton" :class="{'text-danger':likeList.length!==0}" href="#" title="我的最愛" data-toggle="dropdown">
                             <font-awesome-icon :icon="['far','heart']" size="lg"></font-awesome-icon>  
                         </a> 
-                    
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuReference" style="min-width:400px;">
                             <div class="px-4">
                                 <table class="table">
@@ -80,18 +66,11 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                        
                                     </tbody>
-                                    
                                     <tbody v-else class="text-danger">沒有我的最愛清單</tbody>
-                                    
-                                    
-                                    
                                 </table>
                             </div>  
                             </div>
-
-
                     </li>
                     <li class="nav-item active">
                         <router-link to="/">
@@ -106,7 +85,6 @@
                         <span class="badge badge-danger rounded-circle" style="position:absolute;top:0;left:25px" v-if="product_num!==0">{{ product_num }}</span>
                     </li>
                 </ul>
-                
             </div>
         </nav>
         <!---->
@@ -119,8 +97,6 @@
                             <router-link to="/Company/CompanyDetail" class="location_search_btn ml-2">了解Berserker Fitness</router-link> 
                         </div>
                     </div>
-                
-                
                     <div class="card rounded-0 border-0 bg-light" style="width: 18rem;">
                         <img class="card-img-top location_part" src="https://upload.cc/i1/2021/02/16/rcGXwH.jpg" alt="了解Berserker Fitness據點查詢圖片">
                         <div class="card-body p-0 text-center mt-3">
@@ -129,13 +105,8 @@
                         </div>
                     </div>
             </div>
-            
         </div>
-        
-
-        <!---->
         <!-- Modal -->
-        
         <div class="modal fade modal-right pr-0" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog mr-md-0 mt-0" role="document" >
                 <div class="modal-content">
@@ -168,12 +139,7 @@
                 </div>
             </div>
             </div>
-            
-
-    
-    
     </div>
-    
 </template>
 
 <script>
@@ -189,7 +155,6 @@ export default {
             return []
           }
       }
-      
   },
   data () {
       return{
@@ -221,14 +186,12 @@ export default {
             vm.Status.isUploading = true;
             vm.$http.get(api).then((response) => {  
                 vm.cart = response.data.data.carts;
-                console.log('Navbar', response);
                 if(response.data.success){
                     vm.Status.isUploading = false;
                     vm.total_price = response.data.data.total;
                     vm.total_length = response.data.data.carts.length;
                     vm.getcartLength();
                 }
-                
             })
       },
       getLike(){
@@ -279,8 +242,6 @@ export default {
       },
       removeLike(item){
           let vm = this;
-          
-          
           let output_data = localStorage.getItem('LikeData');
           let output_array = JSON.parse(output_data);
           if(output_array.length!==0){
@@ -289,11 +250,9 @@ export default {
                     output_array.splice(index, 1);
                 }
             })
-          }
-        
+          }        
           let input_data = JSON.stringify(output_array);
           localStorage.setItem('LikeData', input_data);
-
           vm.getLike();     
       }
   },
@@ -301,10 +260,8 @@ export default {
     const api = `${process.env.VUE_APP_APIPATH}/api/user/check`; 
     this.$http.post(api).then((response)=>{
         if(response.data.success){
-            console.log('登入囉')
             $('.login_status').css('color', 'green');
         } else {
-            console.log('登出囉')
             $('.login_status').css('color', 'red');
         }
     })
@@ -318,7 +275,6 @@ export default {
   },
   watch:{
       likeArray: function() {
-          console.log('你好嗎', this.likeArray);
           this.likeList = this.likeArray; 
       }
   },

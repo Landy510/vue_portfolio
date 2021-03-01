@@ -30,10 +30,9 @@ import $ from 'jquery';
             }
         },
         methods:{
-            
             closeCartCover(){
-                $('.cart_list').removeClass('cartOpen');
-                $('.cart_list_cover').removeClass('cartOpen');
+              $('.cart_list').removeClass('cartOpen');
+              $('.cart_list_cover').removeClass('cartOpen');
             }
         },
         
@@ -50,7 +49,6 @@ import $ from 'jquery';
   background:#000;
   transform: translateX(-40vw);
   transition:all .5s;
-  
 }
 .cart_list_cover{
   position:fixed;
@@ -63,7 +61,6 @@ import $ from 'jquery';
   transform: translateX(-100vw);
   opacity:1;
   transition:all .5s;
- 
 }
 .cartOpen.cart_list{
   transform: translateX(0vw);

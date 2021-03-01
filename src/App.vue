@@ -4,11 +4,8 @@
        <font-awesome-icon :icon="['fas','chevron-up']" size="3x"></font-awesome-icon>
        <p>Top</p>
     </button>
-    <!--<Navbar></Navbar>-->
     <Loading :active.sync="isLoading"></Loading>
-    
-    <router-view/>  
-    
+    <router-view/>
     <Footer/>
   </div>
 </template>
@@ -36,7 +33,6 @@ export default {
           vm.carts = response.data.data.carts;
         }
         vm.isLoading = false;
-        console.log('取得購物車', vm.carts);
       });
     },
     removeCart(id) {
@@ -46,7 +42,6 @@ export default {
       this.$http.delete(url).then((response) => {
         vm.isLoading = false;
         vm.getCart();
-        console.log('刪除購物車項目', response);
       });
     },
     callCart(){
@@ -68,8 +63,8 @@ export default {
 
 
 <style lang="scss">
-@import "./assets/all.css";
-
+// @import "./assets/all.css";
+@import "./assets/helper/all.min.css";
 .scrollTop{
   display:none;
   position:fixed; 

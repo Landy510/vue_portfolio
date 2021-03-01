@@ -4,11 +4,11 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-import Loading from 'vue-loading-overlay';          // 引入overlay元件
-import 'vue-loading-overlay/dist/vue-loading.css';  // 引入overlay元件
+import Loading from 'vue-loading-overlay';  
+import 'vue-loading-overlay/dist/vue-loading.css';
 import 'bootstrap'  
 import './bus.js'
-import currencyFilter from './filters/currency'  // 引入currency.js
+import currencyFilter from './filters/currency'
 
 import { ValidationObserver, ValidationProvider, extend, localize, configure } from 'vee-validate';
 import TW from 'vee-validate/dist/locale/zh_TW.json'
@@ -26,10 +26,10 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 Vue.use(VueAxios, axios)
-Vue.component('Loading', Loading);  // 將overlay元件宣告成全域的元件
+Vue.component('Loading', Loading);
 Vue.config.productionTip = false
 axios.defaults.withCredentials = true;
-Vue.filter('currency', currencyFilter);  // 啟用fiter元件-千分號效果
+Vue.filter('currency', currencyFilter);
 
 Object.keys(rules).forEach((rule) => {
   extend(rule, rules[rule]);

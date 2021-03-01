@@ -15,9 +15,7 @@
                                 <font-awesome-icon :icon="['fab','instagram']" size="3x"></font-awesome-icon>
                             </a>
                         </p>
-                    
                     </div>
-                    
                 </div>
                 <div class="col-lg-4">
                     <p class="text-center text-md-left d-none d-lg-block">Contact us</p>
@@ -28,7 +26,6 @@
                             <small class="text-dark">服務時間</small>
                                 <small>08:00-18:00</small>
                         </div>
-                        
                     </div>
                 </div>
             </div>  
