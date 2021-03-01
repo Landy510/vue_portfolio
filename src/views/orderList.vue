@@ -14,10 +14,10 @@
             </thead>
             <tbody>
                 <tr v-for="(item, key) in customer_order" :key="key">
-                    <td>{{item.user.name}}</td>
-                    <td>{{item.user.email}}</td>
+                    <td>{{ item.user.name }}</td>
+                    <td>{{ item.user.email }}</td>
                     <td>
-                        <span v-for="(obj,index) in item.products" :key="index">{{obj.product.title}}, </span>
+                        <span v-for="(obj,index) in item.products" :key="index">{{ obj.product.title }} </span>
                     </td>
                     <td>
                         <span v-if="item.is_paid" class="text-success">已付款</span>

@@ -18,7 +18,7 @@
                 <button type="button" class="btn btn-transparent text-dark d-block d-lg-none" data-toggle="modal" data-target="#exampleModalLong" @click="getList">
                     <font-awesome-icon :icon="['fas', 'cart-arrow-down']" />
                 </button>
-                <span class="badge badge-danger rounded-circle" style="position:absolute;top:0;left:25px" v-if="product_num!==0">{{product_num}}</span>
+                <span class="badge badge-danger rounded-circle" style="position:absolute;top:0;left:25px" v-if="product_num!==0">{{ product_num }}</span>
             </div>
 
 
@@ -73,7 +73,7 @@
                                                     <i class="fas fa-trash-alt text-danger"></i>
                                                 </a>
                                             </td>
-                                            <td width="120">{{item.title}}</td>
+                                            <td width="120">{{ item.title }}</td>
                                             <td width="80" class="text-right">
                                                 <a class="text-dark" href="#" @click.prevent="addToCart(item)">
                                                     <font-awesome-icon :icon="['fas', 'cart-arrow-down']"/>
@@ -103,7 +103,7 @@
                         <button type="button" class="btn btn-transparent" data-toggle="modal" data-target="#exampleModalLong" @click="getList">
                             <font-awesome-icon :icon="['fas', 'cart-arrow-down']"/>
                         </button>
-                        <span class="badge badge-danger rounded-circle" style="position:absolute;top:0;left:25px" v-if="product_num!==0">{{product_num}}</span>
+                        <span class="badge badge-danger rounded-circle" style="position:absolute;top:0;left:25px" v-if="product_num!==0">{{ product_num }}</span>
                     </li>
                 </ul>
                 
@@ -125,7 +125,7 @@
                         <img class="card-img-top location_part" src="https://upload.cc/i1/2021/02/16/rcGXwH.jpg" alt="了解Berserker Fitness據點查詢圖片">
                         <div class="card-body p-0 text-center mt-3">
                             <font-awesome-icon :icon="['fas', 'caret-right']" />
-                            <router-link to="/Company/locationInfo" class="location_search_btn ml-2">Berserker Fitness據點查詢</router-link>  
+                            <router-link to="/Company/LocationInfo" class="location_search_btn ml-2">Berserker Fitness據點查詢</router-link>  
                         </div>
                     </div>
             </div>
@@ -149,15 +149,15 @@
                             <div class="card px-4 border-0" v-for="(item,index) in cart" :key="index">
                                 <img class="card-img-top" :src="item.product.imageUrl" :alt="`${item.product.title}課程圖片`">
                                 <div class="card-body">
-                                    <h3 class="card-title">{{item.product.title}}</h3>
-                                    <h3 class="card-text">{{item.product.price| currency}} 元</h3> 
+                                    <h3 class="card-title">{{ item.product.title }}</h3>
+                                    <h3 class="card-text">{{ item.product.price| currency }} 元</h3> 
                                     <div class="d-flex justify-content-between align-items-end">
-                                        <span class="card-text h5">{{item.qty}} /{{item.product.unit}}</span>  
+                                        <span class="card-text h5">{{ item.qty }} /{{ item.product.unit }}</span>  
                                         <button type="button" class="btn btn-outline-danger" @click="delProduct(item.id)"><font-awesome-icon :icon="['fas', 'trash-alt']"/></button>  
                                     </div>  
                                 </div>
                             </div>
-                            <div class="bg-light p-4 h3 d-sm-flex justify-content-between mb-0" style="position:sticky; bottom:0;">總金額 {{total_price| currency}}
+                            <div class="bg-light p-4 h3 d-sm-flex justify-content-between mb-0" style="position:sticky; bottom:0;">總金額 {{ total_price| currency }}
                                 <router-link to="/customerOrder/customer1">
                                     <button type="button" class="btn btn-warning px-5 w-100" @click="closeModal">
                                     <font-awesome-icon :icon="['fas', 'spinner']" spin v-if="Status.isUploading"/>
@@ -178,11 +178,9 @@
 
 <script>
 import $ from 'jquery';
-
-import cartModal from "./cart_modal";
+import CartModal from "./Cart_modal.vue";
 export default {
   name: 'Navbar',
-  //props:['product_num'],
   props:{
       'product_num':Number,
       'likeArray': {
@@ -325,7 +323,7 @@ export default {
       }
   },
   components:{
-      cartModal
+      CartModal
   }
 }
 </script>

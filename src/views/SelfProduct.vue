@@ -12,7 +12,7 @@
                 <li class="breadcrumb-item">
                     <router-link to="/lecture/Lecture_Product" class="text-muted">課程</router-link>
                 </li>
-                <li class="breadcrumb-item active text-dark" aria-current="page">{{lecture.title}}</li>
+                <li class="breadcrumb-item active text-dark" aria-current="page">{{ lecture.title }}</li>
             </ol>
         </nav>
         <div class="container mb-4">
@@ -21,11 +21,11 @@
                     <img :src="lecture.imageUrl" class="img-fluid" :alt="`${lecture.title}課程圖片`">
                 </div>
                 <div class="col-md-4">
-                    <h2>{{lecture.title}}</h2>
-                    <small>{{lecture.description}}</small>
+                    <h2>{{ lecture.title }}</h2>
+                    <small>{{ lecture.description }}</small>
                     <div class="d-flex justify-content-between align-items-end mb-4">
-                        <small class="card-text text-muted">原本售價 NT<del>{{lecture.origin_price| currency}}</del></small>
-                        <strong class="card-text text-muted ml-auto">現在售價 NT<span class="h4 text-danger">{{lecture.price| currency}}</span></strong>
+                        <small class="card-text text-muted">原本售價 NT<del>{{ lecture.origin_price| currency }}</del></small>
+                        <strong class="card-text text-muted ml-auto">現在售價 NT<span class="h4 text-danger">{{ lecture.price| currency }}</span></strong>
                     </div>
                     <h5>數量</h5>
                     <div class="input-group mb-3">
@@ -94,8 +94,8 @@
                             </div>
                             
                             <div class="card-body">
-                            <h5 class="card-title">{{item.title}}</h5>
-                            <p class="card-text">{{item.description}}</p>
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <p class="card-text">{{ item.description }}</p>
                             <button type="button" class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getProduct(item.id)">前去課程介紹</button>
                             </div>
                         </div>

@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li class="page-item"  v-for="page in author.total_pages" :key="page" :class="{'active':author.current_page===page}">
-                <a class="page-link" href="#" @click.prevent="getPagination(page)">{{page}}</a>
+                <a class="page-link" href="#" @click.prevent="getPagination(page)">{{ page }}</a>
             </li>
             
             <li class="page-item" :class="{'disabled':!author.has_next}">

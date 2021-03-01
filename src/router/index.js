@@ -7,12 +7,12 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import DashBoard from '../views/DashBoard.vue';
 import Products from '../views/Products.vue';
-import orderList from '../views/orderList.vue';
+import orderList from '../views/OrderList.vue';
 import Coupon from '../views/Coupon.vue';
 import Lecture from '../views/Lecture.vue';
 import SelfProduct from '../views/SelfProduct.vue';
 import Company from '../views/Company.vue';
-import locationInfo from '../views/locationInfo.vue';
+import locationInfo from '../views/LocationInfo.vue';
 import CompanyDetail from '../views/CompanyDetail.vue';
 import Lecture_Product from '../views/Lecture_Product.vue';
 import customerOrder from '../views/CustomerOrder.vue';
@@ -30,18 +30,9 @@ Vue.component('Loading', Loading);
 
 const routes = [
   {
-    path:'*',
-    redirect:'login'
-  },
-  {
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
     path: '/lecture',
@@ -129,7 +120,11 @@ const routes = [
         meta: { requiresAuth: true },
       }
     ]
-  }
+  },
+  {
+    path:'*',
+    redirect:'/'
+  },
 ]
 
 const router = new VueRouter({

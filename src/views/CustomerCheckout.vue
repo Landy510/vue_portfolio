@@ -101,7 +101,6 @@
 </template>
 
 <script>
-    // import $ from 'jquery';
     import Alert from './AlertMessage';
     import Navbar from './Navbar';
     export default {

@@ -18,8 +18,8 @@
               <div class="card h-100 border-0 mr-2">
                 <img class="card-img-top h-50" :src="item.imageUrl" :alt="`${item.title}課程`">
                 <div class="card-body">
-                  <h5 class="card-title">{{item.title}}</h5>
-                  <p class="card-text">{{item.description}}</p>
+                  <h5 class="card-title">{{ item.title }}</h5>
+                  <p class="card-text">{{ item.description }}</p>
                   <button class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" type="button" @click="getProduct(item.id)">前去課程介紹</button>
                 </div>
               </div>
@@ -48,11 +48,11 @@
                   <div class="card h-100 border-0">
                     <img class="card-img-top h-60" :src="item.imageUrl" :alt="`${item.title}課程`">
                     <div class="card-body p-0">
-                      <p class="card-text mb-0">{{item.title}}</p>
-                      <p class="card-text mb-0">{{item.description}}</p>
+                      <p class="card-text mb-0">{{ item.title }}</p>
+                      <p class="card-text mb-0">{{ item.description }}</p>
                       <div class="d-flex justify-content-between align-items-end">
-                        <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price| currency}}</del></small>
-                        <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price | currency}}</span></strong>
+                        <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{ item.origin_price| currency }}</del></small>
+                        <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{ item.price | currency }}</span></strong>
                       </div>
                       <button type="button" class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
                     </div>
@@ -70,11 +70,11 @@
                     <div class="card h-100 border-0">
                       <img class="card-img-top h-60" :src="item.imageUrl" :alt="`${item.title}課程`">
                       <div class="card-body p-0">
-                        <p class="card-text mb-0">{{item.title}}</p>
-                        <p class="card-text mb-0">{{item.description}}</p>
+                        <p class="card-text mb-0">{{ item.title }}</p>
+                        <p class="card-text mb-0">{{ item.description }}</p>
                         <div class="d-flex justify-content-between align-items-end">
-                          <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price}}</del></small>
-                          <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price}}</span></strong>
+                          <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{ item.origin_price }}</del></small>
+                          <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{ item.price }}</span></strong>
                         </div>
                         <button type="button" class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
                       </div>
@@ -89,11 +89,11 @@
                     <div class="card h-100 border-0">
                       <img class="card-img-top h-60" :src="item.imageUrl" :alt="`${item.title}課程`">
                       <div class="card-body p-0">
-                        <p class="card-text mb-0">{{item.title}}</p>
-                        <p class="card-text mb-0">{{item.description}}</p>
+                        <p class="card-text mb-0">{{ item.title }}</p>
+                        <p class="card-text mb-0">{{ item.description }}</p>
                         <div class="d-flex justify-content-between align-items-end">
-                          <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{item.origin_price}}</del></small>
-                          <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{item.price}}</span></strong>
+                          <small class="card-text text-muted" v-if="item.origin_price!==item.price">原本售價<del>{{ item.origin_price }}</del></small>
+                          <strong class="card-text text-muted ml-auto">現在售價 <span class="h4 text-danger">{{ item.price }}</span></strong>
                         </div>
                         <button type="button" class="btn btn-outline-dark rounded-0 btn-md-lg rounded-0 w-100" @click="getDetail(item.id)"><font-awesome-icon :icon="['fas', 'cart-arrow-down']" class="mr-2" />加入購物車</button>
                       </div>
@@ -155,7 +155,7 @@
                 <div class="modal-content border-0">
                 <div class="modal-header text-dark">
                     <h3 class="modal-title" id="exampleModalLabel">
-                    <span class="font-weight-bold">{{product_detail.title}}</span>
+                    <span class="font-weight-bold">{{ product_detail.title }}</span>
                     </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -165,17 +165,17 @@
                     <div class="card">
                         <img class="card-img-top" :src= "product_detail.imageUrl" :alt="`${product_detail.title}課程圖片`">
                         <div class="card-body">
-                            <h5 class="card-title">{{product_detail.description}}</h5>
+                            <h5 class="card-title">{{ product_detail.description }}</h5>
                             <div class="d-flex justify-content-between align-items-end">
-                                <del class="h4">原價{{product_detail.origin_price}}元</del>
-                                <strong class="h2">現在只要{{product_detail.price}}元</strong>
+                                <del class="h4">原價{{ product_detail.origin_price }}元</del>
+                                <strong class="h2">現在只要{{ product_detail.price }}元</strong>
                             </div>
 
                             <div class="form-group mt-3">
                                 <div class="form-group">
                                   <label for="exampleFormControlSelect1">選購堂數</label>
                                   <select class="form-control form-control-lg" aria-label="Default select example" v-model="product_detail.num">
-                                    <option :value="num" v-for="num in 10" :key="num">選購{{num}} {{product_detail.unit}}</option>
+                                    <option :value="num" v-for="num in 10" :key="num">選購{{ num }} {{ product_detail.unit }}</option>
                                     
                                   </select>
                                 </div>
@@ -185,7 +185,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <span class="h4 text-muted">小計 {{product_detail.price*product_detail.num}} 元</span>
+                    <span class="h4 text-muted">小計 {{ product_detail.price*product_detail.num }} 元</span>
                     <button type="button" class="btn btn-primary" @click="addToCart(product_detail.id, product_detail.num)">加到購物車</button>
                 </div>
                 </div>
@@ -198,7 +198,7 @@
 
 <script>
 import Navbar from './Navbar'
-import banner from "./intro_banner";
+import banner from "./Intro_banner";
 import alert from "./AlertMessage";
 import $ from "jquery";
 import { Carousel, Slide } from 'vue-carousel';

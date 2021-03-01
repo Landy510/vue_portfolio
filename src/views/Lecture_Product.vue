@@ -14,7 +14,7 @@
             </ol>
         </nav>
         <banner :introImage="image_website" :introImage_1="image_website1" :introImage_2="image_website2"></banner>
-        <div class="h2 text-center Lecture_title py-4 border-bottom">{{Lecture_title}}</div>
+        <div class="h2 text-center Lecture_title py-4 border-bottom">{{ Lecture_title }}</div>
         <div class="container mt-5">
             <div class="row">
                 <div class="col-12 mb-3">
@@ -40,13 +40,13 @@
                                                 </div>
                                                 
                                                 <div class="card-body p-0">
-                                                    <p class="card-text mb-0 d-flex justify-content-between pt-2">{{item.title}}
+                                                    <p class="card-text mb-0 d-flex justify-content-between pt-2">{{ item.title }}
                                                         <font-awesome-icon :class="{'text-danger':item.like}" :icon="['far','heart']" size="lg" @click="getLike(item)"></font-awesome-icon>  
                                                     </p>
-                                                    <p class="card-text mb-2">{{item.description}}</p>
+                                                    <p class="card-text mb-2">{{ item.description }}</p>
                                                     <div class="d-flex justify-content-between align-items-end">
-                                                        <del class="text-muted">原價{{item.origin_price| currency}}元</del>
-                                                        <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price| currency}}</span>元</strong>
+                                                        <del class="text-muted">原價{{ item.origin_price| currency }}元</del>
+                                                        <strong class="h5 mb-0">現在只要<span class="text-danger">{{ item.price| currency }}</span>元</strong>
                                                     </div>
                                                 </div>
                                                 <button type="button" class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
@@ -71,14 +71,14 @@
                                         </div>
                                         
                                         <div class="card-body p-0">
-                                            <p class="card-text mb-0 d-flex justify-content-between pt-2">{{item.title}}
+                                            <p class="card-text mb-0 d-flex justify-content-between pt-2">{{ item.title }}
                                                 <font-awesome-icon :class="{'text-danger':item.like}" :icon="['far','heart']" size="lg" @click="getLike(item)"></font-awesome-icon>  
                                             </p>
 
-                                            <p class="card-text mb-2">{{item.description}}</p>
+                                            <p class="card-text mb-2">{{ item.description }}</p>
                                             <div class="d-flex justify-content-between align-items-end">
-                                                <del class="text-muted">原價{{item.origin_price}}元</del>
-                                                <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
+                                                <del class="text-muted">原價{{ item.origin_price }}元</del>
+                                                <strong class="h5 mb-0">現在只要<span class="text-danger">{{ item.price }}</span>元</strong>
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
@@ -103,13 +103,13 @@
                                         </div>
                                         
                                         <div class="card-body p-0">
-                                            <p class="card-text mb-0 d-flex justify-content-between pt-2">{{item.title}}
+                                            <p class="card-text mb-0 d-flex justify-content-between pt-2">{{ item.title }}
                                                 <font-awesome-icon :class="{'text-danger':item.like}" :icon="['far','heart']" size="lg" @click="getLike(item)"></font-awesome-icon>  
                                             </p>
-                                            <p class="card-text mb-2">{{item.description}}</p>
+                                            <p class="card-text mb-2">{{ item.description }}</p>
                                             <div class="d-flex justify-content-between align-items-end">
-                                                <del class="text-muted">原價{{item.origin_price}}元</del>
-                                                <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
+                                                <del class="text-muted">原價{{ item.origin_price }}元</del>
+                                                <strong class="h5 mb-0">現在只要<span class="text-danger">{{ item.price }}</span>元</strong>
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
@@ -135,13 +135,13 @@
                                         </div>
                                         
                                         <div class="card-body p-0">
-                                            <p class="card-text mb-0 d-flex justify-content-between pt-2">{{item.title}}
+                                            <p class="card-text mb-0 d-flex justify-content-between pt-2">{{ item.title }}
                                                 <font-awesome-icon :class="{'text-danger':item.like}" :icon="['far','heart']" size="lg" @click="getLike(item)"></font-awesome-icon>  
                                             </p>
-                                            <p class="card-text mb-2">{{item.description}}</p>
+                                            <p class="card-text mb-2">{{ item.description }}</p>
                                             <div class="d-flex justify-content-between align-items-end">
-                                                <del class="text-muted">原價{{item.origin_price}}元</del>
-                                                <strong class="h5 mb-0">現在只要<span class="text-danger">{{item.price}}</span>元</strong>
+                                                <del class="text-muted">原價{{ item.origin_price }}元</del>
+                                                <strong class="h5 mb-0">現在只要<span class="text-danger">{{ item.price }}</span>元</strong>
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-outline-dark d-block d-md-none" @click="getSelfProduct(item.id)">前往課程一覽</button>
@@ -164,9 +164,8 @@
 </template>
 
 <script>
-// import $ from 'jquery';
 import Navbar from "./Navbar";
-import banner from "./intro_banner";
+import banner from "./Intro_banner";
   export default {
     data(){
          return{

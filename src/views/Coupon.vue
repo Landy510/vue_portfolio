@@ -17,11 +17,11 @@
         </thead>
         <tbody>
             <tr v-for="(item, key) in products" :key="key">
-                <td>{{item.due_date}}</td>
-                <td>{{item.title}}</td>
-                <td>{{item.code}}</td>
+                <td>{{ item.due_date }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.code }}</td>
                 <td>
-                {{item.percent}}
+                {{ item.percent }}
                 </td>
                 
                 <td>
@@ -156,14 +156,16 @@ export default {
                     vm.tempProduct = {};
                     vm.isNew = true;
                 } else {
-                    vm.tempProduct = Object.assign({}, item);
+                    // vm.tempProduct = Object.assign({}, item);
+                    vm.tempProduct = {...item};
                     this.isNew = false;
                 }
                 $('#CouponModal').find('.modal-title').text(content)
             },
             delModal(item){
                 $('#delCouponModal').modal('show');
-                this.tempProduct = Object.assign({},item);
+                // this.tempProduct = Object.assign({},item);
+                this.tempProduct = {...item};
             },
             delCoupon(){
                 const vm = this;

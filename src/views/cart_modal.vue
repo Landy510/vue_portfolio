@@ -5,8 +5,8 @@
             <div class="card" v-for="(item, index) in cart_detail" :key="index">
                 <img class="card-img-top" :src="item.imageUrl" :alt="item.title圖片">
                 <div class="card-body">
-                    <h5 class="card-title">{{item.title}}</h5>
-                    <p class="card-text">數量{{item.num}} {{item.unit}}</p>
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">數量{{ item.num }} {{ item.unit }}</p>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
 <script>
 import $ from 'jquery';
     export default {
-        name: 'cartModal',
+        name: 'CartModal',
         props:{
             cart_detail: {
                 type: Array,

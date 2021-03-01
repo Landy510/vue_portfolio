@@ -16,7 +16,7 @@
 <script>
 import Navbar from "./views/Navbar";
 import Footer from "./views/Footer";
-import cartModal from "./views/cart_modal";
+import CartModal from "./views/Cart_modal";
 import $ from "jquery";
 export default {
   name: 'App',
@@ -60,7 +60,7 @@ export default {
   components:{
     Navbar,
     Footer,
-    cartModal
+    CartModal
   }
 };
 </script>

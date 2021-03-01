@@ -28,7 +28,23 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 	* v-for 請補上 :key，例如：orderList.vue。 -> ok! 2021/02/27
 	* SelfProduct.vue 的 169 行可以不用寫呼叫函式因為並沒有做其他特別的處理，因此可直接綁 getProduct 即可。 -> ok! 2021/02/27
 	* 該頁面若沒有使用 jQuery 請移除「import $ from 'jquery';」 (已修改檔案: orderList.vue, SelfProduct.vue, CustomerCheckout.vue) -> ok! 2021/02/27
-	* 單純的 button 並沒有預設行為，因此可以不用寫 .prevent。
+	* 單純的 button 並沒有預設行為，因此可以不用寫 .prevent。  -> ok! 2021/02/27
+	* 單純的 button 按鈕請補上 type="button" 屬性。   -> ok! 2021/02/27
+	* Products.vue 的 Status 建議可以改成 status 統一駝峰命名。  -> ok! 2021/02/27
+	* router-link 可以直接寫內文不用再次撰寫 a 標籤。 -> ok! 2021/02/27
+	* img 標籤建議盡可能去描述，而不是單純的「alt="Card image cap"」。 -> ok! 2021/02/27
+	* 一個頁面只會有一個 h1 標籤。  -> ok! 2021/02/27
+	* 有關陣列的filter功能改寫成比較簡短的形式。 -> ok! 2021/02/27
+	* Home.vue 的 ReadWebSiteWidth 中的 if 判斷是似乎是想寫 if...else if? 在此可以考慮 switch。 -> ok! 已將那個函式刪掉了，用vue-carousel取代這個函式的swiper功能了。
+	* Footer.vue 外層可以去除 div 直接 footer 即可。 -> ok! 2021/02/27
+	* orderList.vue 的 th 概念類似 td 建議可以改成以下。 -> ok! 2021/02/27
+	* 當宣告 const vm = this; 之後可以將 this 替換成 vm，例如： this.$http.get 改為 vm.$http.get 等。 -> ok! 2021/02/27
+	* SCSS 請以縮排兩格為主 ，可參考這一篇建議規範文獻。 -> ok! 2021/02/27
+	* 請統一 {{}} 寫法，不可一下子 {{item}} 一下子 {{ item }} (前後空白)，以助教的風格習慣是後者，因為在閱讀上較美觀，同學可以自己選擇哪一種 :D，這部分同學也可以參考官方文獻的建議寫法唷。  -> ok! 2021/03/01
+	* 在此會建議萬用路由放在最後並且導回首頁而不是登入頁面，正常使用者並不需要登入的。 -> ok! 2021/03/01
+	* Object.assign({}, item); 也可以嘗試修改成 {...item}; 唷。 -> ok! 2021/03/01
+	* 沒有用途的 .vue 檔案請移除，例如：HelloWorld.vue 等。 -> ok! 2021/03/01
+	* .vue 檔案會建議首字大寫。 -> ok! 2021/03/01
 
 * 畫面部分
 	* 整體

@@ -51,13 +51,13 @@
                         <td class="d-none d-md-block">
                             <img :src="item.product.imageUrl" width="70px" height="70px" :alt="item.product.title商品">
                         </td>
-                        <td class="h5">{{item.product.title}}</td>
+                        <td class="h5">{{ item.product.title }}</td>
                         <td class="h5">
-                        {{item.qty}} /{{item.product.unit}}
+                        {{ item.qty }} /{{ item.product.unit }}
                         </td>
                         
                         <td class="h5">
-                            {{item.qty*item.product.price| currency}} 
+                            {{ item.qty*item.product.price| currency }} 
                         </td>
                     
                     </tr>
@@ -65,16 +65,16 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="5" class="text-right h5">小計: <span>{{total| currency}}</span></td>
+                        <td colspan="5" class="text-right h5">小計: <span>{{ total| currency }}</span></td>
                     </tr>
                     <tr>
                         <td colspan="5" class="text-right h5 border-0">運費: <span>0</span></td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-right h5 text-danger">總計: <span class="h2">{{total| currency}}</span></td>
+                        <td colspan="5" class="text-right h5 text-danger">總計: <span class="h2">{{ total| currency }}</span></td>
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-right h5 text-success" v-if="final_total!==total && hasCoupon">折扣價: <span class="h2">{{final_total| currency}}</span></td>
+                        <td colspan="5" class="text-right h5 text-success" v-if="final_total!==total && hasCoupon">折扣價: <span class="h2">{{ final_total| currency }}</span></td>
                     </tr>
                 </tfoot>
             </table>

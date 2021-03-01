@@ -17,13 +17,13 @@
             </thead>
             <tbody>
                 <tr v-for="(item, key) in products" :key="key">
-                    <td>{{item.category}}</td>
-                    <td>{{item.title}}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.title }}</td>
                     <td class="text-right">
-                    {{item.origin_price}}
+                    {{ item.origin_price }}
                     </td>
                     <td class="text-right">
-                    {{item.price}}
+                    {{ item.price }}
                     </td>
                     <td>
                         <span v-if="item.is_enabled" class="text-success">啟用</span>
@@ -190,13 +190,15 @@ export default {
 				this.tempProduct = {};
 				this.isNew = true;
 			} else{
-				this.tempProduct = Object.assign({}, item);
+				// this.tempProduct = Object.assign({}, item);
+        this.tempProduct = {...item};
 				this.isNew = false;
 			} 
 		},
         delModal(item){
             $('#delProductModal').modal('show');
-            this.tempProduct = Object.assign({}, item); 
+            // this.tempProduct = Object.assign({}, item); 
+            this.tempProduct = {...item}; 
         },
         Delproduct(){
             const vm = this;
